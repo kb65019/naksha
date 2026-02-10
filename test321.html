@@ -1,0 +1,2805 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">    <title>مطعم نكشة المركزي - أشهى الأطباق الشرقية والغربية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+
+        :root {
+            --ll-color:#333333;
+            --list-color:#8B0000;
+            --errr-color:#E57373;
+            --sss-color:#4CAF93;
+            --trash-:#E57373;
+            --error-color:#E57373;
+            --new-color:#4CAF93;
+            --icon-hot-color: #E57373;
+            --primary-color: #27ae60;
+            --primary-dark: #E85A2B;
+            --secondary-color: #2C3E50;
+            --accent-color: #D4A574;
+            --accent-dark: #00B88A;
+            --warning-color: #FFB627;
+            --danger-color: #D4A574;
+            --text-primary: #2C3E50;
+            --text-secondary: #7F8C8D;
+            --text-light: #BDC3C7;
+            --bg-light: #F8F9FA;
+            --bg-dark: #1A1A2E;
+            --border-color: #E8EAED;
+            --shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+            --shadow-xl: 0 12px 40px rgba(0, 0, 0, 0.15);
+            --border-radius: 16px;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #B93532;
+            min-height: 100vh;
+            line-height: 1.6;
+            color: var(--text-primary);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);//لون البار اعلى شيء
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 0;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--list-color);
+        }
+
+        .store-name {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--list-color);
+            margin: 0;
+        }
+
+        .store-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-top: 0.2rem;
+        }
+
+        .cart-button {
+            position: relative;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 60;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .cart-button:hover {
+            background: #5D6D7E;
+            transform: translateY(-1px);
+        }
+
+        .cart-count {
+            background: var(--);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+            padding: 3rem 0;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 2rem;
+        }
+
+
+/* الفئات المتحركة الجديدة */
+.categories-wrapper {
+    position: relative;
+    margin-bottom: 3rem;
+    padding: 0 10px;
+}
+
+.categories-container {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    scroll-behavior: smooth;
+    padding: 10px 0;
+    cursor: grab;
+}
+
+.categories-container::-webkit-scrollbar {
+    display: none;
+}
+
+.categories {
+    display: flex;
+    gap: 1rem;
+    padding: 0 5px;
+    min-width: min-content;
+    flex-wrap: nowrap;
+}
+
+.category {
+    background: rgba(255,255,255,0.9);
+    backdrop-filter: blur(10px);
+    padding: 0.75rem 1.5rem;
+    border: 2px solid transparent;
+    border-radius: 50px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: var(--transition);
+    white-space: nowrap;
+    flex-shrink: 0;
+    user-select: none;
+}
+
+.category:hover,
+.category.active {
+    background: var(--ll-color);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+@media (max-width: 768px) {
+    .category {
+        font-size: 0.85rem;
+        padding: 0.5rem 1rem;
+    }
+}
+
+        .products-container {
+            background-color:#;//bgofitim
+            backdrop-filter: blur(10px);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin-bottom: 3rem;
+
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .product-button {
+            width: 100%;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.75rem;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .product-button:hover {
+            background: #5D6D7E;
+            transform: translateY(-2px);
+        }
+
+        .badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--accent-color);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .badge.new {
+            background: var(--icon-hot-color);
+        }
+
+        .badge.sale {
+            background: var(--new-color);
+        }
+
+        .prep-time {
+            display: inline-block;
+            background: var(--accent-color);
+            color: white;
+            padding: 0.3rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #D6B98C;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from { transform: translate(-50%, -60%); opacity: 0; }
+            to { transform: translate(-50%, -50%); opacity: 1; }
+        }
+
+        .modal-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            text-align: center;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #E57373;
+            color: white;
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            line-height: 1;
+            transition: var(--transition);
+        }
+
+        .close-modal:hover {
+            background: #dc2626;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        .modal-footer {
+            padding: 1rem 2rem;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .size-options {
+            display: flex;
+            gap: 0.5rem;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+        }
+
+                    .size-options {
+                flex-direction: column;
+            }
+
+        .size-option {
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--border-color);
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            flex: 1;
+            text-align: center;
+            min-width: 80px;
+        }
+
+        .size-option:hover {
+            border-color: var(--primary-color);
+        }
+
+        .size-option.selected {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+    .cart-button {
+        padding: 0.9rem;
+        font-size: 1.8rem;
+        gap: 1.9rem;
+    }
+
+.quantity-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin: 1rem 0;
+            background: white;
+            padding: 0.5rem;
+            border-radius: 50px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .quantity-btn {
+            width: 45px;
+            height: 45px;
+            border: none;
+            border-radius: 50%;
+            background: var(--primary-color);
+            color: white;
+            cursor: pointer;
+            font-size: 1.5rem;
+            font-weight: 700;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+
+        .quantity-btn:active {
+            background: #5D6D7E;
+            transform: scale(0.9);
+        }
+
+        .quantity-display {
+            font-size: 1.4rem;
+            font-weight: 700;
+            min-width: 60px;
+            text-align: center;
+            padding: 0.5rem 1rem;
+            color: var(--primary-color);
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .cart-total {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-align: center;
+            margin: 1rem 0;
+            padding: 1rem;
+            background: var(--secondary-color);
+            border-radius: var(--border-radius);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid var(--border-color);
+            border-radius: var(--border-radius);
+            font-family: 'Tajawal', sans-serif;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .form-error {
+            color: var(--error-color);
+            font-size: 0.9rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+
+        .btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn:hover {
+            background: #4CAF93;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: var(--text-secondary);
+        }
+
+        .btn-secondary:hover {
+            background: #4b5563;
+        }
+
+        .btn-danger {
+            background: var(--trash-);
+        }
+
+        .btn-danger:hover {
+            background: #dc2626;
+        }
+
+        .alert {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 1rem 1.5rem;
+            border-radius: var(--border-radius);
+            color: white;
+            z-index: 1100;
+            box-shadow: var(--shadow-lg);
+            animation: slideInRight 0.3s ease;
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .alert-success {
+            background: var(--sss-color);
+        }
+
+
+
+        .alert-error {
+            background: var(--errr-color);
+        }
+
+        .alert-warning {
+            background: var(--warning-color);
+        }
+
+        .footer {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .footer p {
+            margin-bottom: 0.5rem;
+            font-size: 1rem; /* أضف هذا السطر لتغيير الحجم */
+
+        }
+
+        .footer a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .delivery-options {
+            display: flex;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .delivery-option {
+            flex: 1;
+            border: 2px solid var(--border-color);
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .delivery-option:hover {
+            border-color: var(--primary-color);
+            background: var(--secondary-color);
+        }
+
+        .delivery-option input[type="radio"]:checked + span {
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        .total-prep-time {
+            background: var(--accent-color);
+            color: white;
+            padding: 0.75rem;
+            border-radius: var(--border-radius);
+            text-align: center;
+            margin: 1rem 0;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .categories {
+                gap: 0.5rem;
+            }
+
+            .category {
+                font-size: 0.9rem;
+                padding: 0.5rem 1rem;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .modal-content {
+                width: 95%;
+            }
+
+            .modal-body {
+                padding: 1rem;
+            }
+
+            .size-options {
+                flex-direction: column;
+            }
+
+            .size-option {
+                flex: none;
+            }
+
+            .delivery-options {
+                flex-direction: column;
+            }
+        }
+
+        .delivery-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-top: 10px;
+}
+
+.delivery-card {
+  padding: 18px;
+  border-radius: 16px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  cursor: pointer;
+  transition: 0.3s ease;
+  text-align: center;
+  position: relative;
+}
+
+.delivery-card .icon {
+  font-size: 22px;
+  margin-bottom: 8px;
+}
+
+.delivery-card h4 {
+  margin: 0;
+  font-size: 15px;
+}
+
+.delivery-card p {
+  margin-top: 6px;
+  font-size: 13px;
+  color: #64748b;
+}
+
+.delivery-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.delivery-card.active {
+  border-color: #6366f1;
+  background: #eef2ff;
+  box-shadow: 0 15px 35px rgba(99,102,241,0.25);
+}
+
+@media (max-width: 600px) {
+    /* الهيدر */
+    .header-content {
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 0.5rem;
+        padding: 0.5rem 0;
+    }
+
+    .logo {
+        width: 65px;
+        height: 65px;
+    }
+
+.store-name {
+        font-size: 1px; /* جرب 14 أو 12 حتى يصل للحجم الذي يرضيك */
+        font-size: 20px !important;
+    }
+
+    .store-subtitle {
+        font-size: 0.7rem;
+    }
+
+    .cart-button {
+        padding: 0.7rem 1.4rem;
+        font-size: 0.9rem;
+        gap: 1.2rem;
+    }
+
+    .cart-count {
+        width: 18px;
+        height: 18px;
+        font-size: 0.7rem;
+    }
+
+    /* الهيرو */
+    .hero {
+        padding: 2rem 0;
+    }
+
+    .hero h1 {
+        font-size: 1.5rem;
+        font-weight: 600;
+    }
+
+    .hero p {
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+    }
+
+    /* الفئات */
+    .categories {
+        gap: 0.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .category {
+        font-size: 0.85rem;
+        padding: 0.5rem 1rem;
+    }
+
+
+
+
+
+
+
+
+    .cart-item > div:last-child {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .cart-total {
+        font-size: 1.2rem;
+        padding: 0.75rem;
+    }
+
+    .total-prep-time {
+        font-size: 0.9rem;
+        padding: 0.6rem;
+    }
+
+
+
+    .form-group label {
+        font-size: 0.9rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        font-size: 0.9rem;
+        padding: 0.6rem;
+    }
+
+    /* خيارات التوصيل */
+    .delivery-cards {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+
+    .delivery-card {
+        padding: 1rem;
+    }
+
+    .delivery-card .icon {
+        font-size: 28px;
+    }
+
+    .delivery-card h4 {
+        font-size: 1rem;
+    }
+
+    .delivery-card p {
+        font-size: 0.8rem;
+    }
+
+
+
+
+
+
+
+    .footer p {
+        font-size: 0.85rem;
+        margin-bottom: 0.4rem;
+    }
+
+    /* تحسينات إضافية */
+    .container {
+        padding: 0 15px;
+    }
+}
+
+
+
+                .map-container {
+            padding: 30px;
+        }
+
+        .map-wrapper {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            height: 450px;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .info {
+            padding: 30px;
+            background: #f8f9fa;
+            text-align: center;
+        }
+
+        .info h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+        }
+
+        .info p {
+            color: #555;
+            font-size: 1.1em;
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+
+        .info .icon {
+            display: inline-block;
+            margin-left: 8px;
+            font-size: 1.2em;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .map-wrapper {
+                height: 350px;
+            }
+        }
+
+
+                .available { background-color: #28a745; color: white; }
+        .unavailable { background-color: #dc3545; color: white; cursor: not-allowed; }
+
+   .facebook-footer {
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 30px;
+}
+
+.fb-logo {
+    width: 50px; /* يمكنك تكبير أو تصغير الحجم من هنا */
+    height: auto;
+    transition: transform 0.3s ease; /* تأثير حركة بسيط */
+    cursor: pointer;
+}
+
+.fb-logo:hover {
+    transform: scale(1.1); /* تكبير الصورة قليلاً عند وضع الماوس عليها */
+}
+
+    </style>
+</head>
+<link rel="icon" type="img/naksha logo.png" href="img/naksha logo.png">
+
+<link rel="img/naksha logo.png" sizes="180x180" href="img/naksha logo.png">
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-section">
+                    <img src="img/naksha logo.png" alt="مطعم نكشةج المركزي" class="logo">
+                    <div>
+                        <h1 class="store-name"> نكشه المركزي</h1>
+                    </div>
+                </div>
+                <button class="cart-button" onclick="openCart()">
+                    🛒 السلة
+                    <span class="cart-count" id="cart-count">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>اشتهي.. اطلب.. استمتع!</h1>
+        </div>
+    </section>
+
+    <main class="container">
+<div class="categories-wrapper">
+    <div class="categories-container" id="categoriesContainer">
+        <nav class="categories">
+            <button class="category active" onclick="filterProducts('الكل')">الكل</button>
+            <button class="category" onclick="filterProducts('الشاورما')">🌯 الشاورما</button>
+            <button class="category" onclick="filterProducts('السناك')">🍟 السناك</button>
+            <button class="category" onclick="filterProducts('المقبلات')">🥤 المقبلات</button>
+            <button class="category" onclick="filterProducts('سدر مكس')"> سدر مكس</button>
+            <button class="category" onclick="filterProducts('وجبات مكس')"> وجبات مكس</button>
+
+
+        </nav>
+    </div>
+</div>
+        <div class="products-container">
+            <div class="products-grid" id="products-grid">
+
+
+
+
+
+
+                <div class="product-card" data-category="وجبات البروستد">
+    <div class="badge sale">جديد 🆕</div>
+    <img src="img/IMG-20230731-WA0006.jpg" alt="بروستد" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">بروستد</h3>
+        <p class="product-price">من 3.50 دينار</p>
+        <div class="prep-time">⏱️ 15–30 دقيقة</div>
+        <button class="product-button" data-name="بروستد" onclick="showProductDetails('بروستد', 'img/IMG-20230731-WA0006.jpg', {'4 قطع': 3.50, '8 قطع': 6.50, '12 قطعة': 10.00, '16 قطعة': 12.00, '20 قطعة': 15.00, '24 قطعة': 18.00, '28 قطعة': 21.00, '32 قطعة': 23.00}, ['4 قطع', '8 قطع', '12 قطعة', '16 قطعة', '20 قطعة', '24 قطعة', '28 قطعة', '32 قطعة'], '20')">
+            إضافة إلى السلة
+        </button>
+    </div>
+</div>
+
+
+                <div class="product-card" data-category="وجبات الكرسبي">
+    <div class="badge sale">جديد 🆕</div>
+    <img src="img/C956E0DD-09EC-42ED-BE14-726F401566A8_1_201_a.jpeg" alt="كرسبي" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">كرسبي</h3>
+        <p class="product-price">من 3.50 دينار</p>
+        <div class="prep-time">⏱️ 12–25 دقيقة</div>
+        <button class="product-button" data-name="كرسبي" onclick="showProductDetails('كرسبي', 'img/C956E0DD-09EC-42ED-BE14-726F401566A8_1_201_a.jpeg', {'6 قطع': 3.50, '12 قطعة': 6.00, '18 قطعة': 9.00, '24 قطعة': 12.00}, ['6 قطع', '12 قطعة', '18 قطعة', '24 قطعة'], '18')">
+            إضافة إلى السلة
+        </button>
+    </div>
+</div>
+
+
+                <div class="product-card" data-category="دجاج شواية">
+    <img src="img/grilled-chicken.jpg" alt="دجاجة شواية" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">دجاجة شواية</h3>
+
+        <p class="product-price">من 3.00 دينار</p>
+        <div class="prep-time">⏱️ 20–35 دقيقة</div>
+        <button class="product-button" data-name="دجاجة شواية" onclick="showProductDetails('دجاجة شواية', 'img/grilled-chicken.jpg', {'نصف دجاجة': 3.00, 'دجاجة كاملة': 5.50}, ['نصف دجاجة', 'دجاجة كاملة'], '25')">
+            إضافة إلى السلة
+        </button>
+    </div>
+</div>
+
+                <div class="product-card" data-category="أجنحة الدجاج">
+    <img src="img/wings.jpg" alt="أجنحة دجاج" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">وجبات أجنحة دجاج</h3>
+        <p class="product-price">من 2.50 دينار</p>
+        <div class="prep-time">⏱️ 12–22 دقيقة</div>
+        <button class="product-button" data-name="أجنحة دجاج" onclick="showProductDetails('أجنحة دجاج', 'img/wings.jpg', {'10 قطع': 2.50, '20 قطعة': 4.00, '30 قطعة': 5.50}, ['10 قطع', '20 قطعة', '30 قطعة'], '15')">
+            إضافة إلى السلة
+        </button>
+    </div>
+</div>
+                <div class="product-card" data-category="سدر مكس">
+    <img src="img/mix-tray-small.jpg" alt="سدر مكس" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">سدر مكس</h3>
+        <p class="product-price">9.00 دينار</p>
+        <p class="product-description">2.5 شاورما + 2 (زنجر أو فاهيتا أو مكسيكي) + بطاطا ومخلل ومثومة و2 ماتريكس</p>
+        <div class="prep-time">⏱️ 15–25 دقيقة</div>
+        <button class="product-button" data-name="سدر مكس" onclick="showProductDetails('سدر مكس', 'img/mix-tray-small.jpg', {'سدر مكس': 9.00}, ['2.5 شاورما', '2 زنجر/فاهيتا'], '20')">
+            إضافة إلى السلة
+        </button>
+    </div>
+</div>
+
+                <div class="product-card" data-category="وجبات مكس">
+    <img src="img/mix-shawarma-zinger.jpg" alt="وجبة مكس شاورما + زنجر" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">وجبة مكس شاورما + زنجر</h3>
+        <p class="product-price">4.00 دينار</p>
+        <div class="prep-time">⏱️ 12–18 دقيقة</div>
+        <button class="product-button" data-name="وجبة مكس شاورما + زنجر" onclick="showProductDetails('وجبة مكس شاورما + زنجر', 'img/mix-shawarma-zinger.jpg', {'وجبة مكس': 4.00}, ['شاورما', 'زنجر'], '15')">
+            إضافة إلى السلة
+        </button>
+    </div>
+</div>
+
+
+
+<div class="product-card" data-category="وجبات مكس">
+    <img src="img/mix-shawarma-fajita.jpg" alt="وجبة مكس شاورما + فاهيتا" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">وجبة مكس شاورما + فاهيتا</h3>
+        <p class="product-price">4.00 دينار</p>
+        <div class="prep-time">⏱️ 12–18 دقيقة</div>
+        <button class="product-button" data-name="وجبة مكس شاورما + فاهيتا" onclick="showProductDetails('وجبة مكس شاورما + فاهيتا', 'img/mix-shawarma-fajita.jpg', {'وجبة مكس': 4.00}, ['شاورما', 'فاهيتا'], '15')">
+            إضافة إلى السلة
+        </button>
+    </div>
+</div>
+
+
+
+<div class="product-card" data-category="وجبات مكس">
+    <img src="img/mix-zinger-fajita.jpg" alt="وجبة مكس زنجر + فاهيتا" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">وجبة مكس زنجر + فاهيتا</h3>
+        <p class="product-price">4.00 دينار</p>
+        <div class="prep-time">⏱️ 12–18 دقيقة</div>
+        <button class="product-button" data-name="وجبة مكس زنجر + فاهيتا" onclick="showProductDetails('وجبة مكس زنجر + فاهيتا', 'img/mix-zinger-fajita.jpg', {'وجبة مكس': 4.00}, ['زنجر', 'فاهيتا'], '15')">
+            إضافة إلى السلة
+        </button>
+    </div>
+</div>
+
+
+
+<div class="product-card" data-category="وجبات مكس">
+    <img src="img/mix-tender-fajita.jpg" alt="وجبة مكس تندر + فاهيتا" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">وجبة مكس تندر + فاهيتا</h3>
+        <p class="product-price">4.00 دينار</p>
+        <div class="prep-time">⏱️ 12–18 دقيقة</div>
+        <button class="product-button" data-name="وجبة مكس تندر + فاهيتا" onclick="showProductDetails('وجبة مكس تندر + فاهيتا', 'img/mix-tender-fajita.jpg', {'وجبة مكس': 4.00}, ['تندر', 'فاهيتا'], '15')">
+            إضافة إلى السلة
+        </button>
+    </div>
+</div>
+
+
+
+<div class="product-card" data-category="وجبات مكس">
+    <img src="img/mix-shawarma-mexican.jpg" alt="وجبة مكس شاورما + مكسيكي" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">وجبة مكس شاورما + مكسيكي</h3>
+        <p class="product-price">4.00 دينار</p>
+        <div class="prep-time">⏱️ 12–18 دقيقة</div>
+        <button class="product-button" data-name="وجبة مكس شاورما + مكسيكي" onclick="showProductDetails('وجبة مكس شاورما + مكسيكي', 'img/mix-shawarma-mexican.jpg', {'وجبة مكس': 4.00}, ['شاورما', 'مكسيكي'], '15')">
+            إضافة إلى السلة
+        </button>
+    </div>
+</div>
+
+
+
+<div class="product-card" data-category="وجبات مكس">
+    <img src="img/mix-shawarma-option.jpg" alt="وجبة مكس شاورما" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">وجبة مكس شاورما + اختيارك</h3>
+        <p class="product-price">4.00 دينار</p>
+        <p class="product-description">(زنجر أو تندر أو فاهيتا أو مكسيكي)</p>
+        <div class="prep-time">⏱️ 12–18 دقيقة</div>
+        <button class="product-button" data-name="وجبة مكس شاورما +" onclick="showProductDetails('وجبة مكس شاورما +', 'img/mix-shawarma-option.jpg', {'وجبة مكس': 4.00}, ['شاورما', 'اختياري'], '15')">
+            إضافة إلى السلة
+        </button>
+    </div>
+</div>
+
+
+
+<div class="product-card" data-category="وجبات مكس">
+    <img src="img/mix-zinger-option.jpg" alt="وجبة مكس زنجر" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">وجبة مكس زنجر + اختيارك</h3>
+        <p class="product-price">4.00 دينار</p>
+        <p class="product-description">(فاهيتا أو مكسيكي أو تندر)</p>
+        <div class="prep-time">⏱️ 12–18 دقيقة</div>
+        <button class="product-button" data-name="وجبة مكس زنجر +" onclick="showProductDetails('وجبة مكس زنجر +', 'img/mix-zinger-option.jpg', {'وجبة مكس': 4.00}, ['زنجر', 'اختياري'], '15')">
+            إضافة إلى السلة
+        </button>
+    </div>
+</div>
+
+
+
+<div class="product-card" data-category="وجبات مكس">
+    <img src="img/mix-naksha-option.jpg" alt="وجبة مكس نكشة" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">وجبة مكس نكشة + اختيارك</h3>
+        <p class="product-price">4.25 دينار</p>
+        <p class="product-description">(زنجر أو تندر أو فاهيتا أو مكسيكي)</p>
+        <div class="prep-time">⏱️ 15–20 دقيقة</div>
+        <button class="product-button" data-name="وجبة مكس نكشة +" onclick="showProductDetails('وجبة مكس نكشة +', 'img/mix-naksha-option.jpg', {'وجبة مكس نكشة': 4.25}, ['نكشة', 'اختياري'], '18')">
+            إضافة إلى السلة
+        </button>
+    </div>
+</div>
+
+
+<div class="product-card" data-category="وجبات مكس">
+    <img src="img/mix-scallop-burger.jpg" alt="وجبة مكس اسكالوب + برغر لحمة" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">وجبة مكس اسكالوب + برغر لحمة</h3>
+        <p class="product-price">2.75 دينار</p>
+        <div class="prep-time">⏱️ 10–15 دقيقة</div>
+        <button class="product-button" data-name="وجبة مكس اسكالوب + برغر" onclick="showProductDetails('وجبة مكس اسكالوب + برغر', 'img/mix-scallop-burger.jpg', {'وجبة مكس': 2.75}, ['اسكالوب', 'برغر لحمة'], '12')">
+            إضافة إلى السلة
+        </button>
+    </div>
+</div>
+
+
+
+<div class="product-card" data-category="سدر مكس">
+    <img src="img/mix-tray-medium.jpg" alt="سدر مكس وسط" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">سدر مكس وسط</h3>
+        <p class="product-price">13.50 دينار</p>
+        <p class="product-description">4 شاورما + 3 (زنجر أو فاهيتا أو مكسيكي) + بطاطا ومثومة ومخلل و3 ماتريكس</p>
+        <div class="prep-time">⏱️ 20–30 دقيقة</div>
+        <button class="product-button" data-name="سدر مكس وسط" onclick="showProductDetails('سدر مكس وسط', 'img/mix-tray-medium.jpg', {'سدر مكس وسط': 13.50}, ['4 شاورما', '3 زنجر/فاهيتا'], '25')">
+            إضافة إلى السلة
+        </button>
+    </div>
+</div>
+
+
+
+<div class="product-card" data-category="سدر مكس">
+    <img src="img/mix-tray-family.jpg" alt="سدر مكس عائلي" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">سدر مكس عائلي</h3>
+        <p class="product-price">17.00 دينار</p>
+        <p class="product-description">4.5 شاورما + 4 (زنجر أو فاهيتا أو مكسيكي) + بطاطا ومثومة ومخلل وماتريكس عائلي</p>
+        <div class="prep-time">⏱️ 25–35 دقيقة</div>
+        <button class="product-button" data-name="سدر مكس عائلي" onclick="showProductDetails('سدر مكس عائلي', 'img/mix-tray-family.jpg', {'سدر مكس عائلي': 17.00}, ['4.5 شاورما', '4 زنجر/فاهيتا'], '30')">
+            إضافة إلى السلة
+        </button>
+    </div>
+</div>
+
+
+
+<div class="product-card" data-category="سدر مكس">
+    <img src="img/shilla-tray.jpg" alt="سدر مكس الشلة" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">سدر مكس الشلة (يكفي لـ 10 أشخاص)</h3>
+        <p class="product-price">18.50 دينار</p>
+        <p class="product-description">2 شاورما + 2 زنجر + 2 مكسيكي + 2 فاهيتا + 2 اسكالوب + 2 برغر لحمة + 2 بطاطا + مخلل كبير + مثومة كبير + ماتريكس عائلي</p>
+        <div class="prep-time">⏱️ 30–45 دقيقة</div>
+        <button class="product-button" data-name="سدر مكس الشلة" onclick="showProductDetails('سدر مكس الشلة', 'img/shilla-tray.jpg', {'سدر مكس الشلة': 18.50}, ['لـ 10 أشخاص'], '40')">
+            إضافة إلى السلة
+        </button>
+    </div>
+</div>
+
+
+                <div class="product-card" data-category="الديناميت">
+    <img src="img/hot-dynamite.jpg" alt="وجبات ديناميت حار" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">وجبات ديناميت حار</h3>
+        <p class="product-price">من 3.00 دينار</p>
+        <div class="prep-time">⏱️ 12–18 دقيقة</div>
+        <button class="product-button"
+            data-name="وجبات ديناميت حار"
+            onclick="showProductDetails('وجبات ديناميت حار', 'img/hot-dynamite.jpg', {
+                'ديناميت عادي': 3.00,
+                'ديناميت سوبر': 3.75,
+                'ديناميت دبل': 4.50,
+                'ديناميت تربل': 6.00
+            }, [
+                'ديناميت عادي',
+                'ديناميت سوبر',
+                'ديناميت دبل',
+                'ديناميت تربل'
+            ], '18')">
+            إضافة إلى السلة
+        </button>
+    </div>
+</div>
+
+
+                <div class="product-card" data-category="السدور">
+    <img src="img/dynamite-tray.jpg" alt="سدور ديناميت حار" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">سدور ديناميت حار</h3>
+        <p class="product-price">من 11.00 دينار</p>
+        <div class="prep-time">⏱️ 20–30 دقيقة</div>
+        <button class="product-button"
+            data-name=" سدور ديناميت حار"
+            onclick="showProductDetails('سدور ديناميت', 'img/dynamite-tray.jpg', {
+                'سدر ديناميت صغير': 11.00,
+                'سدر ديناميت عائلي': 18.00
+            }, [
+                'سدر ديناميت صغير',
+                'سدر ديناميت عائلي'
+            ], '30')">
+            إضافة إلى السلة
+        </button>
+    </div>
+</div>
+
+
+
+                <div class="product-card" data-category="الديناميت">
+    <img src="img/hot-dynamite.jpg" alt="وجبات ديناميت بارد" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">وجبات ديناميت بارد</h3>
+        <p class="product-price">من 3.00 دينار</p>
+        <div class="prep-time">⏱️ 12–18 دقيقة</div>
+        <button class="product-button"
+            data-name="وجبات ديناميت بارد"
+            onclick="showProductDetails('وجبات ديناميت بارد', 'img/hot-dynamite.jpg', {
+                'ديناميت عادي': 3.00,
+                'ديناميت سوبر': 3.75,
+                'ديناميت دبل': 4.50,
+                'ديناميت تربل': 6.00
+            }, [
+                'ديناميت عادي',
+                'ديناميت سوبر',
+                'ديناميت دبل',
+                'ديناميت تربل'
+            ], '18')">
+            إضافة إلى السلة
+        </button>
+    </div>
+</div>
+
+
+                <div class="product-card" data-category="السدور">
+    <img src="img/dynamite-tray.jpg" alt="سدور ديناميت بارد" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">سدور ديناميت بارد</h3>
+        <p class="product-price">من 11.00 دينار</p>
+        <div class="prep-time">⏱️ 20–30 دقيقة</div>
+        <button class="product-button"
+            data-name=" سدور ديناميت بارد"
+            onclick="showProductDetails('سدور ديناميت بارد', 'img/dynamite-tray.jpg', {
+                'سدر ديناميت صغير': 11.00,
+                'سدر ديناميت عائلي': 18.00
+            }, [
+                'سدر ديناميت صغير',
+                'سدر ديناميت عائلي'
+            ], '30')">
+            إضافة إلى السلة
+        </button>
+    </div>
+</div>
+
+
+                <div class="product-card" data-category="دجاج شواية">
+    <img src="img/chicken-mix.jpg" alt="تشكن مكس" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">وجبة تشكن مكس</h3>
+        <p class="product-price">3.50 دينار</p>
+        <div class="prep-time">⏱️ 15–20 دقيقة</div>
+        <button class="product-button" data-name="وجبة تشكن مكس" onclick="showProductDetails('وجبة تشكن مكس', 'img/chicken-mix.jpg', {'وجبة': 3.50}, ['وجبة'], '15')">
+            إضافة إلى السلة
+        </button>
+    </div>
+</div>
+
+                                <div class="product-card" data-category="المشاوي">
+    <img src="img/charcoal-chicken.jpg" alt="دجاجة فحم" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">دجاجة فحم</h3>
+        <p class="product-price">من 2.75 دينار</p>
+        <div class="prep-time">⏱️ 25–40 دقيقة</div>
+        <button class="product-button" data-name="دجاجة فحم" onclick="showProductDetails('دجاجة فحم', 'img/charcoal-chicken.jpg', {'نصف دجاجة': 2.75, 'دجاجة كاملة': 5.00}, ['نصف دجاجة', 'دجاجة كاملة'], '30')">
+            إضافة إلى السلة
+        </button>
+    </div>
+</div>
+
+
+
+
+
+                <div class="product-card" data-category="الأرز">
+    <img src="img/rice-platter.jpg" alt="سدر أرز" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">سدر أرز</h3>
+        <p class="product-price">من 4.50 دينار</p>
+        <div class="prep-time">⏱️ 20–35 دقيقة</div>
+        <button class="product-button"
+            onclick="showProductDetails('سدر أرز', 'img/rice-platter.jpg', {
+                'صدر 30 سم (دجاجة + سلطة + شطة + 2 أرز)': 4.50,
+                'صدر 30 سم (دجاجة + سلطة + 2 شطة + 2 أرز)': 6.50,
+                'صدر 40 سم (دجاجة + سلطة + 2 شطة + 3 أرز)': 8.00,
+                'صدر 40 سم (دجاجة ونصف + 2 سلطة + 3 شطة + 4 أرز)': 10.00,
+                'صدر 45 سم (دجاجة + سلطة + شطة + 4 أرز)': 9.00,
+                'صدر 45 سم (دجاجة ونصف + 2 سلطة + 4 شطة + 5 أرز)': 11.50,
+                'صدر 50 سم (2 دجاجة + 2 سلطة + 3 شطة + 6 أرز)': 15.00,
+                'صدر 50 سم (2.5 دجاجة + 2 سلطة + 4 شطة + 6 أرز)': 17.00,
+                'صدر 55 سم (3 دجاجات + 2 سلطة + 3 شطة + 7 أرز)': 20.00,
+                'صدر 55 سم (4 دجاجات + 3 سلطة + 4 شطة + 8 أرز)': 25.00
+            }, [
+                'صدر 30 سم (دجاجة + سلطة + شطة + 2 أرز)',
+                'صدر 30 سم (دجاجة + سلطة + 2 شطة + 2 أرز)',
+                'صدر 40 سم (دجاجة + سلطة + 2 شطة + 3 أرز)',
+                'صدر 40 سم (دجاجة ونصف + 2 سلطة + 3 شطة + 4 أرز)',
+                'صدر 45 سم (دجاجة + سلطة + شطة + 4 أرز)',
+                'صدر 45 سم (دجاجة ونصف + 2 سلطة + 4 شطة + 5 أرز)',
+                'صدر 50 سم (2 دجاجة + 2 سلطة + 3 شطة + 6 أرز)',
+                'صدر 50 سم (2.5 دجاجة + 2 سلطة + 4 شطة + 6 أرز)',
+                'صدر 55 سم (3 دجاجات + 2 سلطة + 3 شطة + 7 أرز)',
+                'صدر 55 سم (4 دجاجات + 3 سلطة + 4 شطة + 8 أرز)'
+            ], '35')">
+            عرض التفاصيل
+        </button>
+    </div>
+</div>
+
+
+
+                <div class="product-card" data-category="المشاوي">
+    <img src="img/charcoal-chicken.jpg" alt="دجاجة فحم" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">دجاجة فحم</h3>
+        <p class="product-price">من 2.75 دينار</p>
+        <div class="prep-time">⏱️ 25–40 دقيقة</div>
+        <button class="product-button" data-name="دجاجة فحم" onclick="showProductDetails('دجاجة فحم', 'img/charcoal-chicken.jpg', {'نصف دجاجة': 2.75, 'دجاجة كاملة': 5.00}, ['نصف دجاجة', 'دجاجة كاملة'], '30')">
+            إضافة إلى السلة
+        </button>
+    </div>
+</div>
+
+                <div class="product-card" data-category="المشاوي">
+    <img src="img/grilled-wings.jpg" alt="أجنحة مشوية" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">أجنحة مشوية</h3>
+        <p class="product-price">من 2.50 دينار</p>
+        <div class="prep-time">⏱️ 15–25 دقيقة</div>
+        <button class="product-button" data-name="أجنحة مشوية" onclick="showProductDetails('أجنحة مشوية', 'img/grilled-wings.jpg', {'10 قطع': 2.50, '20 قطعة': 4.00, '30 قطعة': 5.50}, ['10 قطع', '20 قطعة', '30 قطعة'], '20')">
+            إضافة إلى السلة
+        </button>
+    </div>
+</div>
+
+                <div class="product-card" data-category="المشاوي">
+    <img src="img/kabab.jpg" alt="كباب" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">كباب</h3>
+        <p class="product-price">من 3.00 دينار</p>
+        <div class="prep-time">⏱️ 20–30 دقيقة</div>
+        <button class="product-button" data-name="كباب" onclick="showProductDetails('كباب', 'img/kabab.jpg', {'نصف كيلو': 3.00, 'كيلو': 6.00}, ['نصف كيلو', 'كيلو'], '25')">
+            إضافة إلى السلة
+        </button>
+    </div>
+</div>
+
+                                <div class="product-card" data-category="المشاوي">
+    <img src="img/kabab.jpg" alt="سندويش كباب" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">سندويش كباب</h3>
+        <p class="product-price">من 0.75 دينار</p>
+        <div class="prep-time">⏱️ 20–30 دقيقة</div>
+        <button class="product-button" data-name="سندويش كباب" onclick="showProductDetails('سندويش كباب', 'img/kabab.jpg', {'سندويش كباب': '0.75'}, ['سندويش كباب'], '25')">
+            إضافة إلى السلة
+        </button>
+    </div>
+</div>
+                <div class="product-card" data-category="المشاوي">
+    <img src="img/shish.jpg" alt="شيش" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">شيش</h3>
+        <p class="product-price">من 3.50 دينار</p>
+        <div class="prep-time">⏱️ 20–30 دقيقة</div>
+        <button class="product-button" data-name="شيش" onclick="showProductDetails('شيش', 'img/shish.jpg', {'نصف كيلو': 3.50, 'كيلو': 7.00}, ['نصف كيلو', 'كيلو'], '25')">
+            إضافة إلى السلة
+        </button>
+    </div>
+</div>
+
+
+
+
+                <div class="product-card" data-category="المشاوي">
+    <img src="img/shish-sandwich.jpg" alt="ساندويش شيش" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">ساندويش شيش</h3>
+        <p class="product-price">1.00 دينار</p>
+        <div class="prep-time">⏱️ 10–12 دقيقة</div>
+        <button class="product-button" data-name="ساندويش شيش" onclick="showProductDetails('ساندويش شيش', 'img/shish-sandwich.jpg', {'عادي': 1.00}, ['عادي'], '10')">
+            إضافة إلى السلة
+        </button>
+    </div>
+</div>
+
+<div class="product-card" data-category="المشاوي">
+    <img src="img/chicken-meal.jpg" alt="وجبة دجاج" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">وجبة دجاج</h3>
+        <p class="product-price">2.50 دينار</p>
+        <div class="prep-time">⏱️ 15–20 دقيقة</div>
+        <button class="product-button" data-name="وجبة دجاج" onclick="showProductDetails('وجبة دجاج', 'img/chicken-meal.jpg', {'عادي': 2.50}, ['عادي'], '15')">
+            إضافة إلى السلة
+        </button>
+        </button>
+    </div>
+</div>
+
+<div class="product-card" data-category="المشاوي">
+    <img src="img/healthy-double.jpg" alt="وجبة صحي دبل" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">وجبة صحي دبل</h3>
+        <p class="product-price">4.00 دينار</p>
+        <div class="prep-time">⏱️ 18–22 دقيقة</div>
+        <button class="product-button" data-name="وجبة صحي دبل" onclick="showProductDetails('وجبة صحي دبل', 'img/healthy-double.jpg', {'دبل': 4.00}, ['دبل'], '20')">
+            إضافة إلى السلة
+        </button>
+    </div>
+</div>
+
+
+                <div class="product-card" data-category="المشاوي">
+    <img src="img/healthy-double.jpg" alt="وجبة صحي دجاج" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">وجبة صحي دجاج</h3>
+        <p class="product-price">2.50 دينار</p>
+        <div class="prep-time">⏱️ 10 دقيقة</div>
+        <button class="product-button" data-name="وجبة صحي دجاج" onclick="showProductDetails('وجبة صحي دجاج', 'img/healthy-double.jpg', {'دجاج': 2.50}, ['دجاج'], '10')">
+            إضافة إلى السلة
+        </button>
+    </div>
+</div>
+
+                <div class="product-card" data-category="المشاوي">
+    <img src="img/arayes.jpg" alt="عرايس لحمة" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">عرايس (لحمة)</h3>
+        <p class="product-price">0.50 دينار</p>
+        <div class="prep-time">⏱️ 8–10 دقائق</div>
+        <button class="product-button" data-name="عرايس (لحمة)" onclick="showProductDetails('عرايس (لحمة)', 'img/arayes.jpg', {'قطعة': 0.50}, ['قطعة'], '8')">
+            إضافة إلى السلة
+        </button>
+    </div>
+</div>
+
+<!-- قسم الأرز -->
+
+<div class="product-card" data-category="الأرز">
+    <img src="img/rice-chicken.jpg" alt="وجبة دجاج مع أرز" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">وجبة دجاج مع أرز</h3>
+        <p class="product-price">من 2.25 دينار</p>
+        <div class="prep-time">⏱️ 15–22 دقيقة</div>
+        <button class="product-button"
+            data-name="وجبة دجاج مع أرز"
+            onclick="showProductDetails('وجبة دجاج مع أرز', 'img/rice-chicken.jpg', {
+                'ربع دجاجة': 2.25,
+                'نصف دجاجة': 3.50
+            }, [
+                'ربع دجاجة',
+                'نصف دجاجة'
+            ], '20')">
+            إضافة إلى السلة
+        </button>
+    </div>
+</div>
+
+                <div class="product-card" data-category="الأرز">
+    <img src="img/rice-platter.jpg" alt="سدر أرز" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">سدر أرز</h3>
+        <p class="product-price">من 4.50 دينار</p>
+        <div class="prep-time">⏱️ 20–35 دقيقة</div>
+        <button class="product-button" data-name="سدر أرز" onclick="showProductDetails('سدر أرز', 'img/rice-platter.jpg', {'سدر 30 سم': 4.50, 'سدر 35 سم': 6.50, 'سدر 40 سم': 8.00, 'سدر 40 سم خاص': 10.00, 'سدر 45 سم': 9.00, 'سدر 45 سم خاص': 11.50, 'سدر 50 سم': 15.00, 'سدر 55 سم': 20.00, 'سدر 55 سم مطافي': 25.00}, ['سدر 30 سم', 'سدر 35 سم', 'سدر 40 سم', 'سدر 40 سم خاص', 'سدر 45 سم', 'سدر 45 سم خاص', 'سدر 50 سم', 'سدر 55 سم', 'سدر 55 سم مطافي'], '25')">
+            إضافة إلى السلة
+        </button>
+    </div>
+</div>
+
+
+
+                                                <div class="product-card" data-category="المقبلات">
+    <img src="img/matrix Background Removed.png" alt="ماتركس" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">ماتركس</h3>
+        <p class="product-price">من 0.30 دينار</p>
+        <div class="prep-time">⏱️ فورا</div>
+        <button class="product-button" data-name="ماتركس" onclick="showProductDetails('ماتركس', 'img/matrix Background Removed.png', {'صغير': 0.30, 'وسط':0.60,'كبير': 1.00}, ['صغير','وسط', 'كبير'], '1')">
+            إضافة إلى السلة
+        </button>
+    </div>
+</div>
+
+                <div class="product-card" data-category="المقبلات">
+    <img src="img/shininah.jpg" alt="شينينة" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">شينينة</h3>
+        <p class="product-price">0.35 دينار</p>
+        <div class="prep-time">⏱️ فورا</div>
+        <button class="product-button" data-name="شينينة" onclick="showProductDetails('شينينة', 'img/shininah.jpg', {'عادي': 0.35}, ['عادي'], '1')">
+            إضافة إلى السلة
+        </button>
+    </div>
+</div>
+
+
+                                <div class="product-card" data-category="المقبلات">
+    <img src="img/sauces-group.jpg" alt="الصوصات" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">اختر الصوص </h3>
+        <p class="product-price">0.25 دينار</p>
+        <div class="prep-time">⏱️ فورا</div>
+        <button class="product-button"
+            data-name="صوص"
+            onclick="showProductDetails('صوص صغير', 'img/sauces-group.jpg', {
+                'صوص حار': 0.25,
+                'صوص هاني ماسترد': 0.25,
+                'صوص رانش': 0.25,
+                'صوص باربكيو': 0.25,
+                'صوص بافلو': 0.25,
+                'صوص نكشة': 0.25
+            }, ['صوص حار', 'صوص هاني ماسترد', 'صوص رانش', 'صوص باربكيو', 'صوص بافلو', 'صوص نكشة'], '1')">
+            إضافة إلى السلة
+        </button>
+    </div>
+</div>
+
+
+                                <div class="product-card" data-category="المقبلات">
+    <img src="img/appetizers.jpg" alt="مقبلات" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">مقبلات</h3>
+        <p class="product-price">من 0.10 دينار</p>
+        <div class="prep-time">⏱️ فورا</div>
+        <button class="product-button" data-name="مقبلات" onclick="showProductDetails('مقبلات', 'img/appetizers.jpg', {'متومة صغير': 0.25, 'مايونيز أمريكي': 0.25, 'كاتشب': 0.25, 'مخلل': 0.25, 'جبنة سائلة': 0.25, 'خبز 10 قروش': 0.10, 'خبز 50 قرش': 0.50, 'سلطة ملفوف': 0.25, 'متومة حار': 0.25, 'إضافة جبنة': 0.10}, ['متومة صغير', 'مايونيز أمريكي', 'كاتشب', 'مخلل', 'جبنة سائلة', 'خبز 10 قروش', 'خبز 50 قرش', 'سلطة ملفوف', 'متومة حار', 'إضافة جبنة'], '1')">
+            إضافة إلى السلة
+        </button>
+    </div>
+</div>
+
+                <div class="product-card" data-category="الشاورما">
+    <img src="img/sauces-group.jpg" alt="ساندويش شاورما" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">ساندويش شاورما </h3>
+        <p class="product-price">0.70 دينار</p>
+        <div class="prep-time">⏱️ 5 دقايق</div>
+        <button class="product-button"
+            data-name="ساندويش شاورما"
+            onclick="showProductDetails('ساندويش شاورما', 'img/sauces-group.jpg', {
+                'ساندويش عادي': 0.70,
+                'ساندويش سوبر': 1.30,
+                'ساندويش عادي بالشيدر': 0.80,
+                'ساندويش سوبر بالشيدر': 1.40,
+                'ساندويش نكشة عادي': 1.00,
+                'ساندويش نكشة سوبر': 1.50,
+                'ساندويش فرنسي': 1.75,
+                'ساندويش فرنسي بالفطر والكريمة': 2.00,
+
+            }, [  'ساندويش فرنسي بالفطر والكريمة','ساندويش فرنسي','ساندويش نكشة سوبر', 'ساندويش نكشة عادي', 'ساندويش سوبر بالشيدر', 'ساندويش عادي بالشيدر', 'ساندويش سوبر', 'ساندويش عادي'], '5')">
+            إضافة إلى السلة
+        </button>
+    </div>
+</div>
+
+<div class="product-card" data-category="الشاورما">
+    <img src="img/shawarma-meals.jpg" alt="وجبة شاورما" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">وجبة الشاورما</h3>
+        <p class="product-price">من 2.00 دينار</p>
+        <div class="prep-time">⏱️ 15–20 دقيقة</div>
+        <button class="product-button"
+            data-name="وجبة شاورما"
+            onclick="showProductDetails('وجبة الشاورما', 'img/shawarma-meals.jpg', {
+                'وجبة عادي': 2.00,
+                'وجبة سوبر': 2.75,
+                'وجبة دبل': 3.50,
+                'وجبة تربل': 4.60,
+                'وجبة عادي فرنسي': 2.50,
+                'وجبة دبل فرنسي': 4.00,
+                'وجبة تربل فرنسي': 5.00,
+                'وجبة عادي بالشيذر': 2.25,
+                'وجبة سوبر بالشيذر': 3.25,
+                'وجبة دبل بالشيذر': 4.00,
+                'وجبة تربل بالشيذر': 5.25
+            }, [
+                'وجبة عادي', 'وجبة سوبر', 'وجبة دبل', 'وجبة تربل',
+                'وجبة عادي فرنسي', 'وجبة دبل فرنسي', 'وجبة تربل فرنسي',
+                'وجبة عادي بالشيذر', 'وجبة سوبر بالشيذر', 'وجبة دبل بالشيذر', 'وجبة تربل بالشيذر'
+            ], '20')">
+            إضافة إلى السلة
+        </button>
+    </div>
+</div>
+
+
+                <div class="product-card" data-category="الشاورما">
+    <img src="img/naksha-meals.jpg" alt="وجبة نكشة" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">وجبة نكشة</h3>
+        <p class="product-price">من 2.25 دينار</p>
+        <div class="prep-time">⏱️ 12–18 دقيقة</div>
+        <button class="product-button"
+            data-name="وجبة نكشة"
+            onclick="showProductDetails('وجبة نكشة', 'img/naksha-meals.jpg', {
+                'وجبة نكشة عادي': 2.25,
+                'وجبة نكشة سوبر': 3.25,
+                'وجبة نكشة دبل': 4.00,
+                'وجبة نكشة تربل': 5.25
+            }, [
+                'وجبة نكشة عادي',
+                'وجبة نكشة سوبر',
+                'وجبة نكشة دبل',
+                'وجبة نكشة تربل'
+            ], '18')">
+            إضافة إلى السلة
+        </button>
+    </div>
+</div>
+
+
+
+                <div class="product-card" data-category="الشاورما">
+    <img src="img/shawarma-platter.jpg" alt="سدر شاورما" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">سدر شاورما</h3>
+        <p class="product-price">من 8.00 دينار</p>
+        <div class="prep-time">⏱️ 20–30 دقيقة</div>
+        <button class="product-button"
+            data-name="سدر شاورما"
+            onclick="showProductDetails('سدر شاورما', 'img/shawarma-platter.jpg', {
+                'شاورما توفير صغير': 8.00,
+                'شاورما توفير وسط': 12.00,
+                'شاورما عائلي': 15.00,
+                'نكشة صغير': 10.00,
+                'نكشة وسط': 13.00,
+                'نكشة عائلي': 17.00
+            }, [
+                'شاورما توفير صغير',
+                'شاورما توفير وسط',
+                'شاورما عائلي',
+                'نكشة صغير',
+                'نكشة وسط',
+                'نكشة عائلي'
+            ], '30')">
+            إضافة إلى السلة
+        </button>
+    </div>
+</div>
+
+<div class="product-card" data-category="الشاورما">
+    <img src="img/shawarma-slices.jpg" alt="وجبة شرائح شاورما" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">وجبة شرائح شاورما</h3>
+        <p class="product-price">من 3.00 دينار</p>
+        <div class="prep-time">⏱️ 10–15 دقيقة</div>
+        <button class="product-button"
+            data-name="وجبة شرائح شاورما"
+            onclick="showProductDetails('وجبة شرائح شاورما', 'img/shawarma-slices.jpg', {
+                'وجبة وقية': 3.00,
+                'وجبة كيلو': 12.00
+            }, [
+                'وجبة وقية',
+                'وجبة كيلو'
+            ], '15')">
+            إضافة إلى السلة
+        </button>
+    </div>
+</div>
+
+
+
+<div class="product-card" data-category="الشاورما">
+    <img src="img/halabi-shawarma.jpg" alt="وجبة حلبي" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">وجبة حلبي</h3>
+        <p class="product-price">3.75 دينار</p>
+        <div class="prep-time">⏱️ 15–20 دقيقة</div>
+        <button class="product-button"
+            data-name="وجبة حلبي"
+            onclick="showProductDetails('وجبة حلبي', 'img/halabi-shawarma.jpg', {
+                'وجبة حلبي': 3.75
+            }, [
+                'وجبة حلبي'
+            ], '20')">
+            إضافة إلى السلة
+        </button>
+    </div>
+</div>
+
+
+
+                <div class="product-card" data-category="الشاورما">
+    <img src="img/italian-shawarma.jpg" alt="وجبات إيطالي" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">وجبات إيطالي</h3>
+        <p class="product-price">من 2.75 دينار</p>
+        <div class="prep-time">⏱️ 15–20 دقيقة</div>
+        <button class="product-button"
+            data-name="وجبات إيطالي"
+            onclick="showProductDetails('وجبات إيطالي', 'img/italian-shawarma.jpg', {
+                'شاورما إيطالي عادي': 2.75,
+                'شاورما إيطالي سوبر': 3.25,
+                'شاورما بالفطر والكريمة': 3.75
+            }, [
+                'شاورما إيطالي عادي',
+                'شاورما إيطالي سوبر',
+                'شاورما بالفطر والكريمة'
+            ], '20')">
+            إضافة إلى السلة
+        </button>
+    </div>
+</div>
+
+
+
+
+                                <div class="product-card" data-category="السناك">
+    <img src="img/italian-shawarma.jpg" alt="ساندويش زنجر سوبر" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">ساندويش زنجر سوبر</h3>
+        <p class="product-price">من 1.75 دينار</p>
+        <div class="prep-time">⏱️ 7 دقايق</div>
+        <button class="product-button"
+            data-name="ساندويش زنجر سوبر"
+            onclick="showProductDetails('ساندويش زنجر سوبر', 'img/italian-shawarma.jpg', {
+                'ساندويش زنجر سوبر': 1.75,
+
+            }, [
+                'ساندويش زنجر سوبر',
+
+            ], '7')">
+            إضافة إلى السلة
+        </button>
+    </div>
+</div>
+
+
+                <div class="product-card" data-category="السناك">
+    <img src="img/zinger-meals.jpg" alt="وجبة زنجر" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">وجبة زنجر</h3>
+        <p class="product-price">من 2.75 دينار</p>
+        <div class="prep-time">⏱️ 15–20 دقيقة</div>
+        <button class="product-button"
+            data-name="وجبة زنجر"
+            onclick="showProductDetails('وجبة زنجر', 'img/zinger-meals.jpg', {
+                'وجبة زنجر عادي': 2.75,
+                'وجبة زنجر سوبر': 3.50,
+                'وجبة زنجر دبل': 4.00,
+                'وجبة زنجر تربل': 5.50,
+                'وجبة زنجر إيطالي': 4.00
+            }, [
+                'وجبة زنجر عادي',
+                'وجبة زنجر سوبر',
+                'وجبة زنجر دبل',
+                'وجبة زنجر تربل',
+                'وجبة زنجر إيطالي'
+            ], '20')">
+            إضافة إلى السلة
+        </button>
+    </div>
+</div>
+
+
+
+                <div class="product-card" data-category="السناك">
+    <img src="img/zinger-platter.jpg" alt="سدر زنجر" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">سدر زنجر</h3>
+        <p class="product-price">من 10.00 دينار</p>
+        <div class="prep-time">⏱️ 20–30 دقيقة</div>
+        <button class="product-button"
+            data-name="سدر زنجر"
+            onclick="showProductDetails('سدر زنجر عائلي', 'img/zinger-platter.jpg', {
+                'سدر زنجر صغير': 10.00,
+                'سدر زنجر عائلي': 17.00
+            }, [
+                'سدر زنجر صغير',
+                'سدر زنجر عائلي'
+            ], '30')">
+            إضافة إلى السلة
+        </button>
+    </div>
+</div>
+
+
+
+                <div class="product-card" data-category="السناك">
+    <img src="img/fajita-meals.jpg" alt="وجبة فاهيتا" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">وجبة فاهيتا</h3>
+        <p class="product-price">من 2.75 دينار</p>
+        <div class="prep-time">⏱️ 15–20 دقيقة</div>
+        <button class="product-button"
+            data-name="وجبة فاهيتا"
+            onclick="showProductDetails('وجبة فاهيتا', 'img/fajita-meals.jpg', {
+                'وجبة عادي': 2.75,
+                'وجبة سوبر': 3.50,
+                'وجبة دبل': 4.00,
+                'وجبة تربل': 5.50,
+                'وجبة فاهيتا إيطالي': 4.00
+            }, [
+                'وجبة عادي',
+                'وجبة سوبر',
+                'وجبة دبل',
+                'وجبة تربل',
+                'وجبة فاهيتا إيطالي'
+            ], '20')">
+            إضافة إلى السلة
+        </button>
+    </div>
+</div>
+
+                                <div class="product-card" data-category="السناك">
+    <img src="img/zinger-platter.jpg" alt="سدر فاهيتا" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">سدر فاهيتا</h3>
+        <p class="product-price">من 10.00 دينار</p>
+        <div class="prep-time">⏱️ 20–30 دقيقة</div>
+        <button class="product-button"
+            data-name="سدر زنجر"
+            onclick="showProductDetails('سدر فاهيتا عائلي', 'img/zinger-platter.jpg', {
+                'سدر فاهيتا صغير': 10.00,
+                'سدر فاهيتا عائلي': 17.00
+            }, [
+                'سدر فاهيتا صغير',
+                'سدر فاهيتا عائلي'
+            ], '30')">
+            إضافة إلى السلة
+        </button>
+    </div>
+</div>
+
+
+
+                <div class="product-card" data-category="السناك">
+    <img src="img/zinger-super.jpg" alt="ساندويش زنجر سوبر" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">ساندويش زنجر سوبر</h3>
+        <p class="product-price">1.75 دينار</p>
+        <button class="product-button" onclick="showProductDetails('ساندويش زنجر سوبر', 'img/zinger-super.jpg', {'ساندويش': 1.75}, ['ساندويش'], '10')">إضافة إلى السلة</button>
+    </div>
+</div>
+
+<div class="product-card" data-category="السناك">
+    <img src="img/tender-super.jpg" alt="ساندويش تندر سوبر" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">ساندويش تندر سوبر</h3>
+        <p class="product-price">1.75 دينار</p>
+        <button class="product-button" onclick="showProductDetails('ساندويش تندر سوبر', 'img/tender-super.jpg', {'ساندويش': 1.75}, ['ساندويش'], '10')">إضافة إلى السلة</button>
+    </div>
+</div>
+
+<div class="product-card" data-category="السناك">
+    <img src="img/cordon-bleu.jpg" alt="ساندويش كوردن بلو سوبر" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">ساندويش كوردن بلو سوبر</h3>
+        <p class="product-price">1.75 دينار</p>
+        <button class="product-button" onclick="showProductDetails('ساندويش كوردن بلو سوبر', 'img/cordon-bleu.jpg', {'ساندويش': 1.75}, ['ساندويش'], '10')">إضافة إلى السلة</button>
+    </div>
+</div>
+
+<div class="product-card" data-category="السناك">
+    <img src="img/fajita-sand.jpg" alt="ساندويش فاهيتا" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">ساندويش فاهيتا</h3>
+        <p class="product-price">1.75 دينار</p>
+        <button class="product-button" onclick="showProductDetails('ساندويش فاهيتا', 'img/fajita-sand.jpg', {'ساندويش': 1.75}, ['ساندويش'], '10')">إضافة إلى السلة</button>
+    </div>
+</div>
+
+<div class="product-card" data-category="السناك">
+    <img src="img/mexican-sand.jpg" alt="ساندويش مكسيكي" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">ساندويش مكسيكي</h3>
+        <p class="product-price">1.75 دينار</p>
+        <button class="product-button" onclick="showProductDetails('ساندويش مكسيكي', 'img/mexican-sand.jpg', {'ساندويش': 1.75}, ['ساندويش'], '10')">إضافة إلى السلة</button>
+    </div>
+</div>
+
+<div class="product-card" data-category="السناك">
+    <img src="img/dynamite-hot.jpg" alt="ساندويش ديناميت حار" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">ساندويش ديناميت حار</h3>
+        <p class="product-price">2.00 دينار</p>
+        <button class="product-button" onclick="showProductDetails('ساندويش ديناميت حار', 'img/dynamite-hot.jpg', {'ساندويش': 2.00}, ['ساندويش'], '10')">إضافة إلى السلة</button>
+    </div>
+</div>
+
+<div class="product-card" data-category="السناك">
+    <img src="img/dynamite-cold.jpg" alt="ساندويش ديناميت بارد" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">ساندويش ديناميت بارد</h3>
+        <p class="product-price">2.00 دينار</p>
+        <button class="product-button" onclick="showProductDetails('ساندويش ديناميت بارد', 'img/dynamite-cold.jpg', {'ساندويش': 2.00}, ['ساندويش'], '10')">إضافة إلى السلة</button>
+    </div>
+</div>
+
+<div class="product-card" data-category="السناك">
+    <img src="img/burger-meat.jpg" alt="ساندويش برغر لحمة" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">ساندويش برغر لحمة</h3>
+        <p class="product-price">من 1.25 دينار</p>
+        <div class="prep-time">⏱️ 10 دقائق</div>
+        <button class="product-button"
+            onclick="showProductDetails('ساندويش برغر لحمة', 'img/burger-meat.jpg', {
+                'ساندويش عادي': 1.25,
+                'ساندويش XL': 2.00
+            }, [
+                'ساندويش عادي',
+                'ساندويش XL'
+            ], '10')">
+            إضافة إلى السلة
+        </button>
+    </div>
+</div>
+
+
+                <div class="product-card" data-category="السناك">
+    <img src="img/burger-meal.jpg" alt="وجبة برغر لحمة" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">وجبة برغر لحمة</h3>
+        <p class="product-price">من 2.00 دينار</p>
+        <div class="prep-time">⏱️ 15 دقيقة</div>
+        <button class="product-button"
+            onclick="showProductDetails('وجبة برغر لحمة', 'img/burger-meal.jpg', {
+                'وجبة برغر عادي': 2.00,
+                'وجبة برغر دبل': 2.75
+            }, [
+                'وجبة برغر عادي',
+                'وجبة برغر دبل'
+            ], '15')">
+            إضافة إلى السلة
+        </button>
+    </div>
+</div>
+
+                <div class="product-card" data-category="السناك">
+    <img src="img/escalope-meal.jpg" alt="وجبة اسكالوب" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">وجبة اسكالوب</h3>
+        <p class="product-price">من 2.00 دينار</p>
+        <div class="prep-time">⏱️ 15 دقيقة</div>
+        <button class="product-button"
+            onclick="showProductDetails('وجبة اسكالوب', 'img/escalope-meal.jpg', {
+                'وجبة اسكالوب عادي': 2.00,
+                'وجبة اسكالوب دبل': 2.75
+            }, [
+                'وجبة اسكالوب عادي',
+                'وجبة اسكالوب دبل'
+            ], '15')">
+            إضافة إلى السلة
+        </button>
+    </div>
+</div>
+
+
+                <div class="product-card" data-category="السناك">
+    <img src="img/mexican-meal.jpg" alt="وجبة مكسيكي" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">وجبة مكسيكي</h3>
+        <p class="product-price">من 2.75 دينار</p>
+        <button class="product-button"
+            onclick="showProductDetails('وجبة مكسيكي', 'img/mexican-meal.jpg', {
+                'وجبة عادي': 2.75,
+                'وجبة سوبر': 3.50,
+                'وجبة دبل': 4.00,
+                'وجبة تربل': 5.50,
+                'وجبة مكسيكي إيطالي': 4.00
+            }, ['وجبة عادي', 'وجبة سوبر', 'وجبة دبل', 'وجبة تربل', 'وجبة مكسيكي إيطالي'], '20')">
+            إضافة إلى السلة
+        </button>
+    </div>
+</div>
+
+
+
+
+<div class="product-card" data-category="السناك">
+    <img src="img/escalope-sand.jpg" alt="ساندويش اسكالوب" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">ساندويش اسكالوب</h3>
+        <p class="product-price">من 1.25 دينار</p>
+        <div class="prep-time">⏱️ 10 دقائق</div>
+        <button class="product-button"
+            onclick="showProductDetails('ساندويش اسكالوب', 'img/escalope-sand.jpg', {
+                'ساندويش عادي': 1.25,
+                'ساندويش XL': 2.00
+            }, [
+                'ساندويش عادي',
+                'ساندويش XL'
+            ], '10')">
+            إضافة إلى السلة
+        </button>
+    </div>
+</div>
+
+
+
+                <div class="product-card" data-category="السناك">
+    <img src="img/zinger-platter.jpg" alt="سدر مكسيكس" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">سدر مكسيكس</h3>
+        <p class="product-price">من 10.00 دينار</p>
+        <div class="prep-time">⏱️ 20–30 دقيقة</div>
+        <button class="product-button"
+            data-name="سدر مكسيكس"
+            onclick="showProductDetails('سدر مكسيكس عائلي', 'img/zinger-platter.jpg', {
+                'سدر مكسيكس صغير': 10.00,
+                'سدر مكسيكس عائلي': 17.00
+            }, [
+                'سدر مكسيكس صغير',
+                'سدر مكسيكس عائلي'
+            ], '30')">
+            إضافة إلى السلة
+        </button>
+    </div>
+</div>
+
+
+                <div class="product-card" data-category="السناك">
+    <img src="img/cordon-bleu-meal.jpg" alt="وجبة كوردن بلو" class="product-image">
+    <div class="product-info">
+        <h3 class="product-name">وجبة كوردن بلو</h3>
+        <p class="product-price">من 3.00 دينار</p>
+        <div class="prep-time">⏱️ 15–20 دقيقة</div>
+        <button class="product-button"
+            onclick="showProductDetails('وجبة كوردن بلو', 'img/cordon-bleu-meal.jpg', {
+                'وجبة كوردن بلو عادي': 3.00,
+                'وجبة كوردن بلو دبل': 4.00
+            }, [
+                'وجبة كوردن بلو عادي',
+                'وجبة كوردن بلو دبل'
+            ], '20')">
+            إضافة إلى السلة
+        </button>
+    </div>
+</div>
+
+
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+
+<div class="contact-section">
+    <div class="map-container">
+        <div class="map-wrapper">
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3388.0069502612114!2d35.991879826953124!3d31.879227700000012!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151b594827aeac29%3A0xfd1a994f28595753!2z2YXYt9i52YUg2YbZg9i02KnYp9mE2YXYsdmD2LLZig!5e0!3m2!1sen!2sjo!4v1769959682807!5m2!1sen!2sjo" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </div>
+
+    <div class="info">
+        <h2>معلومات التواصل</h2>
+        <p><span class="icon">📍</span> <strong>العنوان:</strong> سحاب / الشارع الرئيسي / مثلث الدخلة</p>
+        <p><span class="icon">📞</span> <strong>الهاتف:</strong> <a href="tel:+962791930938" class="phone-link">+962791930938</a></p>
+        <p><span class="icon">🕐</span> <strong>أوقات الدوام:</strong> من 9 صباحاً لغاية 4 فجراً</p>
+            <footer class="facebook-footer">
+
+        <a href="https://www.facebook.com/profile.php?id=100057636151417" target="_blank">
+            <img src="img/Subject.png" alt="فيسبوك" class="fb-logo">
+        </a>
+    </footer>
+    </div>
+
+
+</div>
+
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 مطعم نكشه المركزي. جميع الحقوق محفوظة.</p>
+            <p>Developed and Designed by khaled badran</p>
+            <p> <a href="tel:+962797459207">+962797459207</a></p>
+
+        </div>
+    </footer>
+
+
+
+
+
+
+<script>
+
+  // المتغيرات الأساسية
+let cart = [];
+let currentProduct = {};
+
+// تصفية المنتجات حسب الفئة
+function filterProducts(category) {
+    const products = document.querySelectorAll('.product-card');
+    const categories = document.querySelectorAll('.category');
+
+    // تحديث الفئة النشطة
+    categories.forEach(cat => cat.classList.remove('active'));
+    event.target.classList.add('active');
+
+    // إظهار/إخفاء المنتجات
+    products.forEach(product => {
+        if (category === 'الكل' || product.dataset.category === category) {
+            product.style.display = 'block';
+        } else {
+            product.style.display = 'none';
+        }
+    });
+}
+
+// عرض تفاصيل المنتج
+function showProductDetails(name, image, prices, sizes, prepTime) {
+    currentProduct = {
+        name: name,
+        image: image,
+        prices: prices,
+        sizes: sizes,
+        prepTime: prepTime,
+        selectedSize: sizes[0],
+        quantity: 1
+    };
+
+    const modal = document.getElementById('productModal');
+    if (!modal) {
+        createProductModal();
+    }
+
+    updateProductModal();
+    document.getElementById('productModal').style.display = 'block';
+}
+
+// إنشاء نافذة المنتج
+function createProductModal() {
+    const modal = document.createElement('div');
+    modal.id = 'productModal';
+    modal.className = 'modal';
+    modal.innerHTML = `
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close-modal" onclick="closeProductModal()">×</button>
+                <h2 id="modal-product-name"></h2>
+            </div>
+            <div class="modal-body">
+                <img id="modal-product-image" src="" alt="" style="width: 100%; border-radius: 12px; margin-bottom: 1rem;">
+                <h3 style="margin-bottom: 0.5rem;">اختر الحجم:</h3>
+                <div class="size-options" id="size-options"></div>
+                <h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem;">الكمية:</h3>
+                <div class="quantity-controls">
+                    <button class="quantity-btn" onclick="decreaseQuantity()">-</button>
+                    <div class="quantity-display" id="quantity-display">1</div>
+                    <button class="quantity-btn" onclick="increaseQuantity()">+</button>
+                </div>
+                <div class="cart-total" id="modal-price">السعر: 0 دينار</div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" onclick="addToCart()">إضافة إلى السلة</button>
+                <button class="btn btn-secondary" onclick="closeProductModal()">إلغاء</button>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(modal);
+
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            closeProductModal();
+        }
+    });
+}
+
+// تحديث نافذة المنتج
+function updateProductModal() {
+    document.getElementById('modal-product-name').textContent = currentProduct.name;
+    document.getElementById('modal-product-image').src = currentProduct.image;
+    document.getElementById('quantity-display').textContent = currentProduct.quantity;
+
+    const sizeOptions = document.getElementById('size-options');
+    sizeOptions.innerHTML = '';
+
+    currentProduct.sizes.forEach(size => {
+        const sizeBtn = document.createElement('div');
+        sizeBtn.className = 'size-option' + (size === currentProduct.selectedSize ? ' selected' : '');
+        sizeBtn.textContent = `${size} - ${currentProduct.prices[size]} دينار`;
+        sizeBtn.onclick = () => selectSize(size, sizeBtn);
+        sizeOptions.appendChild(sizeBtn);
+    });
+
+    updateModalPrice();
+}
+
+// اختيار الحجم
+function selectSize(size, element) {
+    currentProduct.selectedSize = size;
+    const sizeOptions = document.querySelectorAll('.size-option');
+    sizeOptions.forEach(opt => opt.classList.remove('selected'));
+    element.classList.add('selected');
+    updateModalPrice();
+}
+
+// زيادة الكمية
+function increaseQuantity() {
+    currentProduct.quantity++;
+    document.getElementById('quantity-display').textContent = currentProduct.quantity;
+    updateModalPrice();
+}
+
+// تقليل الكمية
+function decreaseQuantity() {
+    if (currentProduct.quantity > 1) {
+        currentProduct.quantity--;
+        document.getElementById('quantity-display').textContent = currentProduct.quantity;
+        updateModalPrice();
+    }
+}
+
+// تحديث السعر
+function updateModalPrice() {
+    const price = currentProduct.prices[currentProduct.selectedSize] * currentProduct.quantity;
+    document.getElementById('modal-price').textContent = `السعر: ${price} دينار`;
+}
+
+// إضافة إلى السلة
+function addToCart() {
+    const item = {
+        name: currentProduct.name,
+        size: currentProduct.selectedSize,
+        quantity: currentProduct.quantity,
+        price: currentProduct.prices[currentProduct.selectedSize],
+        total: currentProduct.prices[currentProduct.selectedSize] * currentProduct.quantity,
+        prepTime: currentProduct.prepTime
+    };
+
+    cart.push(item);
+    updateCartCount();
+    showAlert('تم إضافة المنتج إلى السلة بنجاح', 'success');
+    closeProductModal();
+}
+
+// تحديث عدد المنتجات في السلة
+function updateCartCount() {
+    const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+    document.getElementById('cart-count').textContent = count;
+}
+
+// إغلاق نافذة المنتج
+function closeProductModal() {
+    const modal = document.getElementById('productModal');
+    if (modal) {
+        modal.style.display = 'none';
+    }
+}
+
+// فتح السلة
+function openCart() {
+    if (cart.length === 0) {
+        showAlert('السلة فارغة!', 'warning');
+        return;
+    }
+
+    const modal = document.getElementById('cartModal');
+    if (!modal) {
+        createCartModal();
+    }
+
+    updateCartModal();
+    document.getElementById('cartModal').style.display = 'block';
+}
+
+// إنشاء نافذة السلة
+function createCartModal() {
+    const modal = document.createElement('div');
+    modal.id = 'cartModal';
+    modal.className = 'modal';
+    modal.innerHTML = `
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close-modal" onclick="closeCart()">×</button>
+                <h2>🛒 سلة المشتريات</h2>
+            </div>
+            <div class="modal-body" id="cart-items"></div>
+            <div class="total-prep-time" id="total-prep-time"></div>
+            <div class="cart-total" id="cart-total">الإجمالي: 0 دينار</div>
+            <div class="modal-footer">
+                <button class="btn" onclick="proceedToCheckout()">إتمام الطلب</button>
+                <button class="btn btn-secondary" onclick="closeCart()">متابعة التسوق</button>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(modal);
+
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            closeCart();
+        }
+    });
+}
+
+// تحديث نافذة السلة
+function updateCartModal() {
+    const cartItems = document.getElementById('cart-items');
+    cartItems.innerHTML = '';
+
+    if (cart.length === 0) {
+        cartItems.innerHTML = '<p style="text-align: center; padding: 2rem;">السلة فارغة</p>';
+        return;
+    }
+
+    cart.forEach((item, index) => {
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'cart-item';
+        itemDiv.innerHTML = `
+            <div>
+                <strong>${item.name}</strong>
+                <br>
+                <small>الحجم: ${item.size} | الكمية: ${item.quantity}</small>
+            </div>
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <strong style="color: var(--primary-color);">${item.total} دينار</strong>
+                <button class="btn btn-danger" style="padding: 0.5rem;" onclick="removeFromCart(${index})">🗑️</button>
+            </div>
+        `;
+        cartItems.appendChild(itemDiv);
+    });
+
+    const total = cart.reduce((sum, item) => sum + item.total, 0);
+    document.getElementById('cart-total').textContent = `الإجمالي: ${total} دينار`;
+
+    const totalPrepTime = Math.max(...cart.map(item => item.prepTime));
+    document.getElementById('total-prep-time').textContent = `⏱️ وقت التحضير المتوقع: ${totalPrepTime} دقيقة`;
+}
+
+// حذف من السلة
+function removeFromCart(index) {
+    cart.splice(index, 1);
+    updateCartCount();
+    updateCartModal();
+    showAlert('تم حذف المنتج من السلة', 'error');
+}
+
+// إغلاق السلة
+function closeCart() {
+    const modal = document.getElementById('cartModal');
+    if (modal) {
+        modal.style.display = 'none';
+    }
+}
+
+// الانتقال للدفع
+function proceedToCheckout() {
+    closeCart();
+    const modal = document.getElementById('checkoutModal');
+    if (!modal) {
+        createCheckoutModal();
+    }
+    document.getElementById('checkoutModal').style.display = 'block';
+}
+
+// إنشاء نافذة الدفع
+function createCheckoutModal() {
+    const modal = document.createElement('div');
+    modal.id = 'checkoutModal';
+    modal.className = 'modal';
+    modal.innerHTML = `
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close-modal" onclick="closeCheckout()">×</button>
+                <h2>📝 إتمام الطلب</h2>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="customer-name">الاسم الكامل *</label>
+                    <input type="text" id="customer-name" placeholder="أدخل اسمك الكامل" required>
+                    <div class="form-error" id="name-error">الرجاء إدخال الاسم</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="customer-phone">رقم الهاتف *</label>
+                    <input type="tel" id="customer-phone" placeholder="07XXXXXXXX" required>
+                    <div class="form-error" id="phone-error">الرجاء إدخال رقم هاتف صحيح (يبدأ بـ 07)</div>
+                </div>
+
+                <div class="form-group">
+                    <label>طريقة الاستلام *</label>
+                  <div class="delivery-cards">
+  <div class="delivery-card active" onclick="selectDelivery(this, true)">
+    <div class="icon">🚚</div>
+    <h4>توصيل</h4>
+    <p>يوصل الطلب إلى باب المنزل</p>
+    <input type="radio" name="deliveryMethod" value="delivery" checked hidden>
+  </div>
+
+  <div class="delivery-card" onclick="selectDelivery(this, false)">
+    <div class="icon">🏪</div>
+    <h4>استلام</h4>
+    <p>استلام الطلب من المطعم</p>
+    <input type="radio" name="deliveryMethod" value="pickup" hidden>
+  </div>
+</div>
+
+                </div>
+
+                <div class="form-group" id="location-group">
+                    <label for="customer-location">العنوان *</label>
+                    <textarea id="customer-location" placeholder="أدخل عنوانك التفصيلي" required></textarea>
+                    <div class="form-error" id="location-error">الرجاء إدخال العنوان</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="customer-notes">ملاحظات إضافية (اختياري)</label>
+                    <textarea id="customer-notes" placeholder="أي ملاحظات خاصة بالطلب"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" onclick="submitOrder()">إرسال الطلب 📱</button>
+                <button class="btn btn-secondary" onclick="closeCheckout()">رجوع</button>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(modal);
+
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            closeCheckout();
+        }
+    });
+}
+
+// تبديل حقل العنوان
+function toggleLocation(isDelivery) {
+    const locationGroup = document.getElementById('location-group');
+    const locationInput = document.getElementById('customer-location');
+    const locationLabel = locationGroup.querySelector('label');
+
+    if (isDelivery) {
+        locationGroup.style.display = 'block';
+        locationInput.required = true;
+        locationLabel.innerHTML = 'العنوان *';
+    } else {
+        locationGroup.style.display = 'none';
+        locationInput.required = false;
+        locationInput.value = '';
+        locationLabel.innerHTML = 'العنوان (اختياري)';
+    }
+}
+
+// إغلاق نافذة الدفع
+function closeCheckout() {
+    const modal = document.getElementById('checkoutModal');
+    if (modal) {
+        modal.style.display = 'none';
+    }
+}
+
+// التحقق من البيانات
+function validateForm() {
+    let isValid = true;
+    const name = document.getElementById('customer-name').value.trim();
+    const phone = document.getElementById('customer-phone').value.trim();
+    const location = document.getElementById('customer-location').value.trim();
+    const deliveryMethod = document.querySelector('input[name="deliveryMethod"]:checked').value;
+
+    document.querySelectorAll('.form-error').forEach(err => err.style.display = 'none');
+    document.querySelectorAll('input, textarea').forEach(input => input.style.borderColor = 'var(--border-color)');
+
+    if (!name) {
+        document.getElementById('name-error').style.display = 'block';
+        document.getElementById('customer-name').style.borderColor = 'var(--danger-color)';
+        isValid = false;
+    }
+
+    const phoneRegex = /^07[0-9]{8}$/;
+    if (!phone || !phoneRegex.test(phone)) {
+        document.getElementById('phone-error').style.display = 'block';
+        document.getElementById('customer-phone').style.borderColor = 'var(--danger-color)';
+        isValid = false;
+    }
+
+    if (deliveryMethod === 'delivery' && !location) {
+        document.getElementById('location-error').style.display = 'block';
+        document.getElementById('customer-location').style.borderColor = 'var(--danger-color)';
+        isValid = false;
+    }
+
+    return isValid;
+}
+
+// إرسال الطلب
+function submitOrder() {
+    if (!validateForm()) {
+        return;
+    }
+
+    const name = document.getElementById('customer-name').value.trim();
+    const phone = document.getElementById('customer-phone').value.trim();
+    const location = document.getElementById('customer-location').value.trim();
+    const notes = document.getElementById('customer-notes').value.trim();
+    const deliveryMethod = document.querySelector('input[name="deliveryMethod"]:checked').value;
+    const deliveryText = deliveryMethod === 'delivery' ? '🚚 توصيل' : '🏪 استلام من المطعم';
+
+    let message = `🛒 *طلب جديد من مطعم نكشه المركزي*\n\n`;
+    message += `👤 *الاسم:* ${name}\n`;
+    message += `📞 *الهاتف:* ${phone}\n`;
+    message += `📦 *طريقة الاستلام:* ${deliveryText}\n`;
+
+    if (deliveryMethod === 'delivery') {
+        message += `📍 *العنوان:* ${location}\n`;
+    }
+
+    message += `\n📦 *تفاصيل الطلب:*\n`;
+    message += `━━━━━━━━━━━━━━━━\n`;
+
+    let total = 0;
+    cart.forEach((item, index) => {
+        message += `${index + 1}. ${item.name}\n`;
+        message += `   الحجم: ${item.size}\n`;
+        message += `   الكمية: ${item.quantity}\n`;
+        message += `   السعر: ${item.total} دينار\n\n`;
+        total += item.total;
+    });
+
+    message += `━━━━━━━━━━━━━━━━\n`;
+    message += `💰 *الإجمالي: ${total} دينار*\n\n`;
+
+    const totalPrepTime = Math.max(...cart.map(item => item.prepTime));
+    message += `⏱️ *وقت التحضير المتوقع:* ${totalPrepTime} دقيقة\n\n`;
+
+    if (notes) {
+        message += `📝 *ملاحظات:* ${notes}\n\n`;
+    }
+
+    message += `⏰ وقت الطلب: ${new Date().toLocaleString('ar-JO')}`;
+
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappNumber = '962788709412';
+    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+    window.open(whatsappURL, '_blank');
+
+    cart = [];
+    updateCartCount();
+    closeCheckout();
+
+    showAlert('تم إرسال طلبك بنجاح! سيتم التواصل معك قريباً', 'success');
+
+    setTimeout(() => {
+        document.getElementById('customer-name').value = '';
+        document.getElementById('customer-phone').value = '';
+        document.getElementById('customer-location').value = '';
+        document.getElementById('customer-notes').value = '';
+    }, 1000);
+}
+
+// إظهار التنبيهات
+function showAlert(message, type) {
+    const alert = document.createElement('div');
+    alert.className = `alert alert-${type}`;
+    alert.textContent = message;
+    document.body.appendChild(alert);
+
+    setTimeout(() => {
+        alert.style.opacity = '0';
+        setTimeout(() => {
+            document.body.removeChild(alert);
+        }, 300);
+    }, 3000);
+}
+
+// كود السحب والتحريك
+(function() {
+    const slider = document.getElementById('categoriesContainer');
+    if (!slider) return;
+
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    slider.addEventListener('mousedown', (e) => {
+        isDown = true;
+        slider.style.cursor = 'grabbing';
+        startX = e.pageX - slider.offsetLeft;
+        scrollLeft = slider.scrollLeft;
+    });
+
+    slider.addEventListener('mouseleave', () => {
+        isDown = false;
+        slider.style.cursor = 'grab';
+    });
+
+    slider.addEventListener('mouseup', () => {
+        isDown = false;
+        slider.style.cursor = 'grab';
+    });
+
+    slider.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - slider.offsetLeft;
+        const walk = (x - startX) * 2;
+        slider.scrollLeft = scrollLeft - walk;
+    });
+})();
+
+    function selectDelivery(card, isDelivery) {
+  document.querySelectorAll('.delivery-card').forEach(c => {
+    c.classList.remove('active');
+    c.querySelector('input').checked = false;
+  });
+
+  card.classList.add('active');
+  card.querySelector('input').checked = true;
+
+  toggleLocation(isDelivery);
+}
+
+
+
+
+
+
+    </script>
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+// استخدم أسماء مختلفة للمتغيرات لتجنب أي تداخل (Conflict)
+const MY_PROJECT_URL = 'https://nxcjnxtvkacsaiikglhy.supabase.co';
+const MY_PROJECT_KEY = 'sb_publishable_AbkphcROGqeua_aCIc_fAA_b8KNnYRh';
+
+// تعريف المتغير باسم جديد تماماً
+const restaurantSupabase = supabase.createClient(MY_PROJECT_URL, MY_PROJECT_KEY);
+
+async function watchInventory() {
+    try {
+        // 1. جلب البيانات فور تحميل الصفحة
+        const { data, error } = await restaurantSupabase.from('inventory').select('*');
+
+        if (error) {
+            console.error("خطأ في جلب البيانات:", error.message);
+            return;
+        }
+
+        if (data) {
+            data.forEach(item => {
+                updateUI(item.product_name, item.status);
+            });
+        }
+
+        // 2. الاشتراك في التحديثات اللحظية (Realtime)
+        restaurantSupabase
+            .channel('inventory_changes')
+            .on('postgres_changes', {
+                event: 'UPDATE',
+                schema: 'public',
+                table: 'inventory'
+            }, payload => {
+                console.log("تم التحديث لحظياً:", payload.new);
+                updateUI(payload.new.product_name, payload.new.status);
+            })
+            .subscribe();
+
+    } catch (e) {
+        console.error("حدث خطأ غير متوقع:", e);
+    }
+}
+
+function updateUI(pName, status) {
+    const btn = document.querySelector(`.product-button[data-name="${pName}"]`);
+    if (btn) {
+        if (status === "no") {
+            btn.innerText = "نفذت الكمية";
+            btn.disabled = true;
+            btn.style.backgroundColor = "#D32F2F";
+            btn.closest('.product-card').style.opacity = "0.6";
+        } else {
+            btn.innerText = "إضافة إلى السلة";
+            btn.disabled = false;
+            btn.style.backgroundColor = "";
+            btn.closest('.product-card').style.opacity = "1";
+        }
+    }
+}
+
+// تشغيل النظام
+watchInventory();
+</script>
+</body>
+
+<span style="display:none">Developed and Designed by khaled badran 100jd</span>
+</html>
