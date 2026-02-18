@@ -396,6 +396,37 @@
             background: #dc2626;
             transform: translateY(-50%) scale(1.1);
         }
+        /* تثبيت رأس النافذة الذي يحتوي على زر الإغلاق */
+.modal-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    text-align: center;
+    position: sticky; /* جعل الرأس معلق */
+    top: 0;           /* الالتصاق بأعلى النافذة */
+    background-color: #ABA3A1; /* نفس لون خلفية النافذة لكي لا تظهر العناصر خلفه */
+    z-index: 10;      /* لضمان ظهوره فوق محتوى النافذة */
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+
+/* التأكد من أن زر الإغلاق دائماً في المقدمة */
+.close-modal {
+    z-index: 11;
+}
+
+/* تثبيت أسفل النافذة الذي يحتوي على أزرار التأكيد */
+.modal-footer {
+    padding: 1rem 2rem;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    position: sticky; /* جعل التذييل معلق */
+    bottom: 0;        /* الالتصاق بأسفل النافذة */
+    background-color: #ABA3A1; /* نفس لون خلفية النافذة */
+    z-index: 10;      /* لضمان ظهوره فوق المحتوى عند التمرير */
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+}
+
 
         .modal-body {
             padding: 2rem;
