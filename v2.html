@@ -321,7 +321,7 @@ input,textarea{font-family:'Cairo',sans-serif}
     0 0 0 4px rgba(198,40,40,.06),
     0 32px 80px rgba(0,0,0,.55),
     0 8px 24px rgba(198,40,40,.1);
-
+  
   /* Entry animation */
   animation: mapReveal .8s cubic-bezier(.4,0,.2,1) both;
 }
@@ -831,6 +831,21 @@ input,textarea{font-family:'Cairo',sans-serif}
   font-size: .8rem;
 }
 @keyframes tipFade { 0%,80%{opacity:1} 100%{opacity:0;pointer-events:none} }
+@keyframes spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+
+/* GPS button — success state */
+.co-gps-btn.located {
+  background: linear-gradient(135deg, rgba(37,211,102,.18), rgba(18,140,126,.12));
+  border-color: rgba(37,211,102,.4);
+  color: #66BB6A;
+}
+.co-gps-btn.located i { color: #66BB6A; }
+
+/* Pulsing ring on location status when loading */
+.co-location-status .fa-spinner {
+  animation: spin .8s linear infinite;
+  color: var(--red-l);
+}
 
 
 /* FOOTER */
@@ -1965,43 +1980,8 @@ function _placeMarker(lat, lng){
 }
 
 $('coGpsBtn').addEventListener('click', () => {
-  const btn = $('coGpsBtn');
-  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جارٍ...';
-  btn.disabled = true;
-  if(!navigator.geolocation){
-    showToast('⚠️ المتصفح لا يدعم تحديد الموقع');
-    btn.innerHTML = '<i class="fas fa-location-crosshairs"></i> موقعي الحالي';
-    btn.disabled = false;
-    return;
-  }
-  navigator.geolocation.getCurrentPosition(
-    pos => {
-      const { latitude: lat, longitude: lng } = pos.coords;
-      if(!mapInitialized) _initMap();
-      const doPlace = () => {
-        gMap.setCenter({ lat, lng });
-        gMap.setZoom(17);
-        _placeMarker(lat, lng);
-        if(window.google){
-          const gc = new google.maps.Geocoder();
-          gc.geocode({ location: { lat, lng } }, (results, status) => {
-            if(status === 'OK' && results[0]){
-              $('co-address').value = results[0].formatted_address;
-            }
-          });
-        }
-      };
-      mapInitialized && gMap ? doPlace() : setTimeout(doPlace, 900);
-      btn.innerHTML = '<i class="fas fa-check"></i> تم';
-      btn.disabled = false;
-    },
-    () => {
-      showToast('⚠️ تعذّر تحديد موقعك');
-      btn.innerHTML = '<i class="fas fa-location-crosshairs"></i> موقعي الحالي';
-      btn.disabled = false;
-    },
-    { enableHighAccuracy: true, timeout: 8000 }
-  );
+  if(!mapInitialized) _initMap();
+  setTimeout(_autoLocate, mapInitialized ? 0 : 700);
 });
 
 function _collapseEl(el){ el.style.height=el.offsetHeight+'px'; el.offsetHeight; el.classList.add('hidden'); el.style.height='0'; }
@@ -2018,18 +1998,78 @@ checkoutBtn.addEventListener('click', () => {
   $('co-address-autocomplete').value='';
   const st=$('coLocationStatus');
   st.className='co-location-status';
-  st.innerHTML='<i class="fas fa-circle-dot"></i><span>اضغط على الخريطة لتحديد موقعك</span>';
+  st.innerHTML='<i class="fas fa-circle-dot"></i><span>جارٍ تحديد موقعك...</span>';
   const ds=$('coDeliverySection');
   ds.classList.remove('hidden'); ds.style.height='auto';
   _buildSummary();
   _applyProfile();
   closeCart();
   showModal(checkoutOverlay, checkoutModal);
+
+  // Initialize map first, then auto-locate like Uber
   setTimeout(() => {
     if(deliveryMode==='delivery' && !mapInitialized) _initMap();
     else if(gMap) google.maps.event.trigger(gMap,'resize');
+    // Auto-trigger GPS after map is ready
+    setTimeout(_autoLocate, 600);
   }, 320);
 });
+
+// ── AUTO LOCATE (Uber-style: fires automatically on checkout open)
+function _autoLocate(){
+  if(!navigator.geolocation) {
+    const st=$('coLocationStatus');
+    st.className='co-location-status';
+    st.innerHTML='<i class="fas fa-circle-dot"></i><span>اضغط على الخريطة لتحديد موقعك</span>';
+    return;
+  }
+
+  // Show loading state on GPS button
+  const btn=$('coGpsBtn');
+  btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> جارٍ...';
+  btn.disabled=true;
+
+  // Update status pill
+  const st=$('coLocationStatus');
+  st.className='co-location-status';
+  st.innerHTML='<i class="fas fa-spinner fa-spin" style="animation:spin .8s linear infinite"></i><span>جارٍ تحديد موقعك...</span>';
+
+  navigator.geolocation.getCurrentPosition(
+    pos => {
+      const { latitude: lat, longitude: lng } = pos.coords;
+      const doPlace = () => {
+        if(!gMap) return;
+        gMap.setCenter({ lat, lng });
+        gMap.setZoom(17);
+        _placeMarker(lat, lng);
+        // Reverse geocode → fill address field automatically
+        if(window.google){
+          const gc = new google.maps.Geocoder();
+          gc.geocode({ location:{ lat, lng } }, (results, status) => {
+            if(status==='OK' && results[0]){
+              $('co-address').value = results[0].formatted_address;
+              $('co-address-autocomplete').value = results[0].formatted_address;
+            }
+          });
+        }
+      };
+      mapInitialized && gMap ? doPlace() : setTimeout(doPlace, 800);
+      btn.innerHTML='<i class="fas fa-check"></i> موقعي';
+      btn.disabled=false;
+      btn.classList.add('located');
+    },
+    err => {
+      // User denied or error → show manual hint
+      const st2=$('coLocationStatus');
+      st2.className='co-location-status';
+      st2.innerHTML='<i class="fas fa-circle-dot"></i><span>اضغط على الخريطة لتحديد موقعك</span>';
+      btn.innerHTML='<i class="fas fa-location-crosshairs"></i> موقعي';
+      btn.disabled=false;
+      btn.classList.remove('located');
+    },
+    { enableHighAccuracy:true, timeout:8000, maximumAge:30000 }
+  );
+}
 
 function _buildSummary(){
   const total=cart.reduce((s,i)=>s+i.unitPrice*i.qty,0);
