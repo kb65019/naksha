@@ -321,7 +321,7 @@ input,textarea{font-family:'Cairo',sans-serif}
     0 0 0 4px rgba(198,40,40,.06),
     0 32px 80px rgba(0,0,0,.55),
     0 8px 24px rgba(198,40,40,.1);
-  
+
   /* Entry animation */
   animation: mapReveal .8s cubic-bezier(.4,0,.2,1) both;
 }
@@ -1006,12 +1006,13 @@ input,textarea{font-family:'Cairo',sans-serif}
 .co-pickup-notice.visible{display:flex}
 .co-pickup-notice i{color:var(--gold);font-size:1.1rem;flex-shrink:0;background:rgba(244,196,48,.12);width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center}
 .co-delivery-section{overflow:hidden;transition:height .38s cubic-bezier(.4,0,.2,1),opacity .3s ease;opacity:1}
+.co-delivery-section:not(.hidden){overflow:visible}
 .co-delivery-section.hidden{height:0 !important;opacity:0;pointer-events:none}
 
 #co-address-autocomplete{width:100%;padding:11px 13px;background:rgba(255,255,255,.04);border:1.5px solid var(--border);border-radius:11px;color:#fff;font-size:.9rem;outline:none;direction:rtl;transition:border-color var(--tr),background var(--tr),box-shadow var(--tr);-webkit-appearance:none;font-family:'Cairo',sans-serif}
 #co-address-autocomplete:focus{border-color:var(--red);background:rgba(198,40,40,.03);box-shadow:0 0 0 3px rgba(198,40,40,.1)}
 #co-address-autocomplete::placeholder{color:var(--gray)}
-.pac-container{background:#1e1e1e;border:1px solid rgba(255,255,255,.1);border-radius:10px;box-shadow:0 8px 32px rgba(0,0,0,.5);font-family:'Cairo',sans-serif;margin-top:4px}
+.pac-container{background:#1e1e1e;border:1px solid rgba(255,255,255,.1);border-radius:10px;box-shadow:0 8px 32px rgba(0,0,0,.5);font-family:'Cairo',sans-serif;margin-top:4px;z-index:2100 !important;position:relative}
 .pac-item{color:rgba(255,255,255,.75);padding:10px 14px;border-top:1px solid rgba(255,255,255,.05);cursor:pointer;font-size:.88rem}
 .pac-item:hover{background:rgba(198,40,40,.1)}
 .pac-item-query{color:#fff;font-weight:700}
@@ -1933,6 +1934,12 @@ function _initAutocomplete(){
     componentRestrictions: { country: 'JO' },
     fields: ['geometry', 'formatted_address', 'name']
   });
+  // Force pac-container above modal overlay via JS
+  setTimeout(() => {
+    const pac = document.querySelector('.pac-container');
+    if(pac){ pac.style.zIndex = '2100'; }
+  }, 500);
+
   gAutocomplete.addListener('place_changed', () => {
     const place = gAutocomplete.getPlace();
     if(!place.geometry) return;
@@ -2242,6 +2249,20 @@ function _darkMapStyles(){
     {featureType:'administrative.locality',elementType:'labels.text.fill',stylers:[{color:'#d59563'}]}
   ];
 }
+
+// ── PAC-CONTAINER Z-INDEX WATCHER
+// Google Maps appends pac-container to <body> dynamically — watch for it
+const _pacObserver = new MutationObserver(mutations => {
+  mutations.forEach(m => {
+    m.addedNodes.forEach(node => {
+      if(node.classList && node.classList.contains('pac-container')){
+        node.style.zIndex = '2100';
+        node.style.position = 'fixed';
+      }
+    });
+  });
+});
+_pacObserver.observe(document.body, { childList: true, subtree: false });
 
 // ── INIT
 renderCart();
