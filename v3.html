@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<meta name="theme-color" content="#0A0A0A"/>
+<title>نكشه المركزي — طلب أونلاين</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+<style>
+:root{
+  --red:#C62828;--red-d:#8B0000;--red-l:#EF5350;
+  --gold:#F4C430;--gold-l:#FFE082;
+  --wa:#25D366;--wa-d:#128C7E;
+  --bg:#0A0A0A;--bg2:#131313;--bg3:#191919;--card:#1E1E1E;
+  --border:rgba(255,255,255,0.07);--border-h:rgba(255,255,255,0.12);
+  --gray:#777;--text:rgba(255,255,255,0.78);
+  --tr:0.28s cubic-bezier(0.4,0,0.2,1);
+  --rad:16px;--rad-sm:10px;
+  --shadow-red:0 6px 24px rgba(198,40,40,0.28);
+  --shadow-lg:0 24px 64px rgba(0,0,0,0.55);
+  --nav-h:64px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:clip}
+body{font-family:'Cairo',sans-serif;background:var(--bg);color:#fff;direction:rtl;-webkit-font-smoothing:antialiased;min-width:0}
+img{max-width:100%;display:block;height:auto}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+button{font-family:'Cairo',sans-serif;-webkit-tap-highlight-color:transparent}
+input,textarea{font-family:'Cairo',sans-serif}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--red);border-radius:2px}
+.container{max-width:1180px;margin:0 auto;padding:0 20px}
+.stag{display:inline-block;background:linear-gradient(135deg,var(--red),var(--red-d));color:#fff;padding:5px 16px;border-radius:50px;font-size:.82rem;font-weight:700;margin-bottom:10px}
+.section-header{text-align:center;margin-bottom:48px}
+.section-header h2{font-size:clamp(1.7rem,4vw,2.5rem);font-weight:900;margin-bottom:8px}
+.section-header p{color:var(--gray);font-size:.95rem}
+.req{color:var(--red-l)}
+.gtp{color:var(--gold);font-weight:900}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--red),var(--red-d));color:#fff;padding:13px 26px;border-radius:50px;font-weight:700;font-size:.92rem;border:none;cursor:pointer;box-shadow:var(--shadow-red);transition:var(--tr);position:relative;overflow:hidden;min-height:48px}
+.btn-primary:active{transform:scale(.97)}
+@media(hover:hover){.btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(198,40,40,.5)}}
+.btn-ghost{display:inline-flex;align-items:center;gap:8px;border:2px solid rgba(255,255,255,.3);color:#fff;padding:12px 24px;border-radius:50px;font-weight:600;font-size:.92rem;background:transparent;cursor:pointer;transition:var(--tr);min-height:48px}
+.btn-ghost:active{transform:scale(.97)}
+@media(hover:hover){.btn-ghost:hover{background:rgba(255,255,255,.08);border-color:#fff}}
+.btn-whatsapp{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:17px;background:linear-gradient(135deg,var(--wa),var(--wa-d));color:#fff;border:none;border-radius:14px;font-weight:800;font-size:1.05rem;cursor:pointer;transition:var(--tr);box-shadow:0 6px 24px rgba(37,211,102,.3);min-height:54px}
+.btn-whatsapp:active{transform:scale(.98)}
+@media(hover:hover){.btn-whatsapp:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(37,211,102,.45)}}
+.btn-whatsapp i{font-size:1.25rem}
+.pulse-btn{animation:pulse 2.8s infinite}
+@keyframes pulse{0%,100%{box-shadow:var(--shadow-red)}50%{box-shadow:0 4px 36px rgba(198,40,40,.65),0 0 0 8px rgba(198,40,40,.1)}}
+/* NAVBAR */
+.navbar{position:fixed;top:0;width:100%;z-index:900;height:var(--nav-h);display:flex;align-items:center;transition:background .3s,box-shadow .3s}
+.navbar.scrolled{background:rgba(10,10,10,.96);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);box-shadow:0 2px 20px rgba(0,0,0,.4)}
+.nav-container{max-width:1180px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;width:100%}
+.logo-img{height:50px;width:auto;border:1px solid #c62828;border-radius:50px;padding:4px;filter:drop-shadow(0 2px 8px rgba(198,40,40,.4));transition:transform var(--tr)}
+@media(hover:hover){.logo-img:hover{transform:scale(1.05)}}
+.nav-links{display:flex;align-items:center;gap:24px;list-style:none;padding:0}
+.nav-links a{font-weight:600;font-size:.9rem;color:rgba(255,255,255,.75);position:relative;transition:color var(--tr);padding:4px 0}
+.nav-links a::after{content:'';position:absolute;bottom:-2px;right:0;width:0;height:2px;background:var(--red);transition:width var(--tr);border-radius:1px}
+@media(hover:hover){.nav-links a:hover{color:#fff}.nav-links a:hover::after{width:100%}}
+.nav-links a.active-link{color:#fff}
+.nav-links a.active-link::after{width:100%}
+.nav-links .lang-switch a{display:inline-block;padding:6px 16px;background:#C9A227;color:#111 !important;border-radius:50px;font-weight:600;font-size:14px;transition:all .3s ease;border:2px solid #C9A227}
+.nav-links .lang-switch a:hover{background:transparent;color:#C9A227 !important;border-color:#C9A227}
+.nav-links .lang-switch a::after{display:none}
+.nav-actions{display:flex;align-items:center;gap:10px}
+.cart-fab{position:relative;background:linear-gradient(135deg,var(--red),var(--red-d));border:none;color:#fff;width:46px;height:46px;border-radius:50%;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:transform var(--tr),box-shadow var(--tr);box-shadow:var(--shadow-red)}
+.cart-fab:active{transform:scale(.92)}
+@media(hover:hover){.cart-fab:hover{transform:scale(1.1)}}
+.cart-fab.bounce{animation:cartBounce .45s ease}
+@keyframes cartBounce{0%,100%{transform:scale(1)}35%{transform:scale(1.3)}65%{transform:scale(.88)}}
+.cart-count{position:absolute;top:-5px;left:-5px;background:var(--gold);color:#111;width:20px;height:20px;border-radius:50%;font-size:.62rem;font-weight:900;display:flex;align-items:center;justify-content:center;transform:scale(0);transition:transform var(--tr)}
+.cart-count.show{transform:scale(1)}
+.hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;cursor:pointer;padding:8px;width:44px;height:44px}
+.hamburger span{display:block;width:22px;height:2px;background:#fff;transition:transform var(--tr),opacity var(--tr);transform-origin:center;border-radius:2px}
+.hamburger.active span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.active span:nth-child(2){opacity:0;transform:scaleX(0)}
+.hamburger.active span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.nav-mobile-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:800;opacity:0;pointer-events:none;transition:opacity var(--tr);backdrop-filter:blur(4px)}
+.nav-mobile-overlay.show{opacity:1;pointer-events:all}
+@media(max-width:900px){
+  .nav-links{position:fixed;top:0;right:0;width:min(280px,80vw);height:100dvh;background:var(--card);flex-direction:column;gap:0;padding:80px 24px 40px;z-index:850;transform:translateX(100%);transition:transform .38s cubic-bezier(.4,0,.2,1);border-left:1px solid var(--border);overflow-y:auto}
+  .nav-links.open{transform:translateX(0)}
+  .nav-links a{display:block;padding:15px 0;border-bottom:1px solid var(--border);font-size:1rem}
+  .nav-links a::after{display:none}
+  .hamburger{display:flex}
+}
+/* HERO */
+.hero{min-height:100svh;display:flex;align-items:center;position:relative;overflow:hidden;overflow-x:clip;padding:calc(var(--nav-h) + 32px) 20px 64px}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 65% 50%,rgba(198,40,40,.18) 0%,transparent 70%),radial-gradient(ellipse at 0% 100%,rgba(139,0,0,.22) 0%,transparent 50%),linear-gradient(160deg,#080808 0%,#130000 50%,#080808 100%)}
+.hero-bg::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle at 1px 1px,rgba(255,255,255,.03) 1px,transparent 0);background-size:40px 40px}
+#particleCanvas{position:absolute;inset:0;pointer-events:none;opacity:.7}
+.hero-inner{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:40px;width:100%;max-width:1180px;margin:0 auto}
+.hero-content{max-width:560px;animation:fadeUp .8s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:translateY(0)}}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(244,196,48,.1);border:1px solid rgba(244,196,48,.3);color:var(--gold-l);padding:8px 18px;border-radius:50px;font-size:.85rem;font-weight:600;margin-bottom:18px;animation:fadeUp .8s .15s ease both}
+.hero-title{line-height:1;margin-bottom:14px;animation:fadeUp .8s .25s ease both}
+.ht-ar{display:block;font-size:clamp(3.5rem,9vw,6.5rem);font-weight:900;background:linear-gradient(135deg,#fff 30%,var(--gold) 70%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.ht-sub{display:block;font-size:clamp(1.3rem,3vw,2rem);color:var(--red-l);font-weight:700;letter-spacing:3px}
+.hero-slogan{font-size:1.05rem;color:rgba(255,255,255,.62);margin-bottom:30px;line-height:1.75;animation:fadeUp .8s .35s ease both}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:42px;animation:fadeUp .8s .45s ease both}
+.hero-stats{display:flex;align-items:center;animation:fadeUp .8s .6s ease both}
+.hstat{text-align:center;padding:0 18px}
+.hstat:first-child{padding-right:0}
+.hn{display:block;font-size:1.4rem;font-weight:900;color:var(--gold)}
+.hstat span:last-child{font-size:.75rem;color:var(--gray)}
+.hline{width:1px;height:36px;background:rgba(255,255,255,.1)}
+.hero-img-wrap{position:relative;width:min(420px,38vw);flex-shrink:0;animation:heroImg .9s .4s cubic-bezier(.4,0,.2,1) both}
+@keyframes heroImg{from{opacity:0;transform:scale(.85) translateY(20px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.hero-glow{position:absolute;inset:8%;background:radial-gradient(circle,rgba(198,40,40,.45),transparent 70%);filter:blur(36px);animation:glowPulse 3s ease infinite}
+@keyframes glowPulse{0%,100%{opacity:.6}50%{opacity:1;transform:scale(1.1)}}
+.hero-food-img{width:100%;border-radius:50%;border:4px solid rgba(198,40,40,.25);box-shadow:0 0 60px rgba(198,40,40,.25),0 0 100px rgba(198,40,40,.1);animation:floatImg 4.5s ease-in-out infinite;position:relative;z-index:1}
+@keyframes floatImg{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+.hero-price-tag{position:absolute;bottom:8%;left:0;transform:translateX(-20%);background:linear-gradient(135deg,var(--red),var(--red-d));color:#fff;padding:11px 18px;border-radius:14px;font-size:1.2rem;font-weight:900;box-shadow:var(--shadow-red);animation:floatBadge 3.5s ease-in-out infinite;z-index:3;white-space:nowrap}
+.hero-price-tag span{font-size:.72rem;opacity:.85;display:block}
+@keyframes floatBadge{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-10px) rotate(3deg)}}
+.scroll-cue{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);z-index:2}
+.scroll-cue span{display:block;width:24px;height:38px;border:2px solid rgba(255,255,255,.2);border-radius:12px;position:relative}
+.scroll-cue span::before{content:'';position:absolute;width:4px;height:8px;background:var(--red);border-radius:2px;top:6px;left:50%;transform:translateX(-50%);animation:scrollDot 1.8s ease infinite}
+@keyframes scrollDot{0%{top:6px;opacity:1}100%{top:20px;opacity:0}}
+@media(max-width:768px){
+  .hero{padding:calc(var(--nav-h) + 20px) 20px 48px}
+  .hero-inner{flex-direction:column;text-align:center}
+  .hero-img-wrap{width:min(240px,65vw);order:-1}
+  .hero-btns{justify-content:center}
+  .hero-stats{justify-content:center}
+  .hero-price-tag{left:auto;right:0;bottom:6%;transform:translateX(20%)}
+}
+@media(max-width:480px){
+  .hero-stats{flex-direction:column;gap:12px}
+  .hline{width:48px;height:1px}
+  .hero-img-wrap{width:min(200px,60vw)}
+}
+/* ABOUT */
+.about{padding:90px 0;background:linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%);overflow-x:clip}
+.about .container{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.about-img-wrap{position:relative;border-radius:var(--rad);overflow:visible}
+.about-deco{position:absolute;inset:-8px;border-radius:var(--rad);border:2px solid rgba(198,40,40,.18);transform:rotate(3deg);transition:transform var(--tr);pointer-events:none}
+@media(hover:hover){.about-img-wrap:hover .about-deco{transform:rotate(-3deg)}}
+.about-img{width:100%;border-radius:var(--rad);box-shadow:var(--shadow-lg);position:relative;z-index:1;transition:transform var(--tr);display:block}
+@media(hover:hover){.about-img-wrap:hover .about-img{transform:scale(1.02)}}
+.about-float-badge{position:absolute;bottom:-16px;right:0;z-index:2;background:linear-gradient(135deg,var(--red),var(--red-d));padding:10px 16px;border-radius:12px;display:flex;align-items:center;gap:10px;box-shadow:var(--shadow-red);font-weight:700;animation:floatBadge 3.5s ease-in-out infinite;max-width:calc(100% - 8px)}
+.about-float-badge i{font-size:1.1rem;color:var(--gold);flex-shrink:0}
+.about-text h2{font-size:2rem;font-weight:900;margin-bottom:14px}
+.about-text p{color:var(--text);line-height:1.85;margin-bottom:14px;font-size:.95rem}
+.about-list{margin:20px 0 28px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.about-list li{display:flex;align-items:center;gap:9px;color:var(--text);font-weight:600;font-size:.9rem}
+.about-list li i{color:var(--red-l);font-size:.95rem;flex-shrink:0}
+@media(max-width:768px){
+  .about .container{grid-template-columns:1fr;gap:48px}
+  .about-img-wrap{max-width:400px;margin:0 auto;margin-bottom:20px}
+  .about-list{grid-template-columns:1fr}
+}
+/* MENU */
+.menu-section{padding:90px 0;background:var(--bg2);overflow-x:clip}
+.menu-tabs{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:40px}
+.tab-btn{padding:10px 24px;border-radius:50px;border:1.5px solid var(--border);background:transparent;color:var(--gray);font-weight:700;font-size:.88rem;cursor:pointer;transition:var(--tr);min-height:44px}
+.tab-btn.active{background:linear-gradient(135deg,var(--red),var(--red-d));border-color:var(--red);color:#fff;box-shadow:0 4px 16px rgba(198,40,40,.3)}
+@media(hover:hover){.tab-btn:hover:not(.active){border-color:rgba(198,40,40,.35);color:rgba(255,255,255,.85)}}
+.menu-grid{display:none;grid-template-columns:repeat(auto-fill,minmax(268px,1fr));gap:22px}
+.menu-grid.active-grid{display:grid}
+.mcard{background:var(--card);border-radius:var(--rad);overflow:hidden;border:1px solid var(--border);transition:transform var(--tr),box-shadow var(--tr),border-color var(--tr);cursor:pointer}
+@media(hover:hover){.mcard:hover{transform:translateY(-5px);box-shadow:0 18px 48px rgba(0,0,0,.38),0 0 0 1px rgba(198,40,40,.22)}}
+.mcard:active{transform:scale(.99)}
+.mcard-img{position:relative;overflow:hidden;height:188px}
+.mcard-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.4,0,.2,1)}
+@media(hover:hover){.mcard:hover .mcard-img img{transform:scale(1.07)}}
+.mcard-badge{position:absolute;top:10px;right:10px;padding:4px 11px;border-radius:50px;font-size:.7rem;font-weight:700;backdrop-filter:blur(4px)}
+.mcard-badge.hot{background:linear-gradient(135deg,var(--red),var(--red-d))}
+.mcard-badge.new{background:linear-gradient(135deg,#2E7D32,#1B5E20)}
+.mcard-badge.gold{background:linear-gradient(135deg,#F4C430,#E6A817);color:#111}
+.mcard-overlay{position:absolute;inset:0;background:rgba(0,0,0,.3);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity var(--tr);font-size:2.8rem;color:rgba(255,255,255,.7)}
+@media(hover:hover){.mcard:hover .mcard-overlay{opacity:1}}
+.mcard-body{padding:16px}
+.mcard-body h3{font-size:1rem;font-weight:800;margin-bottom:5px}
+.mcard-body p{color:var(--gray);font-size:.82rem;line-height:1.55;margin-bottom:8px}
+.mcard-body .prep-time{color:rgba(255,255,255,.4);font-size:.75rem;margin-bottom:10px}
+.mcard-footer{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.mprice{font-size:1.1rem;font-weight:900;color:var(--gold)}
+.btn-add-item{background:linear-gradient(135deg,var(--red),var(--red-d));border:none;color:#fff;padding:9px 16px;border-radius:50px;cursor:pointer;font-size:.82rem;font-weight:700;display:flex;align-items:center;gap:6px;transition:transform var(--tr),box-shadow var(--tr);min-height:40px;flex-shrink:0}
+.btn-add-item:active{transform:scale(.94)}
+@media(hover:hover){.btn-add-item:hover{transform:scale(1.05);box-shadow:0 4px 14px rgba(198,40,40,.4)}}
+.btn-add-item:disabled{background:linear-gradient(135deg,#555,#333);cursor:not-allowed;opacity:.7}
+@media(max-width:580px){
+  .menu-grid{grid-template-columns:1fr}
+  .menu-tabs{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;padding-bottom:6px;scrollbar-width:none}
+  .menu-tabs::-webkit-scrollbar{display:none}
+  .tab-btn{flex-shrink:0}
+}
+@media(max-width:400px){
+  .mcard-footer{flex-direction:column;align-items:flex-start;gap:10px}
+  .btn-add-item{width:100%;justify-content:center}
+  .section-header{margin-bottom:32px}
+  .menu-section,.about,.contact-section{padding:64px 0}
+}
+/* CONTACT */
+.contact-section{padding:90px 0;background:var(--bg);overflow-x:clip}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+.cinfo-card{display:flex;align-items:flex-start;gap:14px;padding:18px;border-radius:14px;background:rgba(255,255,255,.02);border:1px solid var(--border);margin-bottom:14px;transition:border-color var(--tr),background var(--tr),transform var(--tr)}
+@media(hover:hover){.cinfo-card:hover{border-color:rgba(198,40,40,.22);background:rgba(198,40,40,.03);transform:translateX(-4px)}}
+.cinfo-icon{width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,var(--red),var(--red-d));display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.cinfo-card h4{font-weight:700;margin-bottom:4px;font-size:.93rem}
+.cinfo-card p{color:var(--gray);font-size:.85rem;line-height:1.6}
+.contact-form-wrap{background:var(--card);border-radius:20px;padding:32px;border:1px solid var(--border)}
+.contact-form-wrap h3{font-size:1.25rem;font-weight:800;margin-bottom:24px}
+.fgrp{position:relative;margin-bottom:14px}
+.fgrp label{display:block;font-size:.83rem;font-weight:600;color:rgba(255,255,255,.68);margin-bottom:6px}
+.fgrp input,.fgrp textarea{width:100%;padding:12px 15px;background:rgba(255,255,255,.035);border:1.5px solid var(--border);border-radius:11px;color:#fff;font-size:.9rem;transition:border-color var(--tr),box-shadow var(--tr),background var(--tr);outline:none;direction:rtl;-webkit-appearance:none}
+.fgrp input:focus,.fgrp textarea:focus{border-color:var(--red);background:rgba(198,40,40,.03);box-shadow:0 0 0 3px rgba(198,40,40,.1)}
+.fgrp input::placeholder,.fgrp textarea::placeholder{color:var(--gray)}
+.fgrp textarea{resize:none}
+.fgrp>i{position:absolute;left:13px;top:13px;color:var(--gray);font-size:.85rem;pointer-events:none}
+.fgrp:focus-within>i{color:var(--red-l)}
+@media(max-width:768px){
+  .contact-grid{grid-template-columns:1fr}
+  .contact-form-wrap{padding:24px 18px}
+}
+/* MAP */
+.map-container{padding:30px}
+.map-wrapper{border-radius:15px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.2);height:450px;position:relative}
+#staticMap{width:100%;height:100%;background:var(--bg2)}
+@media(max-width:768px){.map-wrapper{height:350px}}
+/* FOOTER */
+.footer{background:#060606;border-top:1px solid var(--border)}
+.footer-inner{max-width:1180px;margin:0 auto;padding:52px 20px 36px;display:grid;grid-template-columns:2fr 1fr 1fr;gap:44px}
+.footer-logo{height:52px;margin-bottom:14px}
+.footer-brand p{color:var(--gray);line-height:1.7;margin-bottom:20px;font-size:.87rem}
+.socials{display:flex;gap:10px}
+.soc-ico{width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,.05);display:flex;align-items:center;justify-content:center;font-size:.9rem;transition:var(--tr);border:1px solid var(--border)}
+@media(hover:hover){.soc-ico:hover{background:var(--red);border-color:var(--red);transform:translateY(-4px)}}
+.footer-col h4{font-size:.93rem;font-weight:800;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.footer-col ul li{margin-bottom:8px}
+.footer-col a{color:var(--gray);font-size:.86rem;transition:var(--tr)}
+@media(hover:hover){.footer-col a:hover{color:var(--red-l);padding-right:4px}}
+.footer-col p{color:var(--gray);font-size:.86rem;margin-bottom:8px}
+.footer-col i{color:var(--red-l);margin-left:6px;width:14px}
+.footer-bottom{text-align:center;padding:16px 20px;border-top:1px solid rgba(255,255,255,.04);color:var(--gray);font-size:.8rem}
+@media(max-width:768px){.footer-inner{grid-template-columns:1fr;gap:28px}}
+/* MODALS */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:1800;opacity:0;pointer-events:none;transition:opacity var(--tr);backdrop-filter:blur(5px)}
+.modal-overlay.show{opacity:1;pointer-events:all}
+.modal{position:fixed;top:50%;left:50%;transform:translate(-50%,-46%);width:min(510px,95vw);max-height:92dvh;overflow-y:auto;overflow-x:hidden;background:var(--bg2);border-radius:20px;z-index:1900;opacity:0;pointer-events:none;transition:.35s cubic-bezier(.4,0,.2,1);border:1px solid var(--border-h);box-shadow:var(--shadow-lg)}
+.modal.show{opacity:1;pointer-events:all;transform:translate(-50%,-50%)}
+.modal::-webkit-scrollbar{width:3px}
+.modal::-webkit-scrollbar-thumb{background:var(--red)}
+@media(max-width:600px){
+  .modal{top:auto;bottom:0;left:0;right:0;transform:translateY(100%);width:100%;max-height:94dvh;border-radius:20px 20px 0 0;border-bottom:none}
+  .modal.show{transform:translateY(0)}
+}
+.modal-close{position:absolute;top:12px;left:12px;z-index:10;background:rgba(0,0,0,.55);border:none;color:#fff;width:38px;height:38px;border-radius:50%;cursor:pointer;font-size:.9rem;transition:var(--tr);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center}
+.modal-close:active{transform:scale(.9)}
+@media(hover:hover){.modal-close:hover{background:var(--red)}}
+.modal-img-wrap{position:relative;height:195px;overflow:hidden}
+.modal-img-wrap img{width:100%;height:100%;object-fit:cover}
+.modal-img-grad{position:absolute;inset:0;background:linear-gradient(to top,var(--bg2) 0%,transparent 58%)}
+.modal-item-title{position:absolute;bottom:0;right:0;left:0;padding:16px 18px}
+.modal-item-title h2{font-size:1.25rem;font-weight:900}
+.modal-item-title p{color:rgba(255,255,255,.6);font-size:.83rem}
+.modal-body{padding:18px}
+.modal-sec{margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid var(--border)}
+.modal-sec:last-of-type{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.msec-title{font-size:.9rem;font-weight:800;margin-bottom:12px;display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.88)}
+.msec-title i{color:var(--red-l)}
+.dyn-size-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px}
+.dyn-size-btn{display:flex;flex-direction:column;align-items:center;gap:5px;padding:13px 8px;border-radius:12px;border:1.5px solid var(--border);background:rgba(255,255,255,.025);cursor:pointer;transition:var(--tr);color:#fff;text-align:center;min-height:68px;font-family:'Cairo',sans-serif}
+.dyn-size-btn.selected{border-color:var(--red);background:rgba(198,40,40,.1);box-shadow:0 0 0 2px rgba(198,40,40,.12)}
+@media(hover:hover){.dyn-size-btn:hover:not(.selected){border-color:rgba(198,40,40,.35)}}
+.dsb-name{font-size:.78rem;font-weight:700;line-height:1.3}
+.dsb-price{font-size:.95rem;font-weight:900;color:var(--gold)}
+.dyn-size-btn.selected .dsb-price{color:var(--gold-l)}
+.addons-wrap{display:flex;flex-direction:column;gap:10px}
+.addon-row{display:flex;align-items:center;justify-content:space-between;padding:13px 14px;border-radius:12px;background:rgba(255,255,255,.02);border:1.5px solid var(--border);cursor:pointer;transition:var(--tr)}
+@media(hover:hover){.addon-row:hover{border-color:rgba(198,40,40,.22);background:rgba(198,40,40,.03)}}
+.addon-left{display:flex;align-items:center;gap:11px}
+.addon-ico{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0}
+.addon-ico.cheese{background:rgba(244,196,48,.15);color:var(--gold)}
+.addon-text{display:flex;flex-direction:column}
+.addon-name{font-size:.88rem;font-weight:700}
+.addon-sub{font-size:.73rem;color:var(--gray)}
+.addon-right{display:flex;align-items:center;gap:9px;flex-shrink:0}
+.addon-badge{font-size:.72rem;font-weight:800;padding:3px 9px;border-radius:50px;white-space:nowrap}
+.addon-badge.plus{background:rgba(244,196,48,.1);color:var(--gold)}
+.tog{position:relative;width:44px;height:24px;flex-shrink:0}
+.tog input{display:none}
+.tog-track{width:100%;height:100%;border-radius:12px;background:rgba(255,255,255,.1);border:1px solid var(--border);transition:var(--tr)}
+.tog input:checked+.tog-track{background:var(--red);border-color:var(--red)}
+.tog-thumb{position:absolute;top:3px;right:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:var(--tr);box-shadow:0 2px 6px rgba(0,0,0,.28);pointer-events:none}
+.tog input:checked~.tog-track .tog-thumb{right:auto;left:3px}
+.qty-ctrl{display:flex;align-items:center;gap:16px}
+.qty-btn{width:42px;height:42px;border-radius:50%;border:1.5px solid var(--border);background:rgba(255,255,255,.04);color:#fff;cursor:pointer;font-size:.9rem;transition:var(--tr);display:flex;align-items:center;justify-content:center}
+.qty-btn:active{border-color:var(--red);background:rgba(198,40,40,.12)}
+@media(hover:hover){.qty-btn:hover{border-color:var(--red);background:rgba(198,40,40,.12);color:var(--red-l)}}
+.qty-val{font-size:1.4rem;font-weight:900;min-width:32px;text-align:center}
+.modal-action{background:rgba(255,255,255,.02);border-radius:14px;padding:14px;display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid var(--border)}
+.modal-price-row{display:flex;flex-direction:column}
+.mpr-label{font-size:.78rem;color:var(--gray);margin-bottom:2px}
+.mpr-price{font-size:1.4rem;font-weight:900;color:var(--gold)}
+.btn-confirm{padding:13px 24px;font-size:.95rem;min-height:50px;flex-shrink:0}
+@media(max-width:480px){.modal-action{flex-direction:column;align-items:stretch}.btn-confirm{width:100%;justify-content:center}}
+/* CART SIDEBAR */
+.cart-overlay{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:1700;opacity:0;pointer-events:none;transition:opacity var(--tr)}
+.cart-overlay.show{opacity:1;pointer-events:all}
+.cart-sidebar{position:fixed;left:0;top:0;width:min(360px,100vw);height:100dvh;background:var(--card);z-index:1750;transform:translateX(-100%);transition:.38s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;box-shadow:var(--shadow-lg);border-right:1px solid var(--border);overflow:hidden}
+@media(max-width:400px){.cart-sidebar{width:100vw;border-right:none}}
+.cart-sidebar.open{transform:translateX(0)}
+.cart-head{padding:20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.cart-title{font-size:1.1rem;font-weight:900}
+.cart-item-count{font-size:.76rem;color:var(--gray);display:block;margin-top:2px}
+.cart-close-btn{background:rgba(255,255,255,.06);border:none;color:#fff;width:38px;height:38px;border-radius:50%;cursor:pointer;font-size:.88rem;transition:var(--tr);display:flex;align-items:center;justify-content:center}
+.cart-close-btn:hover{background:var(--red)}
+.cart-body{flex:1;overflow-y:auto;padding:14px;-webkit-overflow-scrolling:touch}
+.cart-empty-state{text-align:center;padding:48px 20px;display:flex;flex-direction:column;align-items:center}
+.ces-icon{font-size:2.8rem;color:rgba(255,255,255,.08);margin-bottom:14px}
+.cart-empty-state p{font-size:1rem;font-weight:700;margin-bottom:6px}
+.cart-empty-state small{color:var(--gray);font-size:.83rem}
+.ci-wrap{background:rgba(255,255,255,.03);border-radius:12px;border:1px solid var(--border);padding:13px;margin-bottom:10px;animation:ciSlide .28s ease both}
+@keyframes ciSlide{from{opacity:0;transform:translateX(-14px)}to{opacity:1;transform:translateX(0)}}
+.ci-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.ci-name{font-size:.92rem;font-weight:800;margin-bottom:4px}
+.ci-details{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:8px}
+.ci-tag{background:rgba(255,255,255,.06);padding:3px 9px;border-radius:50px;font-size:.7rem;color:rgba(255,255,255,.6)}
+.ci-bottom{display:flex;align-items:center;justify-content:space-between}
+.ci-price{font-size:.98rem;font-weight:900;color:var(--gold)}
+.ci-qty-ctrl{display:flex;align-items:center;gap:8px}
+.ci-qty-btn{width:28px;height:28px;border-radius:50%;border:1px solid var(--border);background:rgba(255,255,255,.04);color:#fff;cursor:pointer;font-size:.7rem;transition:var(--tr);display:flex;align-items:center;justify-content:center}
+.ci-qty-btn:hover{border-color:var(--red);background:rgba(198,40,40,.1)}
+.ci-qty-val{font-size:.88rem;font-weight:700;min-width:16px;text-align:center}
+.ci-remove{background:rgba(198,40,40,.1);border:none;color:var(--red-l);width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:.7rem;transition:var(--tr);display:flex;align-items:center;justify-content:center}
+.ci-remove:hover{background:var(--red);color:#fff}
+.cart-foot{padding:16px 18px;border-top:1px solid var(--border);background:rgba(0,0,0,.18);flex-shrink:0}
+.cart-subtotal-row,.cart-delivery-row{display:flex;justify-content:space-between;font-size:.85rem;color:var(--gray);margin-bottom:7px}
+.cart-total-row{display:flex;justify-content:space-between;font-size:1rem;font-weight:800;margin-bottom:14px;padding-top:10px;border-top:1px solid var(--border)}
+/* CHECKOUT MODAL */
+.checkout-modal{width:min(540px,96vw)}
+.checkout-head{text-align:center;padding:26px 24px 10px}
+.co-icon{width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,var(--wa),var(--wa-d));display:flex;align-items:center;justify-content:center;font-size:1.45rem;margin:0 auto 13px;box-shadow:0 4px 18px rgba(37,211,102,.3)}
+.checkout-head h2{font-size:1.28rem;font-weight:900;margin-bottom:4px}
+.checkout-head p{color:var(--gray);font-size:.84rem;line-height:1.5}
+.checkout-body{padding:14px 20px 26px}
+.co-profile-card{display:none;align-items:center;gap:12px;margin:16px 20px 0;padding:12px 14px;background:linear-gradient(135deg,rgba(198,40,40,.08),rgba(139,0,0,.04));border:1.5px solid rgba(198,40,40,.22);border-radius:13px;animation:profileSlide .3s cubic-bezier(.4,0,.2,1) both}
+@keyframes profileSlide{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+.co-profile-card.visible{display:flex}
+.co-avatar{width:42px;height:42px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,var(--red),var(--red-d));display:flex;align-items:center;justify-content:center;font-size:.95rem;font-weight:900;color:#fff}
+.co-profile-info{flex:1;min-width:0}
+.co-profile-name{font-size:.93rem;font-weight:800;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:2px}
+.co-profile-phone{font-size:.78rem;color:var(--gray);direction:ltr;text-align:right}
+.co-profile-actions{display:flex;gap:6px;flex-shrink:0}
+.co-edit-btn{background:rgba(255,255,255,.06);border:1px solid var(--border-h);color:rgba(255,255,255,.5);width:30px;height:30px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.72rem;transition:var(--tr)}
+@media(hover:hover){.co-edit-btn:hover{background:rgba(198,40,40,.18);border-color:var(--red);color:#fff}}
+.co-fields-wrap{overflow:hidden;transition:height .32s cubic-bezier(.4,0,.2,1),opacity .25s ease;opacity:1}
+.co-fields-wrap.co-fields-hidden{height:0 !important;opacity:0;pointer-events:none}
+.co-divider{display:flex;align-items:center;gap:9px;margin:14px 0 12px;color:var(--gray);font-size:.76rem;font-weight:600}
+.co-divider::before,.co-divider::after{content:'';flex:1;height:1px;background:var(--border)}
+.co-mode-toggle{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
+.co-mode-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:12px 8px;border-radius:12px;border:1.5px solid var(--border);background:rgba(255,255,255,.025);color:rgba(255,255,255,.55);cursor:pointer;transition:var(--tr);font-family:'Cairo',sans-serif;font-size:.82rem;font-weight:700;min-height:68px}
+.co-mode-btn i{font-size:1.3rem;margin-bottom:2px}
+.co-mode-btn.active{border-color:var(--red);background:rgba(198,40,40,.12);color:#fff;box-shadow:0 0 0 2px rgba(198,40,40,.15)}
+.co-mode-btn.active i{color:var(--red-l)}
+@media(hover:hover){.co-mode-btn:hover:not(.active){border-color:rgba(198,40,40,.3);color:rgba(255,255,255,.8)}}
+.co-pickup-notice{display:none;align-items:center;gap:10px;padding:11px 14px;background:rgba(244,196,48,.06);border:1px solid rgba(244,196,48,.2);border-radius:11px;margin-bottom:13px;font-size:.84rem;color:rgba(255,255,255,.75)}
+.co-pickup-notice.visible{display:flex}
+.co-pickup-notice i{color:var(--gold);font-size:1rem;flex-shrink:0}
+.co-delivery-section{overflow:hidden;transition:height .38s cubic-bezier(.4,0,.2,1),opacity .3s ease;opacity:1}
+.co-delivery-section.hidden{height:0 !important;opacity:0;pointer-events:none}
+.co-map-wrap{border-radius:13px;overflow:hidden;border:1.5px solid var(--border);position:relative;margin-bottom:13px;box-shadow:0 4px 20px rgba(0,0,0,.35)}
+.co-map-header{display:flex;align-items:center;justify-content:space-between;padding:10px 13px;background:rgba(255,255,255,.03);border-bottom:1px solid var(--border)}
+.co-map-header-left{display:flex;align-items:center;gap:8px;font-size:.84rem;font-weight:700;color:rgba(255,255,255,.85)}
+.co-map-header-left i{color:var(--red-l)}
+.co-gps-btn{display:flex;align-items:center;gap:6px;background:rgba(198,40,40,.12);border:1px solid rgba(198,40,40,.3);color:var(--red-l);padding:6px 12px;border-radius:50px;font-size:.76rem;font-weight:700;cursor:pointer;transition:var(--tr);font-family:'Cairo',sans-serif}
+.co-gps-btn:active{background:rgba(198,40,40,.25)}
+@media(hover:hover){.co-gps-btn:hover{background:rgba(198,40,40,.22);border-color:var(--red)}}
+/* Address autocomplete element wrapper */
+.co-address-search-wrap{margin-bottom:13px}
+.co-address-search-wrap label{display:block;font-size:.81rem;font-weight:700;color:rgba(255,255,255,.62);margin-bottom:5px}
+/* Style PlaceAutocompleteElement to match dark theme */
+#place-autocomplete-container{
+  --gmp-material-color-surface: #1e1e1e;
+  --gmp-material-color-on-surface: rgba(255,255,255,0.85);
+  --gmp-material-color-outline: rgba(255,255,255,0.07);
+  --gmp-material-color-primary: #C62828;
+  border-radius: 11px;
+  overflow: hidden;
+}
+gmp-place-autocomplete {
+  width: 100%;
+}
+#deliveryMap{height:240px;width:100%;background:var(--bg2)}
+@media(max-width:480px){#deliveryMap{height:200px}}
+.co-map-footer{padding:9px 13px;background:rgba(255,255,255,.02);border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.co-location-status{display:flex;align-items:center;gap:7px;font-size:.78rem;color:var(--gray)}
+.co-location-status.has-location{color:rgba(37,211,102,.85)}
+.co-location-status.has-location i{color:#66BB6A}
+.co-dist-info{display:none;align-items:center;gap:8px;background:rgba(244,196,48,.07);border:1px solid rgba(244,196,48,.18);border-radius:50px;padding:5px 12px;font-size:.78rem;animation:fadeUp .3s ease both}
+.co-dist-info.visible{display:flex}
+.co-dist-km{color:rgba(255,255,255,.7)}
+.co-dist-price{font-weight:800;color:var(--gold)}
+.co-map-tip{position:absolute;bottom:46px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.72);backdrop-filter:blur(6px);color:rgba(255,255,255,.85);padding:6px 14px;border-radius:50px;font-size:.74rem;font-weight:600;white-space:nowrap;pointer-events:none;z-index:1000;transition:opacity .5s ease}
+.co-summary{background:rgba(255,255,255,.02);border-radius:11px;border:1px solid var(--border);padding:13px;margin:14px 0}
+.co-summary h4{font-size:.88rem;font-weight:800;margin-bottom:9px;display:flex;align-items:center;gap:7px;color:rgba(255,255,255,.85)}
+.co-summary h4 i{color:var(--red-l)}
+.co-item{display:flex;justify-content:space-between;align-items:flex-start;padding:6px 0;border-bottom:1px solid var(--border);font-size:.82rem}
+.co-item:last-of-type{border-bottom:none}
+.co-item-left{color:var(--text);flex:1;padding-left:10px}
+.co-item-price{color:var(--gold);font-weight:700;white-space:nowrap}
+.co-total-row{display:flex;justify-content:space-between;align-items:center;font-size:.96rem;font-weight:800;margin-top:9px;padding-top:8px;border-top:1px solid var(--border)}
+.co-delivery-row{display:flex;justify-content:space-between;align-items:center;font-size:.84rem;margin-top:6px;padding-top:6px;border-top:1px solid var(--border);color:var(--gray)}
+.co-delivery-price{font-weight:700;color:var(--gold)}
+.btn-send-wa{margin-top:5px}
+/* SCROLL ANIMATIONS */
+.reveal-up,.reveal-left,.reveal-right{opacity:0;transition:opacity .6s ease,transform .6s cubic-bezier(.4,0,.2,1)}
+.reveal-up{transform:translateY(36px)}
+.reveal-left{transform:translateX(-28px)}
+.reveal-right{transform:translateX(28px)}
+.reveal-up.visible,.reveal-left.visible,.reveal-right.visible{opacity:1;transform:translate(0)}
+/* TOAST */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(70px);background:linear-gradient(135deg,var(--red),var(--red-d));color:#fff;padding:12px 24px;border-radius:50px;font-weight:700;font-size:.88rem;z-index:9999;opacity:0;transition:all .35s cubic-bezier(.4,0,.2,1);box-shadow:var(--shadow-red);white-space:nowrap;max-width:calc(100vw - 40px);text-align:center}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-6px)}60%{transform:translateX(6px)}}
+.shaking{animation:shake .38s ease}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <div class="nav-logo">
+      <img src="img/naksha logo.png" alt="نكشه" class="logo-img" loading="eager"/>
+    </div>
+    <div class="nav-mobile-overlay" id="navOverlay"></div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#hero">الرئيسية</a></li>
+      <li><a href="#about">عنّا</a></li>
+      <li><a href="#menu">القائمة</a></li>
+      <li><a href="#contact">تواصل</a></li>
+      <li class="lang-switch"><a href="en.html">English</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="cart-fab" id="cartBtn" aria-label="السلة">
+        <i class="fas fa-shopping-bag"></i>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+      <button class="hamburger" id="hamburger" aria-label="القائمة" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <canvas id="particleCanvas" aria-hidden="true"></canvas>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge"><i class="fas fa-fire"></i> وجبات طازجة يومياً</div>
+      <h1 class="hero-title">
+        <span class="ht-ar">نكشه</span>
+        <span class="ht-sub">المركزي</span>
+      </h1>
+      <p class="hero-slogan">شاورما — مشاوي — بروستد — وأكثر بنكهة لا تُنسى</p>
+      <div class="hero-btns">
+        <a href="#menu" class="btn-primary pulse-btn"><i class="fas fa-utensils"></i> اطلب الآن</a>
+        <a href="#about" class="btn-ghost">تعرّف علينا</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hstat"><span class="hn">500+</span><span>وجبة يومياً</span></div>
+        <div class="hline"></div>
+        <div class="hstat"><span class="hn">0.50JD</span><span>تبدأ الأسعار من</span></div>
+        <div class="hline"></div>
+        <div class="hstat"><span class="hn">100%</span><span>طازج وطيب</span></div>
+      </div>
+    </div>
+    <div class="hero-img-wrap">
+      <div class="hero-glow"></div>
+      <img src="img/IMG-20240416-WA0004.jpg" alt="وجبة صحية" class="hero-food-img" loading="eager"/>
+      <div class="hero-price-tag">2.50 JD <span>فقط!</span></div>
+    </div>
+  </div>
+  <a href="#menu" class="scroll-cue" aria-label="اسحب للأسفل"><span></span></a>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-img-wrap reveal-left">
+      <div class="about-deco"></div>
+      <img src="img/IMG-20251028-WA0005.jpg" alt="عن نكشه" class="about-img" loading="lazy"/>
+      <div class="about-float-badge"><i class="fas fa-fire"></i><span>مشوي على الفحم</span></div>
+    </div>
+    <div class="about-text reveal-right">
+      <span class="stag">من نحن</span>
+      <h2>نكشه المركزي.. الطعم اللي بتدور عليه!</h2>
+      <p>بـ نكشه المركزي، ما بنحكيلك إحنا مطعم وبس، إحنا "عزوتك" بالأكل.</p>
+      <p>سواء كنت متبع نظام صحي وبدك مشاوي وخضار، أو "جاي على بالك" سدر مندي يبيض الوجه، أو حتى سناك وشاورما عالسريع.. طلبك عندنا!</p>
+      <ul class="about-list">
+        <li><i class="fas fa-check-circle"></i> مكونات طازجة 100%</li>
+        <li><i class="fas fa-check-circle"></i> مشوي على الفحم الطبيعي</li>
+        <li><i class="fas fa-check-circle"></i> خدمة توصيل سريعة</li>
+        <li><i class="fas fa-check-circle"></i> أسعار تنافسية للجميع</li>
+      </ul>
+      <a href="#menu" class="btn-primary">شاهد القائمة <i class="fas fa-arrow-left"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="menu-section" id="menu">
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="stag">قائمتنا</span>
+      <h2>اختر وجبتك</h2>
+      <p>وجبات متنوعة لكل ذوق وكل مناسبة</p>
+    </div>
+    <div class="menu-tabs reveal-up">
+      <button class="tab-btn active" data-tab="all">الكل</button>
+      <button class="tab-btn" data-tab="shawarma">الشاورما</button>
+      <button class="tab-btn" data-tab="snack">السناك</button>
+      <button class="tab-btn" data-tab="dynamite">الديناميت</button>
+      <button class="tab-btn" data-tab="broasted">بروستد</button>
+      <button class="tab-btn" data-tab="mashawi">المشاوي</button>
+      <button class="tab-btn" data-tab="rice">الأرز</button>
+      <button class="tab-btn" data-tab="mix">مكس وسدور</button>
+      <button class="tab-btn" data-tab="sides">المقبلات</button>
+    </div>
+    <div class="menu-grid active-grid" id="tab-all"></div>
+    <!-- SHAWARMA -->
+    <div class="menu-grid" id="tab-shawarma">
+      <div class="mcard reveal-up" data-item='{"id":"sh1","name":"وجبة الشاورما","img":"img/IMG-20210908-WA0046.jpg","desc":"وجبة شاورما بكل أحجامها","sizes":{"وجبة عادي":2.00,"وجبة سوبر":2.75,"وجبة دبل":3.50,"وجبة تربل":4.60,"وجبة عادي فرنسي":2.50,"وجبة دبل فرنسي":4.00,"وجبة تربل فرنسي":5.00,"وجبة عادي بالشيذر":2.25,"وجبة سوبر بالشيذر":3.25,"وجبة دبل بالشيذر":4.00,"وجبة تربل بالشيذر":5.25}}'><div class="mcard-img"><img src="img/IMG-20210908-WA0046.jpg" alt="وجبة الشاورما" loading="lazy"/><div class="mcard-badge hot">الأكثر طلباً</div><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>وجبة الشاورما</h3><p>وجبة شاورما بكل أحجامها</p><div class="prep-time">⏱️ 15–20 دقيقة</div><div class="mcard-footer"><span class="mprice">من 2.00 JD</span><button class="btn-add-item">أضف <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"sh2","name":"ساندويش شاورما","img":"img/IMG-20230731-WA0007.jpg","desc":"ساندويش شاورما بأحجام مختلفة","sizes":{"ساندويش عادي":0.70,"ساندويش عادي بالشيدر":0.80,"ساندويش نكشة عادي":1.00,"ساندويش سوبر":1.30,"ساندويش سوبر بالشيدر":1.40,"ساندويش نكشة سوبر":1.50,"ساندويش فرنسي":1.75,"ساندويش فرنسي بالفطر والكريمة":2.00}}'><div class="mcard-img"><img src="img/IMG-20230731-WA0007.jpg" alt="ساندويش شاورما" loading="lazy"/><div class="mcard-badge hot">مميز</div><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>ساندويش شاورما</h3><p>ساندويش بأحجام مختلفة</p><div class="prep-time">⏱️ 5 دقائق</div><div class="mcard-footer"><span class="mprice">من 0.70 JD</span><button class="btn-add-item">أضف <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"sh3","name":"وجبة نكشة","img":"img/IMG-20240805-WA0000.jpg","desc":"وجبة نكشة المميزة","sizes":{"وجبة نكشة عادي":2.25,"وجبة نكشة سوبر":3.25,"وجبة نكشة دبل":4.00,"وجبة نكشة تربل":5.25}}'><div class="mcard-img"><img src="img/IMG-20240805-WA0000.jpg" alt="وجبة نكشة" loading="lazy"/><div class="mcard-badge new">جديد</div><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>وجبة نكشة</h3><p>وجبة نكشة المميزة</p><div class="prep-time">⏱️ 12–18 دقيقة</div><div class="mcard-footer"><span class="mprice">من 2.25 JD</span><button class="btn-add-item">أضف <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"sh4","name":"وجبة شرائح شاورما","img":"img/IMG-20241007-WA0000.jpg","desc":"الوجبة تشمل المثومة + مخلل + خبز","sizes":{"وجبة وقية":3.00,"وجبة كيلو":12.00}}'><div class="mcard-img"><img src="img/IMG-20241007-WA0000.jpg" alt="وجبة شرائح شاورما" loading="lazy"/><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>وجبة شرائح شاورما</h3><p>مثومة + مخلل + خبز</p><div class="prep-time">⏱️ 10–15 دقيقة</div><div class="mcard-footer"><span class="mprice">من 3.00 JD</span><button class="btn-add-item">أضف <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"sh5","name":"سدر شاورما","img":"img/IMG-20230921-WA0000.jpg","desc":"سدر شاورما للأفراد والعائلات","sizes":{"شاورما توفير صغير":8.00,"شاورما توفير وسط":12.00,"شاورما عائلي":15.00,"نكشة صغير":10.00,"نكشة وسط":13.00,"نكشة عائلي":17.00,"بالشيدر صغير":10.00,"بالشيدر وسط":13.00,"بالشيدر عائلي":17.00}}'><div class="mcard-img"><img src="img/IMG-20230921-WA0000.jpg" alt="سدر شاورما" loading="lazy"/><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>سدر شاورما</h3><p>سدر للأفراد والعائلات</p><div class="prep-time">⏱️ 20–30 دقيقة</div><div class="mcard-footer"><span class="mprice">من 8.00 JD</span><button class="btn-add-item">أضف <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"sh6","name":"وجبة حلبي","img":"img/IMG-20231010-WA0001.jpg","desc":"وجبة حلبي مميزة","sizes":{"وجبة حلبي":3.75}}'><div class="mcard-img"><img src="img/IMG-20231010-WA0001.jpg" alt="وجبة حلبي" loading="lazy"/><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>وجبة حلبي</h3><p>وجبة حلبي مميزة</p><div class="prep-time">⏱️ 15–20 دقيقة</div><div class="mcard-footer"><span class="mprice">3.75 JD</span><button class="btn-add-item">أضف <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"sh7","name":"وجبة إيطالي","img":"img/IMG-20230126-WA0022.jpg","desc":"شاورما إيطالي بالكريمة والفطر","sizes":{"شاورما إيطالي عادي":2.75,"شاورما إيطالي سوبر":3.25,"شاورما بالفطر والكريمة":3.75,"شاورما إيطالي بالكريمة والفطر والموزريلا":4.50}}'><div class="mcard-img"><img src="img/IMG-20230126-WA0022.jpg" alt="وجبة إيطالي" loading="lazy"/><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>وجبة إيطالي</h3><p>شاورما بالكريمة والفطر</p><div class="prep-time">⏱️ 15–20 دقيقة</div><div class="mcard-footer"><span class="mprice">من 2.75 JD</span><button class="btn-add-item">أضف <i class="fas fa-plus"></i></button></div></div></div>
+    </div>
+    <!-- SNACK -->
+    <div class="menu-grid" id="tab-snack">
+      <div class="mcard reveal-up" data-item='{"id":"sn1","name":"ساندويش زنجر سوبر","img":"img/IMG-20210908-WA0014.jpg","desc":"ساندويش زنجر مقرمش","sizes":{"ساندويش زنجر سوبر":1.75}}'><div class="mcard-img"><img src="img/IMG-20210908-WA0014.jpg" alt="ساندويش زنجر سوبر" loading="lazy"/><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>ساندويش زنجر سوبر</h3><p>ساندويش زنجر مقرمش</p><div class="prep-time">⏱️ 7 دقائق</div><div class="mcard-footer"><span class="mprice">1.75 JD</span><button class="btn-add-item">أضف <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"sn2","name":"وجبة زنجر","img":"img/IMG-20210908-WA0042.jpg","desc":"وجبة زنجر بأحجام مختلفة","sizes":{"وجبة زنجر عادي":2.75,"وجبة زنجر سوبر":3.50,"وجبة زنجر دبل":4.00,"وجبة زنجر تربل":5.50}}'><div class="mcard-img"><img src="img/IMG-20210908-WA0042.jpg" alt="وجبة زنجر" loading="lazy"/><div class="mcard-badge hot">مميز</div><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>وجبة زنجر</h3><p>وجبة زنجر بأحجام مختلفة</p><div class="prep-time">⏱️ 15–20 دقيقة</div><div class="mcard-footer"><span class="mprice">من 2.75 JD</span><button class="btn-add-item">أضف <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"sn4","name":"ساندويش مكسيكي","img":"img/IMG-20210908-WA0002.jpg","desc":"ساندويش مكسيكي","sizes":{"ساندويش مكسيكي":1.75}}'><div class="mcard-img"><img src="img/IMG-20210908-WA0002.jpg" alt="ساندويش مكسيكي" loading="lazy"/><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>ساندويش مكسيكي</h3><p>ساندويش مكسيكي</p><div class="prep-time">⏱️ 5–10 دقائق</div><div class="mcard-footer"><span class="mprice">1.75 JD</span><button class="btn-add-item">أضف <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"sn5","name":"وجبة مكسيكي","img":"img/IMG-20210908-WA0025.jpg","desc":"وجبة مكسيكي بأحجام مختلفة","sizes":{"وجبة عادي":2.75,"وجبة سوبر":3.50,"وجبة دبل":4.00,"وجبة تربل":5.50,"وجبة مكسيكي إيطالي":4.00}}'><div class="mcard-img"><img src="img/IMG-20210908-WA0025.jpg" alt="وجبة مكسيكي" loading="lazy"/><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>وجبة مكسيكي</h3><p>وجبة مكسيكي بأحجام مختلفة</p><div class="prep-time">⏱️ 15–20 دقيقة</div><div class="mcard-footer"><span class="mprice">من 2.75 JD</span><button class="btn-add-item">أضف <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"sn6","name":"ساندويش تندر سوبر","img":"img/IMG-20210908-WA0014.jpg","desc":"ساندويش تندر سوبر","sizes":{"ساندويش تندر سوبر":1.75}}'><div class="mcard-img"><img src="img/IMG-20210908-WA0014.jpg" alt="ساندويش تندر سوبر" loading="lazy"/><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>ساندويش تندر سوبر</h3><p>ساندويش تندر سوبر</p><div class="prep-time">⏱️ 5–10 دقائق</div><div class="mcard-footer"><span class="mprice">1.75 JD</span><button class="btn-add-item">أضف <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"sn7","name":"وجبة تندر","img":"img/IMG-20240502-WA0001.jpg","desc":"وجبة تندر بأحجام مختلفة","sizes":{"عادي":2.75,"سوبر":3.50,"دبل":4.00,"تريبل":5.50}}'><div class="mcard-img"><img src="img/IMG-20240502-WA0001.jpg" alt="وجبة تندر" loading="lazy"/><div class="mcard-badge hot">مميز</div><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>وجبة تندر</h3><p>وجبة تندر بأحجام مختلفة</p><div class="prep-time">⏱️ 5–10 دقائق</div><div class="mcard-footer"><span class="mprice">من 2.75 JD</span><button class="btn-add-item">أضف <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"sn9","name":"ساندويش فاهيتا","img":"img/IMG-20210908-WA0001.jpg","desc":"ساندويش فاهيتا","sizes":{"ساندويش فاهيتا":1.75}}'><div class="mcard-img"><img src="img/IMG-20210908-WA0001.jpg" alt="ساندويش فاهيتا" loading="lazy"/><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>ساندويش فاهيتا</h3><p>ساندويش فاهيتا</p><div class="prep-time">⏱️ 5–10 دقائق</div><div class="mcard-footer"><span class="mprice">1.75 JD</span><button class="btn-add-item">أضف <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"sn10","name":"وجبة فاهيتا","img":"img/IMG-20210908-WA0018.jpg","desc":"وجبة فاهيتا بأحجام مختلفة","sizes":{"وجبة عادي":2.75,"وجبة سوبر":3.50,"وجبة دبل":4.00,"وجبة تربل":5.50,"وجبة فاهيتا إيطالي":4.00}}'><div class="mcard-img"><img src="img/IMG-20210908-WA0018.jpg" alt="وجبة فاهيتا" loading="lazy"/><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>وجبة فاهيتا</h3><p>وجبة فاهيتا بأحجام مختلفة</p><div class="prep-time">⏱️ 15–20 دقيقة</div><div class="mcard-footer"><span class="mprice">من 2.75 JD</span><button class="btn-add-item">أضف <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"sn11","name":"ساندويش كوردن بلو","img":"img/IMG-20210908-WA0022.jpg","desc":"ساندويش كوردن بلو سوبر","sizes":{"ساندويش كوردن بلو سوبر":1.75}}'><div class="mcard-img"><img src="img/IMG-20210908-WA0022.jpg" alt="ساندويش كوردن بلو" loading="lazy"/><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>ساندويش كوردن بلو</h3><p>ساندويش كوردن بلو سوبر</p><div class="prep-time">⏱️ 10 دقائق</div><div class="mcard-footer"><span class="mprice">1.75 JD</span><button class="btn-add-item">أضف <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"sn13","name":"ساندويش اسكالوب","img":"img/IMG-20210908-WA0030.jpg","desc":"ساندويش اسكالوب","sizes":{"ساندويش عادي":1.25,"ساندويش XL":2.00}}'><div class="mcard-img"><img src="img/IMG-20210908-WA0030.jpg" alt="ساندويش اسكالوب" loading="lazy"/><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>ساندويش اسكالوب</h3><p>ساندويش اسكالوب</p><div class="prep-time">⏱️ 10 دقائق</div><div class="mcard-footer"><span class="mprice">من 1.25 JD</span><button class="btn-add-item">أضف <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"sn16","name":"ساندويش برغر لحمة","img":"img/IMG-20210908-WA0041.jpg","desc":"ساندويش برغر لحمة","sizes":{"ساندويش عادي":1.25,"ساندويش XL":2.00}}'><div class="mcard-img"><img src="img/IMG-20210908-WA0041.jpg" alt="ساندويش برغر لحمة" loading="lazy"/><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>ساندويش برغر لحمة</h3><p>ساندويش برغر لحمة</p><div class="prep-time">⏱️ 10 دقائق</div><div class="mcard-footer"><span class="mprice">من 1.25 JD</span><button class="btn-add-item">أضف <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"sn18","name":"سدر زنجر أو تندر","img":"img/IMG-20210919-WA0015.jpg","desc":"سدر زنجر أو تندر عائلي","sizes":{"سدر زنجر صغير":10.00,"سدر زنجر عائلي":17.00,"سدر تندر صغير":10.00,"سدر تندر عائلي":17.00}}'><div class="mcard-img"><img src="img/IMG-20210919-WA0015.jpg" alt="سدر زنجر تندر" loading="lazy"/><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>سدر زنجر أو تندر</h3><p>سدر عائلي متنوع</p><div class="prep-time">⏱️ 20–30 دقيقة</div><div class="mcard-footer"><span class="mprice">من 10.00 JD</span><button class="btn-add-item">أضف <i class="fas fa-plus"></i></button></div></div></div>
+    </div>
+    <!-- DYNAMITE -->
+    <div class="menu-grid" id="tab-dynamite">
+      <div class="mcard reveal-up" data-item='{"id":"dy1","name":"وجبة ديناميت حار","img":"img/IMG-20210908-WA0042.jpg","desc":"وجبة ديناميت حار","sizes":{"ديناميت عادي":3.00,"ديناميت سوبر":3.75,"ديناميت دبل":4.50,"ديناميت تربل":6.00}}'><div class="mcard-img"><img src="img/IMG-20210908-WA0042.jpg" alt="وجبة ديناميت حار" loading="lazy"/><div class="mcard-badge hot"><i class="fas fa-fire"></i> حار</div><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>وجبة ديناميت حار</h3><p>وجبة ديناميت حار</p><div class="prep-time">⏱️ 12–18 دقيقة</div><div class="mcard-footer"><span class="mprice">من 3.00 JD</span><button class="btn-add-item">أضف <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"dy2","name":"وجبة ديناميت بارد","img":"img/IMG-20210908-WA0042.jpg","desc":"وجبة ديناميت بارد","sizes":{"ديناميت عادي":3.00,"ديناميت سوبر":3.75,"ديناميت دبل":4.50,"ديناميت تربل":6.00}}'><div class="mcard-img"><img src="img/IMG-20210908-WA0042.jpg" alt="وجبة ديناميت بارد" loading="lazy"/><div class="mcard-badge new">بارد</div><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>وجبة ديناميت بارد</h3><p>وجبة ديناميت بارد</p><div class="prep-time">⏱️ 12–18 دقيقة</div><div class="mcard-footer"><span class="mprice">من 3.00 JD</span><button class="btn-add-item">أضف <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"dy3","name":"ساندويش ديناميت حار","img":"img/IMG-20230126-WA0052.jpg","desc":"ساندويش ديناميت حار","sizes":{"ساندويش ديناميت حار":2.00}}'><div class="mcard-img"><img src="img/IMG-20230126-WA0052.jpg" alt="ساندويش ديناميت حار" loading="lazy"/><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>ساندويش ديناميت حار</h3><p>ساندويش ديناميت حار</p><div class="prep-time">⏱️ 5–10 دقائق</div><div class="mcard-footer"><span class="mprice">2.00 JD</span><button class="btn-add-item">أضف <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"dy5","name":"سدر ديناميت حار","img":"img/IMG-20210919-WA0015.jpg","desc":"سدر ديناميت حار","sizes":{"سدر ديناميت صغير":11.00,"سدر ديناميت عائلي":18.00}}'><div class="mcard-img"><img src="img/IMG-20210919-WA0015.jpg" alt="سدر ديناميت حار" loading="lazy"/><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>سدر ديناميت حار</h3><p>سدر ديناميت صغير أو عائلي</p><div class="prep-time">⏱️ 20–30 دقيقة</div><div class="mcard-footer"><span class="mprice">من 11.00 JD</span><button class="btn-add-item">أضف <i class="fas fa-plus"></i></button></div></div></div>
+    </div>
+    <!-- BROASTED -->
+    <div class="menu-grid" id="tab-broasted">
+      <div class="mcard reveal-up" data-item='{"id":"br1","name":"بروستد","img":"img/IMG-20251110-WA0009.jpg","desc":"بروستد مقرمش طازج","sizes":{"4 قطع":3.50,"8 قطع":6.50,"12 قطعة":10.00,"16 قطعة":12.00,"20 قطعة":15.00,"24 قطعة":18.00,"28 قطعة":21.00,"32 قطعة":23.00}}'><div class="mcard-img"><img src="img/IMG-20251110-WA0009.jpg" alt="بروستد" loading="lazy"/><div class="mcard-badge new">جديد 🆕</div><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>بروستد</h3><p>بروستد مقرمش طازج</p><div class="prep-time">⏱️ 15–30 دقيقة</div><div class="mcard-footer"><span class="mprice">من 3.50 JD</span><button class="btn-add-item">أضف <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"br2","name":"كرسبي","img":"img/IMG-20240613-WA0001.jpg","desc":"كرسبي مقرمش","sizes":{"4 قطع":2.75,"6 قطع":3.50,"10 قطع":5.00,"12 قطعة":6.00,"18 قطعة":9.00,"24 قطعة":12.00}}'><div class="mcard-img"><img src="img/IMG-20240613-WA0001.jpg" alt="كرسبي" loading="lazy"/><div class="mcard-badge new">جديد 🆕</div><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>كرسبي</h3><p>كرسبي مقرمش</p><div class="prep-time">⏱️ 12–25 دقيقة</div><div class="mcard-footer"><span class="mprice">من 2.75 JD</span><button class="btn-add-item">أضف <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"br4","name":"أجنحة دجاج","img":"img/IMG-20241017-WA0013.jpg","desc":"أجنحة دجاج مقرمشة","sizes":{"10 قطع":2.50,"20 قطعة":4.00,"30 قطعة":5.50}}'><div class="mcard-img"><img src="img/IMG-20241017-WA0013.jpg" alt="أجنحة دجاج" loading="lazy"/><div class="mcard-badge hot">مميز</div><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>أجنحة دجاج</h3><p>أجنحة دجاج مقرمشة</p><div class="prep-time">⏱️ 15–25 دقيقة</div><div class="mcard-footer"><span class="mprice">من 2.50 JD</span><button class="btn-add-item">أضف <i class="fas fa-plus"></i></button></div></div></div>
+    </div>
+    <!-- MASHAWI -->
+    <div class="menu-grid" id="tab-mashawi">
+      <div class="mcard reveal-up" data-item='{"id":"ms1","name":"دجاج فحم","img":"img/IMG-20230330-WA0001.jpg","desc":"دجاج مشوي على الفحم","sizes":{"نصف دجاجة":2.75,"دجاجة كاملة":5.00}}'><div class="mcard-img"><img src="img/IMG-20230330-WA0001.jpg" alt="دجاج فحم" loading="lazy"/><div class="mcard-badge hot"><i class="fas fa-fire"></i> فحم</div><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>دجاج فحم</h3><p>دجاج مشوي على الفحم</p><div class="prep-time">⏱️ 25–40 دقيقة</div><div class="mcard-footer"><span class="mprice">من 2.75 JD</span><button class="btn-add-item">أضف <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"ms2","name":"دجاج شواية","img":"img/IMG-20230731-WA0026.jpg","desc":"دجاج شواية طازج","sizes":{"نصف دجاجة":3.00,"دجاجة كاملة":5.50}}'><div class="mcard-img"><img src="img/IMG-20230731-WA0026.jpg" alt="دجاج شواية" loading="lazy"/><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>دجاج شواية</h3><p>دجاج شواية طازج</p><div class="prep-time">⏱️ 20–35 دقيقة</div><div class="mcard-footer"><span class="mprice">من 3.00 JD</span><button class="btn-add-item">أضف <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"ms3","name":"كباب","img":"img/IMG-20251026-WA0011.jpg","desc":"كباب مشوي طازج","sizes":{"نصف كيلو":3.00,"كيلو":6.00}}'><div class="mcard-img"><img src="img/IMG-20251026-WA0011.jpg" alt="كباب" loading="lazy"/><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>كباب</h3><p>كباب مشوي طازج</p><div class="prep-time">⏱️ 20–30 دقيقة</div><div class="mcard-footer"><span class="mprice">من 3.00 JD</span><button class="btn-add-item">أضف <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"ms5","name":"شيش","img":"img/IMG-20250813-WA0002.jpg","desc":"شيش طاووق مشوي","sizes":{"سندوش شيش":1.00,"نصف كيلو":3.50,"كيلو":7.00}}'><div class="mcard-img"><img src="img/IMG-20250813-WA0002.jpg" alt="شيش" loading="lazy"/><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>شيش</h3><p>شيش طاووق مشوي</p><div class="prep-time">⏱️ 20–30 دقيقة</div><div class="mcard-footer"><span class="mprice">من 1.00 JD</span><button class="btn-add-item">أضف <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"ms6","name":"وجبة صحي","img":"img/IMG-20240416-WA0004.jpg","desc":"وجبة صحي مشوية","sizes":{"دجاج":2.50,"دبل":4.00}}'><div class="mcard-img"><img src="img/IMG-20240416-WA0004.jpg" alt="وجبة صحي" loading="lazy"/><div class="mcard-badge new">صحي</div><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>وجبة صحي</h3><p>وجبة صحي مشوية</p><div class="prep-time">⏱️ 10–22 دقيقة</div><div class="mcard-footer"><span class="mprice">من 2.50 JD</span><button class="btn-add-item">أضف <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"ms7","name":"عرايس","img":"img/IMG-20250713-WA0021.jpg","desc":"عرايس مشوية","sizes":{"قطعة":0.50}}'><div class="mcard-img"><img src="img/IMG-20250713-WA0021.jpg" alt="عرايس" loading="lazy"/><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>عرايس</h3><p>عرايس مشوية</p><div class="prep-time">⏱️ 8–10 دقائق</div><div class="mcard-footer"><span class="mprice">0.50 JD / قطعة</span><button class="btn-add-item">أضف <i class="fas fa-plus"></i></button></div></div></div>
+    </div>
+    <!-- RICE -->
+    <div class="menu-grid" id="tab-rice">
+      <div class="mcard reveal-up" data-item='{"id":"ri1","name":"سدر أرز","img":"img/IMG-20230731-WA0022.jpg","desc":"مندي، زرب، بخاري، برياني، كبسة، مضغوط، أوزي، زربيان، منسف","sizes":{"ربع دجاجة":2.25,"نصف دجاجة":3.50,"سدر 30سم - نصف دجاجة":4.50,"سدر 30سم - دجاجة كاملة":6.50,"سدر 40سم - دجاجة":8.00,"سدر 40سم - دجاجة ونصف":10.00,"سدر 45سم - دجاجة":9.00,"سدر 45سم - دجاجة ونصف":11.50,"سدر 50سم - دجاجتين":15.00,"سدر 50سم - 2.5 دجاجة":17.00,"سدر 55سم - 3 دجاجات":20.00,"سدر 55سم - 4 دجاجات":25.00}}'><div class="mcard-img"><img src="img/IMG-20230731-WA0022.jpg" alt="سدر أرز" loading="lazy"/><div class="mcard-badge hot">الأكثر طلباً</div><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>سدر أرز</h3><p>مندي، زرب، بخاري، كبسة، منسف وأكثر</p><div class="prep-time">⏱️ 20–35 دقيقة</div><div class="mcard-footer"><span class="mprice">من 2.25 JD</span><button class="btn-add-item">أضف <i class="fas fa-plus"></i></button></div></div></div>
+    </div>
+    <!-- MIX -->
+    <div class="menu-grid" id="tab-mix">
+      <div class="mcard reveal-up" data-item='{"id":"mx2","name":"سدر مكس","img":"img/IMG-20210919-WA0015.jpg","desc":"2.5 شاورما + 2 (زنجر أو فاهيتا أو مكسيكي) + بطاطا ومقبلات","sizes":{"فاهيتا":9.00,"زنجر":9.00,"مكسيكي":9.00}}'><div class="mcard-img"><img src="img/IMG-20210919-WA0015.jpg" alt="سدر مكس" loading="lazy"/><div class="mcard-badge hot">مميز</div><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>سدر مكس</h3><p>2.5 شاورما + 2 (زنجر أو فاهيتا أو مكسيكي)</p><div class="prep-time">⏱️ 20–30 دقيقة</div><div class="mcard-footer"><span class="mprice">من 9.00 JD</span><button class="btn-add-item">أضف <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"mx3","name":"سدر مكس وسط","img":"img/IMG-20210919-WA0015.jpg","desc":"4 شاورما + 3 (زنجر أو فاهيتا أو مكسيكي) + بطاطا ومقبلات","sizes":{"زنجر":13.50,"فاهيتا":13.50,"مكسيكي":13.50}}'><div class="mcard-img"><img src="img/IMG-20210919-WA0015.jpg" alt="سدر مكس وسط" loading="lazy"/><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>سدر مكس وسط</h3><p>4 شاورما + 3 (زنجر أو فاهيتا أو مكسيكي)</p><div class="prep-time">⏱️ 20–30 دقيقة</div><div class="mcard-footer"><span class="mprice">13.50 JD</span><button class="btn-add-item">أضف <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"mx4","name":"سدر مكس عائلي","img":"img/IMG-20210919-WA0015.jpg","desc":"4.5 شاورما + 4 (زنجر أو فاهيتا أو مكسيكي) + بطاطا ومقبلات","sizes":{"زنجر":17.00,"فاهيتا":17.00,"مكسيكي":17.00}}'><div class="mcard-img"><img src="img/IMG-20210919-WA0015.jpg" alt="سدر مكس عائلي" loading="lazy"/><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>سدر مكس عائلي</h3><p>4.5 شاورما + 4 (زنجر أو فاهيتا أو مكسيكي)</p><div class="prep-time">⏱️ 20–30 دقيقة</div><div class="mcard-footer"><span class="mprice">17.00 JD</span><button class="btn-add-item">أضف <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"mx5","name":"سدر مكس الشلة (10 أشخاص)","img":"img/IMG-20210919-WA0015.jpg","desc":"2 شاورما + 2 زنجر + 2 مكسيكي + 2 فاهيتا + 2 اسكالوب + 2 برغر لحمة","sizes":{"سدر الشلة كامل":18.50}}'><div class="mcard-img"><img src="img/IMG-20210919-WA0015.jpg" alt="سدر مكس الشلة" loading="lazy"/><div class="mcard-badge gold"><i class="fas fa-star"></i> للشلة</div><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>سدر مكس الشلة (10 أشخاص)</h3><p>تشكيلة متكاملة لـ 10 أشخاص</p><div class="prep-time">⏱️ 20–35 دقيقة</div><div class="mcard-footer"><span class="mprice">18.50 JD</span><button class="btn-add-item">أضف <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"mx6","name":"وجبات مكس الثنائية","img":"img/572ED1C8-A5DB-42BA-8C03-065BFAD6F1C7_1_201_a.jpeg","desc":"اختر التشكيلة المفضلة لديك","sizes":{"شاورما + تندر":4.00,"شاورما + زنجر":4.00,"شاورما + فاهيتا":4.00,"زنجر + فاهيتا":4.00,"زنجر + تندر":4.00,"زنجر + مكسيكي":4.00,"تندر + فاهيتا":4.00,"شاورما + مكسيكي":4.00}}'><div class="mcard-img"><img src="img/572ED1C8-A5DB-42BA-8C03-065BFAD6F1C7_1_201_a.jpeg" alt="وجبات مكس الثنائية" loading="lazy"/><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>وجبات مكس الثنائية</h3><p>اختر التشكيلة المفضلة</p><div class="prep-time">⏱️ 12–20 دقيقة</div><div class="mcard-footer"><span class="mprice">4.00 JD</span><button class="btn-add-item">أضف <i class="fas fa-plus"></i></button></div></div></div>
+    </div>
+    <!-- SIDES -->
+    <div class="menu-grid" id="tab-sides">
+      <div class="mcard reveal-up" data-item='{"id":"si1","name":"ماتركس","img":"img/matrix Background Removed.png","desc":"ماتركس بأحجام مختلفة","sizes":{"صغير":0.30,"وسط":0.60,"كبير":1.00}}'><div class="mcard-img"><img src="img/matrix Background Removed.png" alt="ماتركس" loading="lazy" style="object-fit:contain;background:#1a1a1a"/><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>ماتركس</h3><p>ماتركس بأحجام مختلفة</p><div class="prep-time">⏱️ فوراً</div><div class="mcard-footer"><span class="mprice">من 0.30 JD</span><button class="btn-add-item">أضف <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"si2","name":"شنينة","img":"img/Untitled-2021-09-15T093003.086_800x.webp","desc":"شنينة طازجة","sizes":{"شنينة عادي":0.35}}'><div class="mcard-img"><img src="img/Untitled-2021-09-15T093003.086_800x.webp" alt="شنينة" loading="lazy"/><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>شنينة</h3><p>شنينة طازجة</p><div class="prep-time">⏱️ فوراً</div><div class="mcard-footer"><span class="mprice">0.35 JD</span><button class="btn-add-item">أضف <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"si3","name":"بطاطا","img":"img/IMG-20210613-WA0000 2.jpg","desc":"بطاطا مقلية","sizes":{"بطاطا صغير":0.50,"بطاطا وسط":0.75,"بطاطا كبير":1.00}}'><div class="mcard-img"><img src="img/IMG-20210613-WA0000 2.jpg" alt="بطاطا" loading="lazy"/><div class="mcard-badge hot">مميزة</div><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>بطاطا</h3><p>بطاطا مقلية</p><div class="prep-time">⏱️ 5 دقائق</div><div class="mcard-footer"><span class="mprice">من 0.50 JD</span><button class="btn-add-item">أضف <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"si4","name":"مقبلات","img":"img/2b208b28d6323d914faeed196c04c28d_w750_h750.jpg","desc":"صوصات، مثومة، مخللات، جبنة، خبز","sizes":{"صوص بافلو حار":0.25,"صوص هانيماستر":0.25,"صوص رانش":0.25,"صوص باربكيو":0.25,"متومة صغير":0.25,"متومة وسط":0.50,"متومة كبير":0.75,"مايونيز أمريكي":0.25,"كاتشب":0.25,"مخلل":0.25,"سلطة ملفوف":0.25,"جبنة سائلة":0.25,"جبنة موزوريلا":0.25,"شرائح جبنة صفراء":0.10,"خبز صغير":0.10,"خبز كبير":0.50}}'><div class="mcard-img"><img src="img/2b208b28d6323d914faeed196c04c28d_w750_h750.jpg" alt="مقبلات" loading="lazy"/><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>مقبلات</h3><p>صوصات، مثومة، مخللات، جبنة، خبز</p><div class="prep-time">⏱️ فوراً</div><div class="mcard-footer"><span class="mprice">من 0.10 JD</span><button class="btn-add-item">أضف <i class="fas fa-plus"></i></button></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- STATIC MAP (restaurant location) -->
+<div class="contact-section" style="padding:0">
+  <div class="map-container">
+    <div class="map-wrapper">
+      <div id="staticMap"></div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="stag">تواصل معنا</span>
+      <h2>نحن هنا لخدمتك</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info reveal-left">
+        <div class="cinfo-card"><div class="cinfo-icon"><i class="fas fa-map-marker-alt"></i></div><div><h4>موقعنا</h4><p>سحاب - الشارع الرئيسي - مثلث الدخلة</p></div></div>
+        <div class="cinfo-card"><div class="cinfo-icon"><i class="fas fa-phone"></i></div><div><h4>اتصل بنا</h4><p>0790 697 666</p><p>0788 709 412</p></div></div>
+        <div class="cinfo-card"><div class="cinfo-icon"><i class="fas fa-clock"></i></div><div><h4>ساعات العمل</h4><p>يومياً: 11 ص — 12 منتصف الليل</p></div></div>
+        <div class="cinfo-card"><div class="cinfo-icon"><i class="fas fa-motorcycle"></i></div><div><h4>توصيل</h4><p>متوفر توصيل لباب بيتك</p></div></div>
+      </div>
+      <div class="contact-form-wrap reveal-right">
+        <h3>أرسل لنا رسالة</h3>
+        <div class="fgrp"><input type="text" id="cf-name" placeholder="الاسم الكريم"/><i class="fas fa-user"></i></div>
+        <div class="fgrp"><input type="tel" id="cf-phone" placeholder="رقم الهاتف"/><i class="fas fa-phone"></i></div>
+        <div class="fgrp"><textarea id="cf-msg" rows="4" placeholder="رسالتك أو طلبك..."></textarea><i class="fas fa-comment"></i></div>
+        <button type="button" class="btn-primary pulse-btn" onclick="submitContact()" style="width:100%;justify-content:center"><i class="fas fa-paper-plane"></i> أرسل الرسالة</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="img/naksha logo.png" alt="نكشه" class="footer-logo" loading="lazy"/>
+      <p>شاورما — مشاوي — بروستد — بنكهة لا تُنسى</p>
+      <div class="socials">
+        <a href="https://www.instagram.com/naksheh" class="soc-ico" aria-label="انستجرام"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.facebook.com/p/%D9%85%D8%B7%D8%B9%D9%85-%D9%86%D9%83%D8%B4%D9%87-%D8%A7%D9%84%D9%85%D8%B1%D9%83%D8%B2%D9%8A-100057636151417/" class="soc-ico" aria-label="فيسبوك"><i class="fab fa-facebook"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>روابط سريعة</h4>
+      <ul>
+        <li><a href="#hero">الرئيسية</a></li>
+        <li><a href="#menu">القائمة</a></li>
+        <li><a href="#contact">تواصل معنا</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>معلومات التواصل</h4>
+      <p><i class="fas fa-map-marker-alt"></i> سحاب، عمّان، الأردن</p>
+      <p><i class="fas fa-phone"></i><a href="tel:+962790697666"><span dir="ltr">+962 790 697 666</span></a></p>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2025 نكشه المركزي — جميع الحقوق محفوظة - الاصدار 2.0</div>
+</footer>
+
+<!-- OPTIONS MODAL -->
+<div class="modal-overlay" id="optionsOverlay"></div>
+<div class="modal options-modal" id="optionsModal" role="dialog" aria-modal="true" aria-labelledby="modalName">
+  <button class="modal-close" id="modalClose" aria-label="إغلاق"><i class="fas fa-times"></i></button>
+  <div class="modal-img-wrap"><img id="modalImg" src="" alt="" loading="lazy"/><div class="modal-img-grad"></div><div class="modal-item-title"><h2 id="modalName"></h2><p id="modalDesc"></p></div></div>
+  <div class="modal-body">
+    <div class="modal-sec" id="sizeSec">
+      <h4 class="msec-title"><i class="fas fa-layer-group"></i> اختر الحجم أو الكمية</h4>
+      <div class="dyn-size-grid" id="dynSizeGrid"></div>
+    </div>
+    <div class="modal-sec">
+      <h4 class="msec-title"><i class="fas fa-plus-circle"></i> إضافات</h4>
+      <div class="addons-wrap">
+        <label class="addon-row"><div class="addon-left"><div class="addon-ico cheese"><i class="fas fa-cheese"></i></div><div class="addon-text"><span class="addon-name">جبن إضافي</span><span class="addon-sub">شريحة جبن الصفراء</span></div></div><div class="addon-right"><span class="addon-badge plus">+0.10 JD</span><div class="tog"><input type="checkbox" class="addon-cb" data-price="0.10" data-label="جبن إضافي"/><div class="tog-track"><div class="tog-thumb"></div></div></div></div></label>
+      </div>
+    </div>
+    <div class="modal-sec">
+      <h4 class="msec-title"><i class="fas fa-sort-numeric-up"></i> الكمية</h4>
+      <div class="qty-ctrl"><button class="qty-btn" id="qtyMinus" aria-label="تقليل"><i class="fas fa-minus"></i></button><span class="qty-val" id="qtyVal">1</span><button class="qty-btn" id="qtyPlus" aria-label="زيادة"><i class="fas fa-plus"></i></button></div>
+    </div>
+    <div class="modal-action">
+      <div class="modal-price-row"><span class="mpr-label">الإجمالي</span><span class="mpr-price" id="modalTotalPrice">0.00 JD</span></div>
+      <button class="btn-primary btn-confirm" id="confirmAddBtn"><i class="fas fa-shopping-bag"></i> أضف للسلة</button>
+    </div>
+  </div>
+</div>
+
+<!-- CART SIDEBAR -->
+<div class="cart-overlay" id="cartOverlay"></div>
+<div class="cart-sidebar" id="cartSidebar" role="complementary" aria-label="سلة التسوق">
+  <div class="cart-head"><div><h3 class="cart-title">سلة طلباتك</h3><span class="cart-item-count" id="cartItemCount">فارغة</span></div><button class="cart-close-btn" id="cartClose" aria-label="إغلاق السلة"><i class="fas fa-times"></i></button></div>
+  <div class="cart-body" id="cartBody">
+    <div class="cart-empty-state" id="cartEmpty"><div class="ces-icon"><i class="fas fa-shopping-bag"></i></div><p>سلتك فارغة</p><small>أضف وجباتك المفضلة لتبدأ</small><button class="btn-primary" onclick="closeCart()" style="margin-top:20px;padding:11px 24px">تصفح القائمة</button></div>
+    <div id="cartItems"></div>
+  </div>
+  <div class="cart-foot" id="cartFoot" style="display:none">
+    <div class="cart-subtotal-row"><span>المجموع الفرعي</span><span id="cartSubtotal">0.00 JD</span></div>
+    <div class="cart-total-row"><span>الإجمالي</span><span id="cartGrandTotal" class="gtp">0.00 JD</span></div>
+    <button class="btn-whatsapp" id="checkoutBtn"><i class="fab fa-whatsapp"></i> إتمام الطلب عبر واتساب</button>
+  </div>
+</div>
+
+<!-- CHECKOUT MODAL -->
+<div class="modal-overlay" id="checkoutOverlay"></div>
+<div class="modal checkout-modal" id="checkoutModal" role="dialog" aria-modal="true" aria-labelledby="coFormTitle">
+  <button class="modal-close" id="checkoutClose" aria-label="إغلاق"><i class="fas fa-times"></i></button>
+  <div class="checkout-head"><div class="co-icon"><i class="fab fa-whatsapp"></i></div><h2 id="coFormTitle">إتمام الطلب</h2><p id="coFormSubtitle">اختر طريقة الاستلام وأكمل بياناتك</p></div>
+  <div class="co-profile-card" id="coProfileCard"><div class="co-avatar" id="coAvatar">؟</div><div class="co-profile-info"><div class="co-profile-name" id="coProfileName">—</div><div class="co-profile-phone" id="coProfilePhone">—</div></div><div class="co-profile-actions"><button class="co-edit-btn" id="coEditBtn" aria-label="تعديل"><i class="fas fa-pen"></i></button></div></div>
+  <div class="checkout-body">
+    <div class="co-fields-wrap" id="coFieldsWrap">
+      <div class="fgrp"><label for="co-name">الاسم الكريم <span class="req">*</span></label><input type="text" id="co-name" placeholder="محمد أحمد" autocomplete="name" inputmode="text"/></div>
+      <div class="fgrp"><label for="co-phone">رقم الهاتف <span class="req">*</span></label><input type="tel" id="co-phone" placeholder="07XXXXXXXX" inputmode="tel" autocomplete="tel"/></div>
+    </div>
+    <div class="co-divider">طريقة الاستلام</div>
+    <div class="co-mode-toggle" id="coModeToggle">
+      <button class="co-mode-btn active" data-mode="delivery" id="btnDelivery"><i class="fas fa-motorcycle"></i>توصيل</button>
+      <button class="co-mode-btn" data-mode="pickup" id="btnPickup"><i class="fas fa-store"></i>استلام من المطعم</button>
+    </div>
+    <div class="co-pickup-notice" id="coPickupNotice"><i class="fas fa-map-marker-alt"></i><span>سيتم إعداد طلبك للاستلام من مطعم نكشه المركزي — سحاب</span></div>
+    <div class="co-delivery-section" id="coDeliverySection">
+      <div class="co-map-wrap" id="coMapWrap">
+        <div class="co-map-header">
+          <div class="co-map-header-left"><i class="fas fa-map-marked-alt"></i><span>حدد موقعك على الخريطة</span></div>
+          <button class="co-gps-btn" id="coGpsBtn"><i class="fas fa-location-crosshairs"></i> موقعي الحالي</button>
+        </div>
+        <div id="deliveryMap"></div>
+        <div class="co-map-footer">
+          <div class="co-location-status" id="coLocationStatus"><i class="fas fa-circle-dot"></i><span>اضغط على الخريطة لتحديد موقعك</span></div>
+          <div class="co-dist-info" id="coDistInfo"><span class="co-dist-km" id="coDistKm">—</span><span>·</span><span class="co-dist-price" id="coDistPrice">—</span></div>
+        </div>
+      </div>
+      <!-- NEW: PlaceAutocompleteElement container -->
+      <div class="co-address-search-wrap">
+        <label>ابحث عن عنوانك</label>
+        <div id="place-autocomplete-container"></div>
+      </div>
+      <div class="fgrp">
+        <label for="co-address">تفاصيل العنوان <span class="req">*</span></label>
+        <textarea id="co-address" rows="2" placeholder="سحاب، شارع... بناية رقم..."></textarea>
+      </div>
+    </div>
+    <div class="fgrp"><label for="co-notes">ملاحظات <span style="color:var(--gray);font-weight:400">(اختياري)</span></label><textarea id="co-notes" rows="2" placeholder="أي طلبات خاصة..."></textarea></div>
+    <div class="co-summary"><h4><i class="fas fa-receipt"></i> ملخص طلبك</h4><div id="coSummaryItems"></div><div class="co-delivery-row" id="coDeliveryRow" style="display:none"><span><i class="fas fa-motorcycle" style="margin-left:5px;color:var(--red-l)"></i>رسوم التوصيل</span><span class="co-delivery-price" id="coDeliveryCost">0.00 JD</span></div><div class="co-total-row"><span>الإجمالي</span><span id="coTotal" class="gtp">0.00 JD</span></div></div>
+    <button class="btn-whatsapp btn-send-wa" id="sendWaBtn"><i class="fab fa-whatsapp"></i> أرسل الطلب عبر واتساب</button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* ══════════════════════════════════════════════
+   NAKSHA v8 — Fixed all 3 console warnings:
+   1. styles + mapId conflict → removed styles from both maps, use mapId only
+      (configure dark style via Google Cloud Console → Map Styles)
+   2. Deprecated Autocomplete → replaced with PlaceAutocompleteElement
+   3. RefererNotAllowedMapError → code-side fix: graceful degradation
+      (actual fix: add localhost to API key allowed referrers in GCP Console)
+══════════════════════════════════════════════ */
+
+let cart = [], cartIdCounter = 1, currentItem = null, modalQty = 1;
+const $ = id => document.getElementById(id);
+
+// Map state
+const RESTAURANT = { lat: 31.8792, lng: 35.9919 };
+const DELIVERY_RATE_PER_KM = 0.5;
+let deliveryMode = 'delivery', selectedLat = null, selectedLng = null;
+let deliveryKm = 0, deliveryCost = 0;
+let gMap = null, gRestaurantMarker = null, gCustomerMarker = null;
+let gPlaceAutocomplete = null, mapInitialized = false;
+
+// Promise that resolves when delivery map is ready
+let _mapReadyResolve;
+const mapReady = new Promise(res => { _mapReadyResolve = res; });
+
+// ── GOOGLE MAPS CALLBACK
+window.initGoogleMaps = function() {
+  _buildStaticMap();
+};
+
+// ── FIX 1: No `styles` when mapId is present.
+// Dark styling is handled via Google Cloud Console → Map Styles → assign to mapId.
+// For local dev you can omit mapId and use styles[], or configure in Cloud Console.
+function _buildStaticMap() {
+  const el = $('staticMap');
+  if (!el || !window.google) return;
+  const map = new google.maps.Map(el, {
+    center: RESTAURANT,
+    zoom: 16,
+    mapId: 'naksha_static',          // styles controlled in Cloud Console
+    gestureHandling: 'cooperative',
+    disableDefaultUI: false
+  });
+  const pin = document.createElement('div');
+  pin.style.cssText = 'background:#C62828;border:3px solid #fff;border-radius:50%;width:42px;height:42px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;box-shadow:0 4px 12px rgba(198,40,40,.5)';
+  pin.textContent = '🍗';
+  new google.maps.marker.AdvancedMarkerElement({ position: RESTAURANT, map, title: 'نكشه المركزي', content: pin });
+  const iw = new google.maps.InfoWindow({ content: '<div style="font-family:Cairo,sans-serif;font-weight:700;color:#111;padding:4px 6px">🍗 نكشه المركزي — سحاب</div>' });
+  iw.open(map);
+}
+
+function _initDeliveryMap() {
+  if (mapInitialized || !window.google) return;
+  mapInitialized = true;
+  gMap = new google.maps.Map($('deliveryMap'), {
+    center: RESTAURANT,
+    zoom: 14,
+    mapId: 'naksha_delivery',        // styles controlled in Cloud Console
+    gestureHandling: 'cooperative',
+    mapTypeControl: false,
+    streetViewControl: false,
+    fullscreenControl: false
+  });
+  // Restaurant marker
+  const rPin = document.createElement('div');
+  rPin.style.cssText = 'background:#C62828;border:3px solid #fff;border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;box-shadow:0 4px 12px rgba(198,40,40,.5)';
+  rPin.textContent = '🍗';
+  gRestaurantMarker = new google.maps.marker.AdvancedMarkerElement({ position: RESTAURANT, map: gMap, title: 'نكشه المركزي', content: rPin });
+  // Click to pin customer
+  gMap.addListener('click', e => _placeCustomerPin(e.latLng.lat(), e.latLng.lng()));
+  // Map tip
+  const tip = document.createElement('div');
+  tip.className = 'co-map-tip';
+  tip.textContent = 'اضغط على الخريطة لتحديد موقعك';
+  $('deliveryMap').parentElement.appendChild(tip);
+  setTimeout(() => tip.style.opacity = '0', 3500);
+
+  // ── FIX 2: Use PlaceAutocompleteElement instead of deprecated Autocomplete
+  _initPlaceAutocomplete();
+
+  // Signal map is ready
+  _mapReadyResolve(gMap);
+}
+
+// ── FIX 2: PlaceAutocompleteElement (new Places API)
+function _initPlaceAutocomplete() {
+  if (!window.google || gPlaceAutocomplete) return;
+
+  const container = $('place-autocomplete-container');
+  if (!container) return;
+
+  // Create the new element
+  gPlaceAutocomplete = new google.maps.places.PlaceAutocompleteElement({
+    componentRestrictions: { country: 'JO' },
+    fields: ['geometry', 'formattedAddress', 'displayName']
+  });
+
+  // Style it to match dark theme
+  gPlaceAutocomplete.style.cssText = `
+    width: 100%;
+    --gmp-material-color-surface: #1e1e1e;
+    --gmp-material-color-on-surface: rgba(255,255,255,0.85);
+    --gmp-material-color-outline: rgba(255,255,255,0.07);
+    --gmp-material-color-primary: #C62828;
+    border-radius: 11px;
+    overflow: hidden;
+    display: block;
+  `;
+
+  container.appendChild(gPlaceAutocomplete);
+
+  // Listen for place selection
+  gPlaceAutocomplete.addEventListener('gmp-select', async (event) => {
+    const place = event.placePrediction.toPlace();
+    await place.fetchFields({ fields: ['location', 'formattedAddress', 'displayName'] });
+
+    if (!place.location) return;
+
+    const lat = place.location.lat();
+    const lng = place.location.lng();
+
+    gMap.setCenter({ lat, lng });
+    gMap.setZoom(17);
+    _placeCustomerPin(lat, lng);
+
+    $('co-address').value = place.formattedAddress || place.displayName || '';
+  });
+}
+
+function _placeCustomerPin(lat, lng) {
+  if (gCustomerMarker) {
+    gCustomerMarker.position = { lat, lng };
+  } else {
+    const cPin = document.createElement('div');
+    cPin.style.cssText = 'background:#F4C430;border:3px solid #fff;border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:1rem;box-shadow:0 4px 12px rgba(244,196,48,.5);cursor:grab';
+    cPin.textContent = '📍';
+    gCustomerMarker = new google.maps.marker.AdvancedMarkerElement({
+      position: { lat, lng },
+      map: gMap,
+      title: 'موقعك',
+      content: cPin,
+      gmpDraggable: true
+    });
+    gCustomerMarker.addListener('dragend', () => {
+      const p = gCustomerMarker.position;
+      selectedLat = typeof p.lat === 'function' ? p.lat() : p.lat;
+      selectedLng = typeof p.lng === 'function' ? p.lng() : p.lng;
+      _updateDistanceUI();
+    });
+  }
+  selectedLat = lat;
+  selectedLng = lng;
+  _updateDistanceUI();
+}
+
+// GPS button — uses mapReady promise to avoid race condition
+$('coGpsBtn').addEventListener('click', () => {
+  const btn = $('coGpsBtn');
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جارٍ...';
+  btn.disabled = true;
+  if (!navigator.geolocation) {
+    showToast('⚠️ المتصفح لا يدعم تحديد الموقع');
+    btn.innerHTML = '<i class="fas fa-location-crosshairs"></i> موقعي الحالي';
+    btn.disabled = false;
+    return;
+  }
+  navigator.geolocation.getCurrentPosition(async pos => {
+    const lat = pos.coords.latitude, lng = pos.coords.longitude;
+    if (!mapInitialized) _initDeliveryMap();
+    await mapReady;
+    gMap.setCenter({ lat, lng });
+    gMap.setZoom(17);
+    _placeCustomerPin(lat, lng);
+    const gc = new google.maps.Geocoder();
+    gc.geocode({ location: { lat, lng } }, (results, status) => {
+      if (status === 'OK' && results[0]) $('co-address').value = results[0].formatted_address;
+    });
+    btn.innerHTML = '<i class="fas fa-check"></i> تم';
+    btn.disabled = false;
+  }, () => {
+    showToast('⚠️ تعذّر تحديد موقعك');
+    btn.innerHTML = '<i class="fas fa-location-crosshairs"></i> موقعي الحالي';
+    btn.disabled = false;
+  }, { enableHighAccuracy: true, timeout: 8000 });
+});
+
+function haversine(lat1, lng1, lat2, lng2) {
+  const R = 6371, r = d => d * Math.PI / 180;
+  const a = Math.sin(r(lat2-lat1)/2)**2 + Math.cos(r(lat1))*Math.cos(r(lat2))*Math.sin(r(lng2-lng1)/2)**2;
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+}
+
+function _updateDistanceUI() {
+  if (deliveryMode !== 'delivery' || selectedLat === null) return;
+  deliveryKm = haversine(RESTAURANT.lat, RESTAURANT.lng, selectedLat, selectedLng);
+  deliveryCost = Math.round(deliveryKm * DELIVERY_RATE_PER_KM * 100) / 100;
+  $('coDistKm').textContent = deliveryKm.toFixed(2) + ' كم';
+  $('coDistPrice').textContent = deliveryCost.toFixed(2) + ' JD';
+  $('coDistInfo').classList.add('visible');
+  const st = $('coLocationStatus');
+  st.className = 'co-location-status has-location';
+  st.innerHTML = '<i class="fas fa-check-circle"></i><span>تم تحديد الموقع</span>';
+  $('coDeliveryRow').style.display = 'flex';
+  $('coDeliveryCost').textContent = deliveryCost.toFixed(2) + ' JD';
+  _updateTotal();
+}
+
+function _updateTotal() {
+  const sub = cart.reduce((s,i) => s + i.unitPrice*i.qty, 0);
+  const extra = (deliveryMode === 'delivery' && selectedLat !== null) ? deliveryCost : 0;
+  $('coTotal').textContent = (sub + extra).toFixed(2) + ' JD';
+}
+
+function setDeliveryMode(mode) {
+  deliveryMode = mode;
+  document.querySelectorAll('.co-mode-btn').forEach(b => b.classList.toggle('active', b.dataset.mode === mode));
+  const ds = $('coDeliverySection'), pn = $('coPickupNotice'), dr = $('coDeliveryRow');
+  if (mode === 'pickup') {
+    _collapseEl(ds); pn.classList.add('visible');
+    dr.style.display = 'none'; deliveryCost = 0; _updateTotal();
+  } else {
+    pn.classList.remove('visible');
+    _expandEl(ds, () => { if (!mapInitialized) _initDeliveryMap(); else google.maps.event.trigger(gMap, 'resize'); });
+    if (selectedLat !== null) _updateDistanceUI();
+  }
+}
+document.querySelectorAll('.co-mode-btn').forEach(btn => btn.addEventListener('click', () => setDeliveryMode(btn.dataset.mode)));
+
+// ── NAVBAR
+window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 50), { passive: true });
+const navbar = $('navbar'), hamburger = $('hamburger'), navLinks = $('navLinks'), navOverlay = $('navOverlay');
+function openNav() { hamburger.classList.add('active'); navLinks.classList.add('open'); navOverlay.classList.add('show'); hamburger.setAttribute('aria-expanded','true'); document.body.style.overflow='hidden'; }
+function closeNav() { hamburger.classList.remove('active'); navLinks.classList.remove('open'); navOverlay.classList.remove('show'); hamburger.setAttribute('aria-expanded','false'); document.body.style.overflow=''; }
+hamburger.addEventListener('click', () => navLinks.classList.contains('open') ? closeNav() : openNav());
+navOverlay.addEventListener('click', closeNav);
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
+window.addEventListener('resize', () => { if (window.innerWidth > 900) closeNav(); });
+
+// ── PARTICLES
+(function(){
+  const canvas = $('particleCanvas'), ctx = canvas.getContext('2d');
+  let W, H, ps = [];
+  function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+  resize();
+  window.addEventListener('resize', resize, { passive: true });
+  function P() { this.x=Math.random()*W; this.y=H+100; this.size=Math.random()*2.5+0.8; this.speed=Math.random()*.7+.25; this.opacity=Math.random()*.45+.08; this.color=Math.random()>.5?'#C62828':'#F4C430'; this.drift=(Math.random()-.5)*.35; }
+  const n = window.innerWidth < 768 ? 14 : 24;
+  for (let i=0;i<n;i++) { const p=new P(); p.y=Math.random()*H; ps.push(p); }
+  let raf;
+  (function draw(){ ctx.clearRect(0,0,W,H); ps.forEach(p=>{ p.y-=p.speed; p.x+=p.drift; p.opacity-=.0006; if(p.y<-10||p.opacity<=0) Object.assign(p,new P()); ctx.globalAlpha=p.opacity; ctx.fillStyle=p.color; ctx.beginPath(); ctx.arc(p.x,p.y,p.size,0,Math.PI*2); ctx.fill(); }); ctx.globalAlpha=1; raf=requestAnimationFrame(draw); })();
+  document.addEventListener('visibilitychange', () => { if(document.hidden) cancelAnimationFrame(raf); });
+})();
+
+// ── MENU TABS
+function bindCardBtn(card) {
+  const btn = card.querySelector('.btn-add-item');
+  if (!btn || btn.disabled) return;
+  btn.addEventListener('click', e => { e.stopPropagation(); openOptionsModal(JSON.parse(card.dataset.item)); });
+}
+function buildAllTab() {
+  const all = $('tab-all'); all.innerHTML = '';
+  ['tab-shawarma','tab-snack','tab-dynamite','tab-broasted','tab-mashawi','tab-rice','tab-mix','tab-sides'].forEach(id => {
+    const src = document.getElementById(id); if (!src) return;
+    src.querySelectorAll('.mcard').forEach(card => { const c = card.cloneNode(true); bindCardBtn(c); all.appendChild(c); });
+  });
+}
+buildAllTab();
+document.querySelectorAll('.mcard').forEach(bindCardBtn);
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('[id^="tab-"]').forEach(g => g.classList.remove('active-grid'));
+    const grid = $('tab-' + btn.dataset.tab); grid.classList.add('active-grid');
+    grid.querySelectorAll('.mcard').forEach((c,i) => { c.style.cssText='opacity:0;transform:translateY(22px)'; setTimeout(()=>c.style.cssText='transition:opacity .35s ease,transform .35s ease;opacity:1;transform:translateY(0)',i*55); });
+  });
+});
+
+// ── OPTIONS MODAL
+const optionsOverlay=$('optionsOverlay'),optionsModal=$('optionsModal'),modalClose=$('modalClose');
+const modalImg=$('modalImg'),modalName=$('modalName'),modalDesc=$('modalDesc');
+const sizeSec=$('sizeSec'),dynSizeGrid=$('dynSizeGrid');
+const qtyMinus=$('qtyMinus'),qtyPlus=$('qtyPlus'),qtyVal=$('qtyVal');
+const modalTotalPrice=$('modalTotalPrice'),confirmAddBtn=$('confirmAddBtn');
+function openOptionsModal(item) {
+  currentItem = item; modalQty = 1;
+  modalImg.src = item.img; modalName.textContent = item.name; modalDesc.textContent = item.desc;
+  if (item.sizes && Object.keys(item.sizes).length) {
+    sizeSec.style.display = 'block'; dynSizeGrid.innerHTML = '';
+    Object.entries(item.sizes).forEach(([label, price], idx) => {
+      const btn = document.createElement('button');
+      btn.className = 'dyn-size-btn' + (idx===0?' selected':'');
+      btn.dataset.price = price; btn.dataset.label = label;
+      btn.innerHTML = `<span class="dsb-name">${label}</span><span class="dsb-price">${parseFloat(price).toFixed(2)} JD</span>`;
+      btn.addEventListener('click', () => { dynSizeGrid.querySelectorAll('.dyn-size-btn').forEach(b=>b.classList.remove('selected')); btn.classList.add('selected'); calcModalTotal(); });
+      dynSizeGrid.appendChild(btn);
+    });
+  } else { sizeSec.style.display = 'none'; }
+  document.querySelectorAll('.addon-cb').forEach(cb => cb.checked = false);
+  qtyVal.textContent = '1'; calcModalTotal();
+  showModal(optionsOverlay, optionsModal);
+}
+function closeOptionsModal() { hideModal(optionsOverlay, optionsModal); currentItem = null; }
+modalClose.addEventListener('click', closeOptionsModal);
+optionsOverlay.addEventListener('click', closeOptionsModal);
+qtyMinus.addEventListener('click', () => { if(modalQty>1){modalQty--;qtyVal.textContent=modalQty;calcModalTotal();} });
+qtyPlus.addEventListener('click', () => { if(modalQty<99){modalQty++;qtyVal.textContent=modalQty;calcModalTotal();} });
+document.querySelectorAll('.addon-cb').forEach(cb => cb.addEventListener('change', calcModalTotal));
+function calcModalTotal() {
+  if (!currentItem) return;
+  const sel = dynSizeGrid.querySelector('.dyn-size-btn.selected');
+  let p = sel ? parseFloat(sel.dataset.price) : 0;
+  document.querySelectorAll('.addon-cb:checked').forEach(cb => p += parseFloat(cb.dataset.price)||0);
+  modalTotalPrice.textContent = (p * modalQty).toFixed(2) + ' JD';
+}
+confirmAddBtn.addEventListener('click', () => {
+  if (!currentItem) return;
+  const sel = dynSizeGrid.querySelector('.dyn-size-btn.selected');
+  const sizeLabel = sel ? sel.dataset.label : null;
+  const sizePrice = sel ? parseFloat(sel.dataset.price) : 0;
+  const addons = [];
+  document.querySelectorAll('.addon-cb:checked').forEach(cb => addons.push({label:cb.dataset.label,price:parseFloat(cb.dataset.price)}));
+  const unitPrice = sizePrice + addons.reduce((s,a)=>s+a.price,0);
+  addToCart({name:currentItem.name,qty:modalQty,sizeLabel,addons,unitPrice,totalPrice:unitPrice*modalQty});
+  closeOptionsModal();
+});
+
+// ── CART
+function addToCart(item) {
+  item.id = cartIdCounter++; cart.push(item); renderCart(); animateCartBtn();
+  showToast('✅ تم إضافة "' + item.name + '" للسلة');
+}
+function renderCart() {
+  const total = cart.reduce((s,i)=>s+i.unitPrice*i.qty,0);
+  const count = cart.reduce((s,i)=>s+i.qty,0);
+  const cartCountEl=$('cartCount'),cartItemCount=$('cartItemCount');
+  const cartEmpty=$('cartEmpty'),cartItemsEl=$('cartItems'),cartFoot=$('cartFoot');
+  const cartSubtotal=$('cartSubtotal'),cartGrandTotal=$('cartGrandTotal');
+  cartCountEl.textContent = count; cartCountEl.classList.toggle('show', count>0);
+  cartItemCount.textContent = count>0 ? count+' عنصر' : 'فارغة';
+  if (!cart.length) { cartEmpty.style.display='flex'; cartItemsEl.innerHTML=''; cartFoot.style.display='none'; return; }
+  cartEmpty.style.display = 'none'; cartFoot.style.display = 'block';
+  cartSubtotal.textContent = total.toFixed(2)+' JD'; cartGrandTotal.textContent = total.toFixed(2)+' JD';
+  cartItemsEl.innerHTML = cart.map(item => {
+    const tags = [];
+    if (item.sizeLabel) tags.push(`<span class="ci-tag">${item.sizeLabel}</span>`);
+    item.addons.forEach(a => tags.push(`<span class="ci-tag">${a.label}${a.price>0?'+'+a.price.toFixed(2):''}</span>`));
+    return `<div class="ci-wrap" id="ci-${item.id}">
+      <div class="ci-top"><div style="flex:1"><div class="ci-name">${item.name}</div><div class="ci-details">${tags.join('')}</div></div><button class="ci-remove" onclick="removeFromCart(${item.id})"><i class="fas fa-trash-alt"></i></button></div>
+      <div class="ci-bottom"><span class="ci-price">${(item.unitPrice*item.qty).toFixed(2)} JD</span><div class="ci-qty-ctrl"><button class="ci-qty-btn" onclick="changeCartQty(${item.id},-1)"><i class="fas fa-minus"></i></button><span class="ci-qty-val">${item.qty}</span><button class="ci-qty-btn" onclick="changeCartQty(${item.id},1)"><i class="fas fa-plus"></i></button></div></div>
+    </div>`;
+  }).join('');
+}
+function removeFromCart(id) {
+  const el = $('ci-'+id); if (!el) return;
+  el.style.cssText='transition:.28s ease;opacity:0;transform:translateX(-16px)';
+  setTimeout(() => { cart=cart.filter(i=>i.id!==id); renderCart(); }, 260);
+}
+function changeCartQty(id, delta) {
+  const item = cart.find(i=>i.id===id); if (!item) return;
+  item.qty += delta; if (item.qty<=0) { removeFromCart(id); return; } renderCart();
+}
+function openCart() { $('cartSidebar').classList.add('open'); $('cartOverlay').classList.add('show'); document.body.style.overflow='hidden'; }
+function closeCart() { $('cartSidebar').classList.remove('open'); $('cartOverlay').classList.remove('show'); document.body.style.overflow=''; }
+$('cartBtn').addEventListener('click', openCart);
+$('cartClose').addEventListener('click', closeCart);
+$('cartOverlay').addEventListener('click', closeCart);
+
+// ── PROFILE
+const PROFILE_KEY='naksha_profile_v1';
+const Profile={
+  load(){try{return JSON.parse(localStorage.getItem(PROFILE_KEY))||null;}catch(e){return null;}},
+  save(n,p){try{localStorage.setItem(PROFILE_KEY,JSON.stringify({name:n,phone:p}));}catch(e){}}
+};
+function getInitials(n){const p=n.trim().split(/\s+/).filter(Boolean);return p.length>=2?(p[0][0]+p[1][0]).toUpperCase():n.trim().substring(0,2).toUpperCase();}
+
+// ── CHECKOUT
+$('checkoutBtn').addEventListener('click', () => {
+  if (!cart.length) return;
+  deliveryMode='delivery'; selectedLat=null; selectedLng=null; deliveryKm=0; deliveryCost=0;
+  document.querySelectorAll('.co-mode-btn').forEach(b=>b.classList.toggle('active',b.dataset.mode==='delivery'));
+  $('coPickupNotice').classList.remove('visible');
+  $('coDeliveryRow').style.display='none';
+  $('coDistInfo').classList.remove('visible');
+  $('coLocationStatus').className='co-location-status';
+  $('coLocationStatus').innerHTML='<i class="fas fa-circle-dot"></i><span>اضغط على الخريطة لتحديد موقعك</span>';
+  const ds=$('coDeliverySection'); ds.classList.remove('hidden'); ds.style.height='auto';
+  _buildSummary(); _applyProfile();
+  closeCart();
+  showModal($('checkoutOverlay'), $('checkoutModal'));
+  setTimeout(() => { if (!mapInitialized) _initDeliveryMap(); else google.maps.event.trigger(gMap,'resize'); }, 320);
+});
+
+function _buildSummary() {
+  const total=cart.reduce((s,i)=>s+i.unitPrice*i.qty,0);
+  $('coTotal').textContent=total.toFixed(2)+' JD';
+  $('coSummaryItems').innerHTML=cart.map(item=>{
+    const d=[]; if(item.sizeLabel) d.push(item.sizeLabel); if(item.addons.length) d.push(item.addons.map(a=>a.label).join(' ، '));
+    return `<div class="co-item"><div class="co-item-left"><strong>${item.name}</strong>${item.qty>1?' ×'+item.qty:''}${d.length?'<br><small style="color:var(--gray)">'+d.join(' · ')+'</small>':''}</div><span class="co-item-price">${(item.unitPrice*item.qty).toFixed(2)} JD</span></div>`;
+  }).join('');
+}
+function _applyProfile() {
+  const profile=Profile.load(),wrap=$('coFieldsWrap'),card=$('coProfileCard'),ni=$('co-name'),pi=$('co-phone');
+  $('co-address').value=''; $('co-notes').value='';
+  if(profile&&profile.name&&profile.phone){
+    $('coAvatar').textContent=getInitials(profile.name); $('coProfileName').textContent=profile.name; $('coProfilePhone').textContent=profile.phone;
+    card.classList.add('visible'); ni.value=profile.name; ni.classList.add('field-ok'); pi.value=profile.phone; pi.classList.add('field-ok');
+    _collapseFields(wrap); $('coFormTitle').textContent='مرحباً بك مجدداً 👋'; $('coFormSubtitle').textContent='بياناتك محفوظة · اختر طريقة الاستلام';
+  } else {
+    card.classList.remove('visible'); ni.value=''; pi.value=''; ni.classList.remove('field-ok'); pi.classList.remove('field-ok');
+    _expandFields(wrap); $('coFormTitle').textContent='إتمام الطلب'; $('coFormSubtitle').textContent='بياناتك تُحفظ تلقائياً';
+  }
+}
+$('coEditBtn').addEventListener('click',()=>{const p=Profile.load(),ni=$('co-name'),pi=$('co-phone');ni.value=p?p.name:'';pi.value=p?p.phone:'';ni.classList.remove('field-ok');pi.classList.remove('field-ok');_expandFields($('coFieldsWrap'));$('coFormTitle').textContent='تعديل بياناتك';setTimeout(()=>ni.focus(),340);});
+['co-name','co-phone'].forEach(id=>{$(id).addEventListener('input',function(){this.classList.toggle('field-ok',this.value.trim().length>=2);});});
+$('checkoutClose').addEventListener('click',closeCheckout);
+$('checkoutOverlay').addEventListener('click',closeCheckout);
+function closeCheckout(){hideModal($('checkoutOverlay'),$('checkoutModal'));}
+
+$('sendWaBtn').addEventListener('click',()=>{
+  const wrap=$('coFieldsWrap'),fieldsOpen=!wrap.classList.contains('co-fields-hidden');
+  const address=$('co-address').value.trim(),notes=$('co-notes').value.trim();
+  let finalName,finalPhone;
+  if(fieldsOpen){finalName=$('co-name').value.trim();finalPhone=$('co-phone').value.trim();if(!finalName){shakeField('co-name');return;}if(!finalPhone){shakeField('co-phone');return;}}
+  else{const p=Profile.load();if(!p){_expandFields(wrap);shakeField('co-name');return;}finalName=p.name;finalPhone=p.phone;}
+  if(deliveryMode==='delivery'){if(!address){shakeField('co-address');return;}if(selectedLat===null){showToast('📍 يرجى تحديد موقعك على الخريطة أولاً');$('coMapWrap').scrollIntoView({behavior:'smooth',block:'center'});return;}}
+  Profile.save(finalName,finalPhone);
+  const sub=cart.reduce((s,i)=>s+i.unitPrice*i.qty,0),fd=deliveryMode==='delivery'?deliveryCost:0,tot=sub+fd;
+  let msg=`🍗 *طلب جديد — نكشه المركزي*\n━━━━━━━━━━━━━━━━━━\n👤 *الاسم:* ${finalName}\n📞 *الهاتف:* ${finalPhone}\n`;
+  if(deliveryMode==='delivery'){msg+=`🚚 *طريقة الاستلام:* توصيل للمنزل\n📍 *العنوان:* ${address}\n🗺️ *الموقع:*\nhttps://www.google.com/maps?q=${selectedLat.toFixed(6)},${selectedLng.toFixed(6)}\n📏 *المسافة:* ${deliveryKm.toFixed(2)} كم\n🛵 *رسوم التوصيل:* ${fd.toFixed(2)} JD\n`;}
+  else{msg+=`🏪 *طريقة الاستلام:* استلام من المطعم\n`;}
+  if(notes)msg+=`📝 *ملاحظات:* ${notes}\n`;
+  msg+=`━━━━━━━━━━━━━━━━━━\n🛒 *تفاصيل الطلب:*\n\n`;
+  cart.forEach((item,idx)=>{msg+=`${idx+1}. *${item.name}*${item.qty>1?' ×'+item.qty:''}\n`;if(item.sizeLabel)msg+=`   📐 ${item.sizeLabel}\n`;if(item.addons.length)msg+=`   ➕ ${item.addons.map(a=>a.label).join(' ، ')}\n`;msg+=`   💰 ${(item.unitPrice*item.qty).toFixed(2)} JD\n\n`;});
+  msg+=`━━━━━━━━━━━━━━━━━━\n🧾 *المجموع الفرعي:* ${sub.toFixed(2)} JD\n`;
+  if(deliveryMode==='delivery')msg+=`🛵 *التوصيل:* ${fd.toFixed(2)} JD\n`;
+  msg+=`💵 *الإجمالي: ${tot.toFixed(2)} JD*\n━━━━━━━━━━━━━━━━━━\nشكراً لطلبك من نكشه! 🙏`;
+  window.open(`https://wa.me/962790697666?text=${encodeURIComponent(msg)}`,'_blank');
+  cart=[];renderCart();closeCheckout();showToast('✅ تم إرسال طلبك بنجاح!');
+});
+
+// ── CONTACT
+function submitContact(){
+  const name=document.getElementById('cf-name').value.trim(),phone=document.getElementById('cf-phone').value.trim(),msg_text=document.getElementById('cf-msg').value.trim();
+  if(!name){document.getElementById('cf-name').focus();showToast('⚠️ أدخل اسمك الكريم');return;}
+  if(!phone){document.getElementById('cf-phone').focus();showToast('⚠️ أدخل رقم هاتفك');return;}
+  if(!msg_text){document.getElementById('cf-msg').focus();showToast('⚠️ أدخل رسالتك');return;}
+  const waMsg=`💬 *رسالة جديدة — نكشه المركزي*\n━━━━━━━━━━━━━━━━━━\n👤 *الاسم:* ${name}\n📞 *الهاتف:* ${phone}\n📝 *الرسالة:* ${msg_text}\n━━━━━━━━━━━━━━━━━━`;
+  window.open(`https://wa.me/962797459207?text=${encodeURIComponent(waMsg)}`,'_blank');
+  document.getElementById('cf-name').value='';document.getElementById('cf-phone').value='';document.getElementById('cf-msg').value='';
+  showToast('✅ جارٍ فتح واتساب!');
+}
+
+// ── HELPERS
+function showModal(ov,m){ov.classList.add('show');m.classList.add('show');document.body.style.overflow='hidden';}
+function hideModal(ov,m){ov.classList.remove('show');m.classList.remove('show');document.body.style.overflow='';}
+function animateCartBtn(){const b=$('cartBtn');b.classList.remove('bounce');void b.offsetWidth;b.classList.add('bounce');setTimeout(()=>b.classList.remove('bounce'),500);}
+let _toast;
+function showToast(msg){const t=$('toast');t.textContent=msg;t.classList.add('show');clearTimeout(_toast);_toast=setTimeout(()=>t.classList.remove('show'),2800);}
+function shakeField(id){const el=$(id);el.style.borderColor='var(--red)';el.classList.remove('shaking');void el.offsetWidth;el.classList.add('shaking');setTimeout(()=>el.classList.remove('shaking'),400);el.focus();}
+function _collapseEl(el){el.style.height=el.offsetHeight+'px';el.offsetHeight;el.classList.add('hidden');el.style.height='0';}
+function _expandEl(el,cb){el.classList.remove('hidden');const h=el.scrollHeight;el.style.height='0';el.offsetHeight;el.style.height=h+'px';el.addEventListener('transitionend',function once(){el.style.height='auto';el.removeEventListener('transitionend',once);if(cb)cb();},{once:true});}
+function _collapseFields(w){w.style.height=w.offsetHeight+'px';w.offsetHeight;w.classList.add('co-fields-hidden');w.style.height='0';}
+function _expandFields(w){w.classList.remove('co-fields-hidden');const h=w.scrollHeight;w.style.height='0';w.offsetHeight;w.style.height=h+'px';w.addEventListener('transitionend',function once(){w.style.height='auto';w.removeEventListener('transitionend',once);},{once:true});}
+
+// ── SCROLL REVEAL
+const revObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');revObs.unobserve(e.target);}});},{threshold:.1,rootMargin:'0px 0px -25px 0px'});
+document.querySelectorAll('.reveal-up,.reveal-left,.reveal-right').forEach(el=>revObs.observe(el));
+
+// ── ACTIVE NAV LINK
+const secObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)document.querySelectorAll('.nav-links a').forEach(a=>a.classList.toggle('active-link',a.getAttribute('href')==='#'+e.target.id));});},{threshold:.35});
+document.querySelectorAll('section[id]').forEach(s=>secObs.observe(s));
+
+// ── ESC
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){if($('optionsModal').classList.contains('show'))closeOptionsModal();else if($('checkoutModal').classList.contains('show'))closeCheckout();else if($('cartSidebar').classList.contains('open'))closeCart();else if(navLinks.classList.contains('open'))closeNav();}});
+
+renderCart();
+</script>
+
+<!--
+  Google Maps API — v8 notes:
+  • loading=async avoids performance warning
+  • libraries=places,marker — 'marker' required for AdvancedMarkerElement
+  • callback=initGoogleMaps fires after full load
+  • FIX 3 (RefererNotAllowedMapError): Go to Google Cloud Console →
+    Credentials → your API key → Application restrictions →
+    Add "http://localhost:*" (or your exact dev URL) to allowed referrers.
+    This error cannot be fixed in code — it's a key authorization setting.
+-->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBrpf9vy8QcNjVLlWwIEHoByROv75IQW4A&loading=async&libraries=places,marker&language=ar&region=JO&callback=initGoogleMaps" async defer></script>
+
+<!-- Supabase inventory sync -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL='https://nxcjnxtvkacsaiikglhy.supabase.co';
+const SUPABASE_ANON='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im54Y2pueHR2a2Fjc2FpaWtnbGh5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzAxMTUzODEsImV4cCI6MjA4NTY5MTM4MX0.ybZ8eysfnOoGHs17imw3ib6PYUkNcniVDq4plVRwfBU';
+const sbClient=supabase.createClient(SUPABASE_URL,SUPABASE_ANON);
+function updateCardUI(productName,status){
+  document.querySelectorAll('.mcard').forEach(card=>{
+    try{const d=JSON.parse(card.dataset.item);if(d.name!==productName)return;const btn=card.querySelector('.btn-add-item');const ov=card.querySelector('.mcard-overlay');
+    if(status==='no'){if(btn){btn.innerHTML='نفذت الكمية';btn.disabled=true;btn.style.background='linear-gradient(135deg,#444,#222)';btn.style.cursor='not-allowed';btn.style.opacity='.7';}card.style.opacity='.6';if(ov)ov.innerHTML='<span style="font-size:.95rem;color:#fff;background:rgba(0,0,0,.7);padding:8px 18px;border-radius:8px;font-weight:800">نفذت الكمية</span>';}
+    else{if(btn){btn.innerHTML='أضف <i class="fas fa-plus"></i>';btn.disabled=false;btn.style.background='';btn.style.cursor='';btn.style.opacity='';}card.style.opacity='1';if(ov)ov.innerHTML='<i class="fas fa-plus-circle"></i>';bindCardBtn(card);}
+    }catch(e){}
+  });
+}
+let lastSync=0;
+async function syncMenu(){if(Date.now()-lastSync<5000)return;try{const{data,error}=await sbClient.from('inventory').select('product_name,status');if(error)throw error;data.forEach(r=>updateCardUI(r.product_name,r.status));lastSync=Date.now();}catch(e){console.warn('Supabase:',e.message);}}
+let rtCh=null,isIdle=false,idleT=null,syncInt=null;
+async function goIdle(){if(isIdle)return;isIdle=true;if(rtCh){await sbClient.removeChannel(rtCh);rtCh=null;}syncInt=setInterval(syncMenu,60000);}
+async function goActive(){if(!isIdle)return;isIdle=false;if(syncInt){clearInterval(syncInt);syncInt=null;}await syncMenu();if(!rtCh){rtCh=sbClient.channel('inv').on('postgres_changes',{event:'UPDATE',schema:'public',table:'inventory'},p=>updateCardUI(p.new.product_name,p.new.status)).subscribe();}}
+function resetIdle(){clearTimeout(idleT);if(isIdle)goActive();idleT=setTimeout(goIdle,120000);}
+['mousemove','mousedown','keypress','touchstart','scroll','click'].forEach(ev=>document.addEventListener(ev,resetIdle,{passive:true}));
+document.addEventListener('visibilitychange',()=>{if(document.hidden)goIdle();else resetIdle();});
+(async()=>{await syncMenu();if(!rtCh){rtCh=sbClient.channel('inv').on('postgres_changes',{event:'UPDATE',schema:'public',table:'inventory'},p=>updateCardUI(p.new.product_name,p.new.status)).subscribe();}resetIdle();})();
+</script>
+</body>
+</html>
