@@ -1,0 +1,1334 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<meta name="theme-color" content="#0A0A0A"/>
+<title>Naksha Central — Order Online</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+<style>
+:root{
+  --red:#C62828;--red-d:#8B0000;--red-l:#EF5350;
+  --gold:#F4C430;--gold-l:#FFE082;
+  --wa:#25D366;--wa-d:#128C7E;
+  --bg:#0A0A0A;--bg2:#131313;--bg3:#191919;--card:#1E1E1E;
+  --border:rgba(255,255,255,0.07);--border-h:rgba(255,255,255,0.12);
+  --gray:#777;--text:rgba(255,255,255,0.78);
+  --tr:0.28s cubic-bezier(0.4,0,0.2,1);
+  --rad:16px;--rad-sm:10px;
+  --shadow-red:0 6px 24px rgba(198,40,40,0.28);
+  --shadow-lg:0 24px 64px rgba(0,0,0,0.55);
+  --nav-h:64px;
+  --font-display:'Bebas Neue',sans-serif;
+  --font-body:'DM Sans',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:clip}
+body{font-family:var(--font-body);background:var(--bg);color:#fff;direction:ltr;-webkit-font-smoothing:antialiased;min-width:0}
+img{max-width:100%;display:block;height:auto}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+button{font-family:var(--font-body);-webkit-tap-highlight-color:transparent}
+input,textarea{font-family:var(--font-body)}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--red);border-radius:2px}
+.container{max-width:1180px;margin:0 auto;padding:0 20px}
+.stag{display:inline-block;background:linear-gradient(135deg,var(--red),var(--red-d));color:#fff;padding:5px 16px;border-radius:50px;font-size:.82rem;font-weight:700;margin-bottom:10px;letter-spacing:.5px}
+.section-header{text-align:center;margin-bottom:48px}
+.section-header h2{font-family:var(--font-display);font-size:clamp(2rem,5vw,3.5rem);font-weight:400;letter-spacing:2px;margin-bottom:8px}
+.section-header p{color:var(--gray);font-size:.95rem}
+.req{color:var(--red-l)}
+.gtp{color:var(--gold);font-weight:900}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--red),var(--red-d));color:#fff;padding:13px 26px;border-radius:50px;font-weight:700;font-size:.92rem;border:none;cursor:pointer;box-shadow:var(--shadow-red);transition:var(--tr);position:relative;overflow:hidden;min-height:48px;letter-spacing:.3px}
+.btn-primary:active{transform:scale(.97)}
+@media(hover:hover){.btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(198,40,40,.5)}}
+.btn-ghost{display:inline-flex;align-items:center;gap:8px;border:2px solid rgba(255,255,255,.3);color:#fff;padding:12px 24px;border-radius:50px;font-weight:600;font-size:.92rem;background:transparent;cursor:pointer;transition:var(--tr);min-height:48px}
+.btn-ghost:active{transform:scale(.97)}
+@media(hover:hover){.btn-ghost:hover{background:rgba(255,255,255,.08);border-color:#fff}}
+.btn-whatsapp{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:17px;background:linear-gradient(135deg,var(--wa),var(--wa-d));color:#fff;border:none;border-radius:14px;font-weight:800;font-size:1.05rem;cursor:pointer;transition:var(--tr);box-shadow:0 6px 24px rgba(37,211,102,.3);min-height:54px}
+.btn-whatsapp:active{transform:scale(.98)}
+@media(hover:hover){.btn-whatsapp:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(37,211,102,.45)}}
+.btn-whatsapp i{font-size:1.25rem}
+.pulse-btn{animation:pulse 2.8s infinite}
+@keyframes pulse{0%,100%{box-shadow:var(--shadow-red)}50%{box-shadow:0 4px 36px rgba(198,40,40,.65),0 0 0 8px rgba(198,40,40,.1)}}
+
+/* NAVBAR */
+.navbar{position:fixed;top:0;width:100%;z-index:900;height:var(--nav-h);display:flex;align-items:center;transition:background .3s,box-shadow .3s}
+.navbar.scrolled{background:rgba(10,10,10,.96);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);box-shadow:0 2px 20px rgba(0,0,0,.4)}
+.nav-container{max-width:1180px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;width:100%}
+.logo-img{height:50px;width:auto;border:1px solid #c62828;border-radius:50px;padding:4px;filter:drop-shadow(0 2px 8px rgba(198,40,40,.4));transition:transform var(--tr)}
+@media(hover:hover){.logo-img:hover{transform:scale(1.05)}}
+.nav-links{display:flex;align-items:center;gap:24px;list-style:none;padding:0}
+.nav-links a{font-weight:600;font-size:.9rem;color:rgba(255,255,255,.75);position:relative;transition:color var(--tr);padding:4px 0}
+.nav-links a::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:2px;background:var(--red);transition:width var(--tr);border-radius:1px}
+@media(hover:hover){.nav-links a:hover{color:#fff}.nav-links a:hover::after{width:100%}}
+.nav-links a.active-link{color:#fff}
+.nav-links a.active-link::after{width:100%}
+.nav-links .lang-switch a{display:inline-block;padding:6px 16px;background:#C9A227;color:#111 !important;border-radius:50px;font-weight:700;font-size:14px;transition:all .3s ease;border:2px solid #C9A227}
+.nav-links .lang-switch a:hover{background:transparent;color:#C9A227 !important;border-color:#C9A227}
+.nav-links .lang-switch a::after{display:none}
+.nav-actions{display:flex;align-items:center;gap:10px}
+.cart-fab{position:relative;background:linear-gradient(135deg,var(--red),var(--red-d));border:none;color:#fff;width:46px;height:46px;border-radius:50%;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:transform var(--tr),box-shadow var(--tr);box-shadow:var(--shadow-red)}
+.cart-fab:active{transform:scale(.92)}
+@media(hover:hover){.cart-fab:hover{transform:scale(1.1)}}
+.cart-fab.bounce{animation:cartBounce .45s ease}
+@keyframes cartBounce{0%,100%{transform:scale(1)}35%{transform:scale(1.3)}65%{transform:scale(.88)}}
+.cart-count{position:absolute;top:-5px;right:-5px;background:var(--gold);color:#111;width:20px;height:20px;border-radius:50%;font-size:.62rem;font-weight:900;display:flex;align-items:center;justify-content:center;transform:scale(0);transition:transform var(--tr)}
+.cart-count.show{transform:scale(1)}
+.hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;cursor:pointer;padding:8px;width:44px;height:44px}
+.hamburger span{display:block;width:22px;height:2px;background:#fff;transition:transform var(--tr),opacity var(--tr);transform-origin:center;border-radius:2px}
+.hamburger.active span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.active span:nth-child(2){opacity:0;transform:scaleX(0)}
+.hamburger.active span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.nav-mobile-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:800;opacity:0;pointer-events:none;transition:opacity var(--tr);backdrop-filter:blur(4px)}
+.nav-mobile-overlay.show{opacity:1;pointer-events:all}
+@media(max-width:900px){
+  .nav-links{position:fixed;top:0;left:0;width:min(280px,80vw);height:100dvh;background:var(--card);flex-direction:column;gap:0;padding:80px 24px 40px;z-index:850;transform:translateX(-100%);transition:transform .38s cubic-bezier(.4,0,.2,1);border-right:1px solid var(--border);overflow-y:auto}
+  .nav-links.open{transform:translateX(0)}
+  .nav-links a{display:block;padding:15px 0;border-bottom:1px solid var(--border);font-size:1rem}
+  .nav-links a::after{display:none}
+  .hamburger{display:flex}
+}
+
+/* HERO */
+.hero{min-height:100svh;display:flex;align-items:center;position:relative;overflow:hidden;overflow-x:clip;padding:calc(var(--nav-h) + 32px) 20px 64px}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 35% 50%,rgba(198,40,40,.18) 0%,transparent 70%),radial-gradient(ellipse at 100% 100%,rgba(139,0,0,.22) 0%,transparent 50%),linear-gradient(160deg,#080808 0%,#130000 50%,#080808 100%)}
+.hero-bg::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle at 1px 1px,rgba(255,255,255,.03) 1px,transparent 0);background-size:40px 40px}
+#particleCanvas{position:absolute;inset:0;pointer-events:none;opacity:.7}
+.hero-inner{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:40px;width:100%;max-width:1180px;margin:0 auto}
+.hero-content{max-width:560px;animation:fadeUp .8s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:translateY(0)}}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(244,196,48,.1);border:1px solid rgba(244,196,48,.3);color:var(--gold-l);padding:8px 18px;border-radius:50px;font-size:.85rem;font-weight:600;margin-bottom:18px;animation:fadeUp .8s .15s ease both}
+.hero-title{line-height:1;margin-bottom:14px;animation:fadeUp .8s .25s ease both}
+.ht-main{display:block;font-family:var(--font-display);font-size:clamp(5rem,12vw,9rem);font-weight:400;letter-spacing:4px;background:linear-gradient(135deg,#fff 30%,var(--gold) 70%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:.9}
+.ht-sub{display:block;font-size:clamp(1rem,2.5vw,1.5rem);color:var(--red-l);font-weight:700;letter-spacing:6px;text-transform:uppercase;margin-top:6px}
+.hero-slogan{font-size:1.05rem;color:rgba(255,255,255,.62);margin-bottom:30px;line-height:1.75;animation:fadeUp .8s .35s ease both}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:42px;animation:fadeUp .8s .45s ease both}
+.hero-stats{display:flex;align-items:center;animation:fadeUp .8s .6s ease both}
+.hstat{text-align:center;padding:0 18px}
+.hstat:first-child{padding-left:0}
+.hn{display:block;font-family:var(--font-display);font-size:1.8rem;font-weight:400;color:var(--gold);letter-spacing:1px}
+.hstat span:last-child{font-size:.75rem;color:var(--gray);text-transform:uppercase;letter-spacing:.5px}
+.hline{width:1px;height:36px;background:rgba(255,255,255,.1)}
+.hero-img-wrap{position:relative;width:min(420px,38vw);flex-shrink:0;animation:heroImg .9s .4s cubic-bezier(.4,0,.2,1) both}
+@keyframes heroImg{from{opacity:0;transform:scale(.85) translateY(20px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.hero-glow{position:absolute;inset:8%;background:radial-gradient(circle,rgba(198,40,40,.45),transparent 70%);filter:blur(36px);animation:glowPulse 3s ease infinite}
+@keyframes glowPulse{0%,100%{opacity:.6}50%{opacity:1;transform:scale(1.1)}}
+.hero-food-img{width:100%;border-radius:50%;border:4px solid rgba(198,40,40,.25);box-shadow:0 0 60px rgba(198,40,40,.25),0 0 100px rgba(198,40,40,.1);animation:floatImg 4.5s ease-in-out infinite;position:relative;z-index:1}
+@keyframes floatImg{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+.hero-price-tag{position:absolute;bottom:8%;right:0;transform:translateX(20%);background:linear-gradient(135deg,var(--red),var(--red-d));color:#fff;padding:11px 18px;border-radius:14px;font-family:var(--font-display);font-size:1.6rem;letter-spacing:1px;font-weight:400;box-shadow:var(--shadow-red);animation:floatBadge 3.5s ease-in-out infinite;z-index:3;white-space:nowrap}
+.hero-price-tag span{font-size:.72rem;opacity:.85;display:block;font-family:var(--font-body);font-weight:700;letter-spacing:1px}
+@keyframes floatBadge{0%,100%{transform:translateY(0) rotate(3deg)}50%{transform:translateY(-10px) rotate(-3deg)}}
+.scroll-cue{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);z-index:2}
+.scroll-cue span{display:block;width:24px;height:38px;border:2px solid rgba(255,255,255,.2);border-radius:12px;position:relative}
+.scroll-cue span::before{content:'';position:absolute;width:4px;height:8px;background:var(--red);border-radius:2px;top:6px;left:50%;transform:translateX(-50%);animation:scrollDot 1.8s ease infinite}
+@keyframes scrollDot{0%{top:6px;opacity:1}100%{top:20px;opacity:0}}
+@media(max-width:768px){
+  .hero{padding:calc(var(--nav-h) + 20px) 20px 48px}
+  .hero-inner{flex-direction:column;text-align:center}
+  .hero-img-wrap{width:min(240px,65vw);order:-1}
+  .hero-btns{justify-content:center}
+  .hero-stats{justify-content:center}
+  .hero-price-tag{right:auto;left:0;bottom:6%;transform:translateX(-20%)}
+}
+@media(max-width:480px){
+  .hero-stats{flex-direction:column;gap:12px}
+  .hline{width:48px;height:1px}
+  .hero-img-wrap{width:min(200px,60vw)}
+}
+
+/* ABOUT */
+.about{padding:90px 0;background:linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%);overflow-x:clip}
+.about .container{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.about-img-wrap{position:relative;border-radius:var(--rad);overflow:visible}
+.about-deco{position:absolute;inset:-8px;border-radius:var(--rad);border:2px solid rgba(198,40,40,.18);transform:rotate(-3deg);transition:transform var(--tr);pointer-events:none}
+@media(hover:hover){.about-img-wrap:hover .about-deco{transform:rotate(3deg)}}
+.about-img{width:100%;border-radius:var(--rad);box-shadow:var(--shadow-lg);position:relative;z-index:1;transition:transform var(--tr);display:block}
+@media(hover:hover){.about-img-wrap:hover .about-img{transform:scale(1.02)}}
+.about-float-badge{position:absolute;bottom:-16px;left:0;z-index:2;background:linear-gradient(135deg,var(--red),var(--red-d));padding:10px 16px;border-radius:12px;display:flex;align-items:center;gap:10px;box-shadow:var(--shadow-red);font-weight:700;animation:floatBadge 3.5s ease-in-out infinite;max-width:calc(100% - 8px)}
+.about-float-badge i{font-size:1.1rem;color:var(--gold);flex-shrink:0}
+.about-text h2{font-family:var(--font-display);font-size:2.8rem;font-weight:400;letter-spacing:2px;margin-bottom:14px}
+.about-text p{color:var(--text);line-height:1.85;margin-bottom:14px;font-size:.95rem}
+.about-list{margin:20px 0 28px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.about-list li{display:flex;align-items:center;gap:9px;color:var(--text);font-weight:600;font-size:.9rem}
+.about-list li i{color:var(--red-l);font-size:.95rem;flex-shrink:0}
+@media(max-width:768px){
+  .about .container{grid-template-columns:1fr;gap:48px}
+  .about-img-wrap{max-width:400px;margin:0 auto;margin-bottom:20px}
+  .about-list{grid-template-columns:1fr}
+}
+
+/* MENU */
+.menu-section{padding:90px 0;background:var(--bg2);overflow-x:clip}
+.menu-tabs{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:40px}
+.tab-btn{padding:10px 24px;border-radius:50px;border:1.5px solid var(--border);background:transparent;color:var(--gray);font-weight:700;font-size:.88rem;cursor:pointer;transition:var(--tr);min-height:44px;letter-spacing:.3px}
+.tab-btn.active{background:linear-gradient(135deg,var(--red),var(--red-d));border-color:var(--red);color:#fff;box-shadow:0 4px 16px rgba(198,40,40,.3)}
+@media(hover:hover){.tab-btn:hover:not(.active){border-color:rgba(198,40,40,.35);color:rgba(255,255,255,.85)}}
+.menu-grid{display:none;grid-template-columns:repeat(auto-fill,minmax(268px,1fr));gap:22px}
+.menu-grid.active-grid{display:grid}
+.mcard{background:var(--card);border-radius:var(--rad);overflow:hidden;border:1px solid var(--border);transition:transform var(--tr),box-shadow var(--tr),border-color var(--tr);cursor:pointer}
+@media(hover:hover){.mcard:hover{transform:translateY(-5px);box-shadow:0 18px 48px rgba(0,0,0,.38),0 0 0 1px rgba(198,40,40,.22)}}
+.mcard:active{transform:scale(.99)}
+.mcard-img{position:relative;overflow:hidden;height:188px}
+.mcard-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.4,0,.2,1)}
+@media(hover:hover){.mcard:hover .mcard-img img{transform:scale(1.07)}}
+.mcard-badge{position:absolute;top:10px;left:10px;padding:4px 11px;border-radius:50px;font-size:.7rem;font-weight:700;backdrop-filter:blur(4px)}
+.mcard-badge.hot{background:linear-gradient(135deg,var(--red),var(--red-d))}
+.mcard-badge.new{background:linear-gradient(135deg,#2E7D32,#1B5E20)}
+.mcard-badge.gold{background:linear-gradient(135deg,#F4C430,#E6A817);color:#111}
+.mcard-overlay{position:absolute;inset:0;background:rgba(0,0,0,.3);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity var(--tr);font-size:2.8rem;color:rgba(255,255,255,.7)}
+@media(hover:hover){.mcard:hover .mcard-overlay{opacity:1}}
+.mcard-body{padding:16px}
+.mcard-body h3{font-size:1rem;font-weight:700;margin-bottom:5px}
+.mcard-body p{color:var(--gray);font-size:.82rem;line-height:1.55;margin-bottom:8px}
+.mcard-body .prep-time{color:rgba(255,255,255,.4);font-size:.75rem;margin-bottom:10px}
+.mcard-footer{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.mprice{font-size:1.1rem;font-weight:900;color:var(--gold)}
+.btn-add-item{background:linear-gradient(135deg,var(--red),var(--red-d));border:none;color:#fff;padding:9px 16px;border-radius:50px;cursor:pointer;font-size:.82rem;font-weight:700;display:flex;align-items:center;gap:6px;transition:transform var(--tr),box-shadow var(--tr);min-height:40px;flex-shrink:0}
+.btn-add-item:active{transform:scale(.94)}
+@media(hover:hover){.btn-add-item:hover{transform:scale(1.05);box-shadow:0 4px 14px rgba(198,40,40,.4)}}
+.btn-add-item:disabled{background:linear-gradient(135deg,#555,#333);cursor:not-allowed;opacity:.7}
+@media(max-width:580px){
+  .menu-grid{grid-template-columns:1fr}
+  .menu-tabs{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;padding-bottom:6px;scrollbar-width:none}
+  .menu-tabs::-webkit-scrollbar{display:none}
+  .tab-btn{flex-shrink:0}
+}
+@media(max-width:400px){
+  .mcard-footer{flex-direction:column;align-items:flex-start;gap:10px}
+  .btn-add-item{width:100%;justify-content:center}
+  .section-header{margin-bottom:32px}
+  .menu-section,.about,.contact-section{padding:64px 0}
+}
+
+/* CONTACT */
+.contact-section{padding:90px 0;background:var(--bg);overflow-x:clip}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+.cinfo-card{display:flex;align-items:flex-start;gap:14px;padding:18px;border-radius:14px;background:rgba(255,255,255,.02);border:1px solid var(--border);margin-bottom:14px;transition:border-color var(--tr),background var(--tr),transform var(--tr)}
+@media(hover:hover){.cinfo-card:hover{border-color:rgba(198,40,40,.22);background:rgba(198,40,40,.03);transform:translateX(4px)}}
+.cinfo-icon{width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,var(--red),var(--red-d));display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.cinfo-card h4{font-weight:700;margin-bottom:4px;font-size:.93rem}
+.cinfo-card p{color:var(--gray);font-size:.85rem;line-height:1.6}
+.contact-form-wrap{background:var(--card);border-radius:20px;padding:32px;border:1px solid var(--border)}
+.contact-form-wrap h3{font-family:var(--font-display);font-size:1.8rem;font-weight:400;letter-spacing:1px;margin-bottom:24px}
+.fgrp{position:relative;margin-bottom:14px}
+.fgrp label{display:block;font-size:.83rem;font-weight:600;color:rgba(255,255,255,.68);margin-bottom:6px;letter-spacing:.3px}
+.fgrp input,.fgrp textarea{width:100%;padding:12px 15px;background:rgba(255,255,255,.035);border:1.5px solid var(--border);border-radius:11px;color:#fff;font-size:.9rem;transition:border-color var(--tr),box-shadow var(--tr),background var(--tr);outline:none;direction:ltr;-webkit-appearance:none}
+.fgrp input:focus,.fgrp textarea:focus{border-color:var(--red);background:rgba(198,40,40,.03);box-shadow:0 0 0 3px rgba(198,40,40,.1)}
+.fgrp input::placeholder,.fgrp textarea::placeholder{color:var(--gray)}
+.fgrp textarea{resize:none}
+.fgrp>i{position:absolute;right:13px;top:13px;color:var(--gray);font-size:.85rem;pointer-events:none}
+.fgrp:focus-within>i{color:var(--red-l)}
+@media(max-width:768px){
+  .contact-grid{grid-template-columns:1fr}
+  .contact-form-wrap{padding:24px 18px}
+}
+
+/* MAP */
+.map-container{padding:30px}
+.map-wrapper{border-radius:15px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.2);height:450px;position:relative}
+#staticMap{width:100%;height:100%;background:var(--bg2)}
+@media(max-width:768px){.map-wrapper{height:350px}}
+
+/* FOOTER */
+.footer{background:#060606;border-top:1px solid var(--border)}
+.footer-inner{max-width:1180px;margin:0 auto;padding:52px 20px 36px;display:grid;grid-template-columns:2fr 1fr 1fr;gap:44px}
+.footer-logo{height:52px;margin-bottom:14px}
+.footer-brand p{color:var(--gray);line-height:1.7;margin-bottom:20px;font-size:.87rem}
+.socials{display:flex;gap:10px}
+.soc-ico{width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,.05);display:flex;align-items:center;justify-content:center;font-size:.9rem;transition:var(--tr);border:1px solid var(--border)}
+@media(hover:hover){.soc-ico:hover{background:var(--red);border-color:var(--red);transform:translateY(-4px)}}
+.footer-col h4{font-family:var(--font-display);font-size:1.1rem;font-weight:400;letter-spacing:1px;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.footer-col ul li{margin-bottom:8px}
+.footer-col a{color:var(--gray);font-size:.86rem;transition:var(--tr)}
+@media(hover:hover){.footer-col a:hover{color:var(--red-l);padding-left:4px}}
+.footer-col p{color:var(--gray);font-size:.86rem;margin-bottom:8px}
+.footer-col i{color:var(--red-l);margin-right:6px;width:14px}
+.footer-bottom{text-align:center;padding:16px 20px;border-top:1px solid rgba(255,255,255,.04);color:var(--gray);font-size:.8rem}
+@media(max-width:768px){.footer-inner{grid-template-columns:1fr;gap:28px}}
+
+/* MODALS */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:1800;opacity:0;pointer-events:none;transition:opacity var(--tr);backdrop-filter:blur(5px)}
+.modal-overlay.show{opacity:1;pointer-events:all}
+.modal{position:fixed;top:50%;left:50%;transform:translate(-50%,-46%);width:min(510px,95vw);max-height:92dvh;overflow-y:auto;overflow-x:hidden;background:var(--bg2);border-radius:20px;z-index:1900;opacity:0;pointer-events:none;transition:.35s cubic-bezier(.4,0,.2,1);border:1px solid var(--border-h);box-shadow:var(--shadow-lg)}
+.modal.show{opacity:1;pointer-events:all;transform:translate(-50%,-50%)}
+.modal::-webkit-scrollbar{width:3px}
+.modal::-webkit-scrollbar-thumb{background:var(--red)}
+@media(max-width:600px){
+  .modal{top:auto;bottom:0;left:0;right:0;transform:translateY(100%);width:100%;max-height:94dvh;border-radius:20px 20px 0 0;border-bottom:none}
+  .modal.show{transform:translateY(0)}
+}
+.modal-close{position:absolute;top:12px;right:12px;z-index:10;background:rgba(0,0,0,.55);border:none;color:#fff;width:38px;height:38px;border-radius:50%;cursor:pointer;font-size:.9rem;transition:var(--tr);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center}
+.modal-close:active{transform:scale(.9)}
+@media(hover:hover){.modal-close:hover{background:var(--red)}}
+.modal-img-wrap{position:relative;height:195px;overflow:hidden}
+.modal-img-wrap img{width:100%;height:100%;object-fit:cover}
+.modal-img-grad{position:absolute;inset:0;background:linear-gradient(to top,var(--bg2) 0%,transparent 58%)}
+.modal-item-title{position:absolute;bottom:0;left:0;right:0;padding:16px 18px}
+.modal-item-title h2{font-size:1.25rem;font-weight:700}
+.modal-item-title p{color:rgba(255,255,255,.6);font-size:.83rem}
+.modal-body{padding:18px}
+.modal-sec{margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid var(--border)}
+.modal-sec:last-of-type{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.msec-title{font-size:.9rem;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.88);letter-spacing:.3px}
+.msec-title i{color:var(--red-l)}
+.dyn-size-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px}
+.dyn-size-btn{display:flex;flex-direction:column;align-items:center;gap:5px;padding:13px 8px;border-radius:12px;border:1.5px solid var(--border);background:rgba(255,255,255,.025);cursor:pointer;transition:var(--tr);color:#fff;text-align:center;min-height:68px;font-family:var(--font-body)}
+.dyn-size-btn.selected{border-color:var(--red);background:rgba(198,40,40,.1);box-shadow:0 0 0 2px rgba(198,40,40,.12)}
+@media(hover:hover){.dyn-size-btn:hover:not(.selected){border-color:rgba(198,40,40,.35)}}
+.dsb-name{font-size:.78rem;font-weight:700;line-height:1.3}
+.dsb-price{font-size:.95rem;font-weight:900;color:var(--gold)}
+.dyn-size-btn.selected .dsb-price{color:var(--gold-l)}
+.addons-wrap{display:flex;flex-direction:column;gap:10px}
+.addon-row{display:flex;align-items:center;justify-content:space-between;padding:13px 14px;border-radius:12px;background:rgba(255,255,255,.02);border:1.5px solid var(--border);cursor:pointer;transition:var(--tr)}
+@media(hover:hover){.addon-row:hover{border-color:rgba(198,40,40,.22);background:rgba(198,40,40,.03)}}
+.addon-left{display:flex;align-items:center;gap:11px}
+.addon-ico{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0}
+.addon-ico.cheese{background:rgba(244,196,48,.15);color:var(--gold)}
+.addon-text{display:flex;flex-direction:column}
+.addon-name{font-size:.88rem;font-weight:700}
+.addon-sub{font-size:.73rem;color:var(--gray)}
+.addon-right{display:flex;align-items:center;gap:9px;flex-shrink:0}
+.addon-badge{font-size:.72rem;font-weight:800;padding:3px 9px;border-radius:50px;white-space:nowrap}
+.addon-badge.plus{background:rgba(244,196,48,.1);color:var(--gold)}
+.tog{position:relative;width:44px;height:24px;flex-shrink:0}
+.tog input{display:none}
+.tog-track{width:100%;height:100%;border-radius:12px;background:rgba(255,255,255,.1);border:1px solid var(--border);transition:var(--tr)}
+.tog input:checked+.tog-track{background:var(--red);border-color:var(--red)}
+.tog-thumb{position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:var(--tr);box-shadow:0 2px 6px rgba(0,0,0,.28);pointer-events:none}
+.tog input:checked~.tog-track .tog-thumb{left:auto;right:3px}
+.qty-ctrl{display:flex;align-items:center;gap:16px}
+.qty-btn{width:42px;height:42px;border-radius:50%;border:1.5px solid var(--border);background:rgba(255,255,255,.04);color:#fff;cursor:pointer;font-size:.9rem;transition:var(--tr);display:flex;align-items:center;justify-content:center}
+.qty-btn:active{border-color:var(--red);background:rgba(198,40,40,.12)}
+@media(hover:hover){.qty-btn:hover{border-color:var(--red);background:rgba(198,40,40,.12);color:var(--red-l)}}
+.qty-val{font-size:1.4rem;font-weight:900;min-width:32px;text-align:center}
+.modal-action{background:rgba(255,255,255,.02);border-radius:14px;padding:14px;display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid var(--border)}
+.modal-price-row{display:flex;flex-direction:column}
+.mpr-label{font-size:.78rem;color:var(--gray);margin-bottom:2px;letter-spacing:.3px}
+.mpr-price{font-size:1.4rem;font-weight:900;color:var(--gold)}
+.btn-confirm{padding:13px 24px;font-size:.95rem;min-height:50px;flex-shrink:0}
+@media(max-width:480px){.modal-action{flex-direction:column;align-items:stretch}.btn-confirm{width:100%;justify-content:center}}
+
+/* CART SIDEBAR */
+.cart-overlay{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:1700;opacity:0;pointer-events:none;transition:opacity var(--tr)}
+.cart-overlay.show{opacity:1;pointer-events:all}
+.cart-sidebar{position:fixed;right:0;top:0;width:min(360px,100vw);height:100dvh;background:var(--card);z-index:1750;transform:translateX(100%);transition:.38s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;box-shadow:var(--shadow-lg);border-left:1px solid var(--border);overflow:hidden}
+@media(max-width:400px){.cart-sidebar{width:100vw;border-left:none}}
+.cart-sidebar.open{transform:translateX(0)}
+.cart-head{padding:20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.cart-title{font-family:var(--font-display);font-size:1.4rem;font-weight:400;letter-spacing:1px}
+.cart-item-count{font-size:.76rem;color:var(--gray);display:block;margin-top:2px}
+.cart-close-btn{background:rgba(255,255,255,.06);border:none;color:#fff;width:38px;height:38px;border-radius:50%;cursor:pointer;font-size:.88rem;transition:var(--tr);display:flex;align-items:center;justify-content:center}
+.cart-close-btn:hover{background:var(--red)}
+.cart-body{flex:1;overflow-y:auto;padding:14px;-webkit-overflow-scrolling:touch}
+.cart-empty-state{text-align:center;padding:48px 20px;display:flex;flex-direction:column;align-items:center}
+.ces-icon{font-size:2.8rem;color:rgba(255,255,255,.08);margin-bottom:14px}
+.cart-empty-state p{font-size:1rem;font-weight:700;margin-bottom:6px}
+.cart-empty-state small{color:var(--gray);font-size:.83rem}
+.ci-wrap{background:rgba(255,255,255,.03);border-radius:12px;border:1px solid var(--border);padding:13px;margin-bottom:10px;animation:ciSlide .28s ease both}
+@keyframes ciSlide{from{opacity:0;transform:translateX(14px)}to{opacity:1;transform:translateX(0)}}
+.ci-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.ci-name{font-size:.92rem;font-weight:700;margin-bottom:4px}
+.ci-details{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:8px}
+.ci-tag{background:rgba(255,255,255,.06);padding:3px 9px;border-radius:50px;font-size:.7rem;color:rgba(255,255,255,.6)}
+.ci-bottom{display:flex;align-items:center;justify-content:space-between}
+.ci-price{font-size:.98rem;font-weight:900;color:var(--gold)}
+.ci-qty-ctrl{display:flex;align-items:center;gap:8px}
+.ci-qty-btn{width:28px;height:28px;border-radius:50%;border:1px solid var(--border);background:rgba(255,255,255,.04);color:#fff;cursor:pointer;font-size:.7rem;transition:var(--tr);display:flex;align-items:center;justify-content:center}
+.ci-qty-btn:hover{border-color:var(--red);background:rgba(198,40,40,.1)}
+.ci-qty-val{font-size:.88rem;font-weight:700;min-width:16px;text-align:center}
+.ci-remove{background:rgba(198,40,40,.1);border:none;color:var(--red-l);width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:.7rem;transition:var(--tr);display:flex;align-items:center;justify-content:center}
+.ci-remove:hover{background:var(--red);color:#fff}
+.cart-foot{padding:16px 18px;border-top:1px solid var(--border);background:rgba(0,0,0,.18);flex-shrink:0}
+.cart-subtotal-row,.cart-delivery-row{display:flex;justify-content:space-between;font-size:.85rem;color:var(--gray);margin-bottom:7px}
+.cart-total-row{display:flex;justify-content:space-between;font-size:1rem;font-weight:800;margin-bottom:14px;padding-top:10px;border-top:1px solid var(--border)}
+
+/* CHECKOUT MODAL */
+.checkout-modal{width:min(540px,96vw)}
+.checkout-head{text-align:center;padding:26px 24px 10px}
+.co-icon{width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,var(--wa),var(--wa-d));display:flex;align-items:center;justify-content:center;font-size:1.45rem;margin:0 auto 13px;box-shadow:0 4px 18px rgba(37,211,102,.3)}
+.checkout-head h2{font-family:var(--font-display);font-size:1.8rem;font-weight:400;letter-spacing:1px;margin-bottom:4px}
+.checkout-head p{color:var(--gray);font-size:.84rem;line-height:1.5}
+.checkout-body{padding:14px 20px 26px}
+.co-profile-card{display:none;align-items:center;gap:12px;margin:16px 20px 0;padding:12px 14px;background:linear-gradient(135deg,rgba(198,40,40,.08),rgba(139,0,0,.04));border:1.5px solid rgba(198,40,40,.22);border-radius:13px;animation:profileSlide .3s cubic-bezier(.4,0,.2,1) both}
+@keyframes profileSlide{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+.co-profile-card.visible{display:flex}
+.co-avatar{width:42px;height:42px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,var(--red),var(--red-d));display:flex;align-items:center;justify-content:center;font-size:.95rem;font-weight:900;color:#fff}
+.co-profile-info{flex:1;min-width:0}
+.co-profile-name{font-size:.93rem;font-weight:700;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:2px}
+.co-profile-phone{font-size:.78rem;color:var(--gray);direction:ltr}
+.co-profile-actions{display:flex;gap:6px;flex-shrink:0}
+.co-edit-btn{background:rgba(255,255,255,.06);border:1px solid var(--border-h);color:rgba(255,255,255,.5);width:30px;height:30px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.72rem;transition:var(--tr)}
+@media(hover:hover){.co-edit-btn:hover{background:rgba(198,40,40,.18);border-color:var(--red);color:#fff}}
+.co-fields-wrap{overflow:hidden;transition:height .32s cubic-bezier(.4,0,.2,1),opacity .25s ease;opacity:1}
+.co-fields-wrap.co-fields-hidden{height:0 !important;opacity:0;pointer-events:none}
+.co-divider{display:flex;align-items:center;gap:9px;margin:14px 0 12px;color:var(--gray);font-size:.76rem;font-weight:600;letter-spacing:.5px;text-transform:uppercase}
+.co-divider::before,.co-divider::after{content:'';flex:1;height:1px;background:var(--border)}
+.co-mode-toggle{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
+.co-mode-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:12px 8px;border-radius:12px;border:1.5px solid var(--border);background:rgba(255,255,255,.025);color:rgba(255,255,255,.55);cursor:pointer;transition:var(--tr);font-family:var(--font-body);font-size:.82rem;font-weight:700;min-height:68px}
+.co-mode-btn i{font-size:1.3rem;margin-bottom:2px}
+.co-mode-btn.active{border-color:var(--red);background:rgba(198,40,40,.12);color:#fff;box-shadow:0 0 0 2px rgba(198,40,40,.15)}
+.co-mode-btn.active i{color:var(--red-l)}
+@media(hover:hover){.co-mode-btn:hover:not(.active){border-color:rgba(198,40,40,.3);color:rgba(255,255,255,.8)}}
+.co-pickup-notice{display:none;align-items:center;gap:10px;padding:11px 14px;background:rgba(244,196,48,.06);border:1px solid rgba(244,196,48,.2);border-radius:11px;margin-bottom:13px;font-size:.84rem;color:rgba(255,255,255,.75)}
+.co-pickup-notice.visible{display:flex}
+.co-pickup-notice i{color:var(--gold);font-size:1rem;flex-shrink:0}
+.co-delivery-section{overflow:hidden;transition:height .38s cubic-bezier(.4,0,.2,1),opacity .3s ease;opacity:1}
+.co-delivery-section.hidden{height:0 !important;opacity:0;pointer-events:none}
+
+/* ZONE */
+.zone-search-wrap{margin-bottom:10px;position:relative}
+.zone-search-wrap input{width:100%;padding:11px 14px 11px 40px;background:rgba(255,255,255,.04);border:1.5px solid var(--border);border-radius:11px;color:#fff;font-family:var(--font-body);font-size:.9rem;outline:none;direction:ltr;transition:border-color var(--tr)}
+.zone-search-wrap input:focus{border-color:rgba(198,40,40,.5)}
+.zone-search-wrap input::placeholder{color:var(--gray)}
+.zone-search-ico{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--gray);font-size:.85rem;pointer-events:none}
+.zone-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;max-height:260px;overflow-y:auto;padding-left:2px}
+.zone-grid::-webkit-scrollbar{width:3px}
+.zone-grid::-webkit-scrollbar-thumb{background:var(--red)}
+.zone-btn{display:flex;flex-direction:column;align-items:center;gap:4px;padding:11px 8px;border-radius:12px;border:1.5px solid var(--border);background:rgba(255,255,255,.025);cursor:pointer;transition:var(--tr);color:#fff;text-align:center;font-family:var(--font-body);min-height:60px}
+.zone-btn.selected{border-color:var(--red);background:rgba(198,40,40,.1);box-shadow:0 0 0 2px rgba(198,40,40,.12)}
+@media(hover:hover){.zone-btn:hover:not(.selected){border-color:rgba(198,40,40,.35);background:rgba(198,40,40,.05)}}
+.zone-btn .zname{font-size:.8rem;font-weight:700;line-height:1.3}
+.zone-btn .zprice{font-size:.82rem;font-weight:900;color:var(--gold)}
+.zone-btn.selected .zprice{color:var(--gold-l)}
+.zone-no-res{text-align:center;color:var(--gray);font-size:.85rem;padding:20px;grid-column:1/-1}
+.zone-fee-box{display:none;align-items:center;gap:10px;padding:10px 14px;background:rgba(244,196,48,.06);border:1px solid rgba(244,196,48,.2);border-radius:11px;margin:10px 0;font-size:.84rem;color:rgba(255,255,255,.8)}
+.zone-fee-box.show{display:flex}
+.zone-fee-box i{color:var(--gold);font-size:1rem;flex-shrink:0}
+
+.co-summary{background:rgba(255,255,255,.02);border-radius:11px;border:1px solid var(--border);padding:13px;margin:14px 0}
+.co-summary h4{font-size:.88rem;font-weight:700;margin-bottom:9px;display:flex;align-items:center;gap:7px;color:rgba(255,255,255,.85);letter-spacing:.3px;text-transform:uppercase}
+.co-summary h4 i{color:var(--red-l)}
+.co-item{display:flex;justify-content:space-between;align-items:flex-start;padding:6px 0;border-bottom:1px solid var(--border);font-size:.82rem}
+.co-item:last-of-type{border-bottom:none}
+.co-item-left{color:var(--text);flex:1;padding-right:10px}
+.co-item-price{color:var(--gold);font-weight:700;white-space:nowrap}
+.co-total-row{display:flex;justify-content:space-between;align-items:center;font-size:.96rem;font-weight:800;margin-top:9px;padding-top:8px;border-top:1px solid var(--border)}
+.co-delivery-row{display:flex;justify-content:space-between;align-items:center;font-size:.84rem;margin-top:6px;padding-top:6px;border-top:1px solid var(--border);color:var(--gray)}
+.co-delivery-price{font-weight:700;color:var(--gold)}
+.btn-send-wa{margin-top:5px}
+
+/* SCROLL ANIMATIONS */
+.reveal-up,.reveal-left,.reveal-right{opacity:0;transition:opacity .6s ease,transform .6s cubic-bezier(.4,0,.2,1)}
+.reveal-up{transform:translateY(36px)}
+.reveal-left{transform:translateX(-28px)}
+.reveal-right{transform:translateX(28px)}
+.reveal-up.visible,.reveal-left.visible,.reveal-right.visible{opacity:1;transform:translate(0)}
+
+/* TOAST */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(70px);background:linear-gradient(135deg,var(--red),var(--red-d));color:#fff;padding:12px 24px;border-radius:50px;font-weight:700;font-size:.88rem;z-index:9999;opacity:0;transition:all .35s cubic-bezier(.4,0,.2,1);box-shadow:var(--shadow-red);white-space:nowrap;max-width:calc(100vw - 40px);text-align:center}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-6px)}60%{transform:translateX(6px)}}
+.shaking{animation:shake .38s ease}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <div class="nav-logo">
+      <img src="img/naksha logo.png" alt="Naksha" class="logo-img" loading="eager"/>
+    </div>
+    <div class="nav-mobile-overlay" id="navOverlay"></div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li class="lang-switch"><a href="index.html">عربي</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="cart-fab" id="cartBtn" aria-label="Cart">
+        <i class="fas fa-shopping-bag"></i>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+      <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <canvas id="particleCanvas" aria-hidden="true"></canvas>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge"><i class="fas fa-fire"></i> Fresh Meals Every Day</div>
+      <h1 class="hero-title">
+        <span class="ht-main">NAKSHA</span>
+        <span class="ht-sub">Central Restaurant</span>
+      </h1>
+      <p class="hero-slogan">Shawarma — Grills — Broasted — and more, with an unforgettable taste</p>
+      <div class="hero-btns">
+        <a href="#menu" class="btn-primary pulse-btn"><i class="fas fa-utensils"></i> Order Now</a>
+        <a href="#about" class="btn-ghost">About Us</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hstat"><span class="hn">500+</span><span>Meals Daily</span></div>
+        <div class="hline"></div>
+        <div class="hstat"><span class="hn">0.50JD</span><span>Starting From</span></div>
+        <div class="hline"></div>
+        <div class="hstat"><span class="hn">100%</span><span>Fresh & Tasty</span></div>
+      </div>
+    </div>
+    <div class="hero-img-wrap">
+      <div class="hero-glow"></div>
+      <img src="img/IMG-20240416-WA0004.jpg" alt="Healthy Meal" class="hero-food-img" loading="eager"/>
+      <div class="hero-price-tag">2.50 JD <span>Only!</span></div>
+    </div>
+  </div>
+  <a href="#menu" class="scroll-cue" aria-label="Scroll Down"><span></span></a>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-img-wrap reveal-left">
+      <div class="about-deco"></div>
+      <img src="img/IMG-20251028-WA0005.jpg" alt="About Naksha" class="about-img" loading="lazy"/>
+      <div class="about-float-badge"><i class="fas fa-fire"></i><span>Charcoal Grilled</span></div>
+    </div>
+    <div class="about-text reveal-right">
+      <span class="stag">Who We Are</span>
+      <h2>NAKSHA — The Taste You've Been Looking For!</h2>
+      <p>At Naksha Central, we're not just a restaurant — we're your go-to spot for food that feels like home.</p>
+      <p>Whether you're on a healthy diet and craving grilled meats and veggies, or you want a hearty Mandi rice that wows, or just a quick shawarma snack — we've got you covered!</p>
+      <ul class="about-list">
+        <li><i class="fas fa-check-circle"></i> 100% Fresh Ingredients</li>
+        <li><i class="fas fa-check-circle"></i> Natural Charcoal Grilling</li>
+        <li><i class="fas fa-check-circle"></i> Fast Delivery Service</li>
+        <li><i class="fas fa-check-circle"></i> Competitive Prices for All</li>
+      </ul>
+      <a href="#menu" class="btn-primary">View Menu <i class="fas fa-arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="menu-section" id="menu">
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="stag">Our Menu</span>
+      <h2>CHOOSE YOUR MEAL</h2>
+      <p>Diverse meals for every taste and every occasion</p>
+    </div>
+    <div class="menu-tabs reveal-up">
+      <button class="tab-btn active" data-tab="all">All</button>
+      <button class="tab-btn" data-tab="shawarma">Shawarma</button>
+      <button class="tab-btn" data-tab="snack">Snacks</button>
+      <button class="tab-btn" data-tab="dynamite">Dynamite</button>
+      <button class="tab-btn" data-tab="broasted">Broasted</button>
+      <button class="tab-btn" data-tab="mashawi">Grills</button>
+      <button class="tab-btn" data-tab="rice">Rice</button>
+      <button class="tab-btn" data-tab="mix">Mix & Platters</button>
+      <button class="tab-btn" data-tab="sides">Sides</button>
+    </div>
+    <div class="menu-grid active-grid" id="tab-all"></div>
+
+    <!-- SHAWARMA -->
+    <div class="menu-grid" id="tab-shawarma">
+      <div class="mcard reveal-up" data-item='{"id":"sh1","name":"Shawarma Meal","nameAr":"وجبة الشاورما","img":"img/IMG-20210908-WA0046.jpg","desc":"Shawarma meal in all sizes","sizes":{"Regular Meal":2.00,"Super Meal":2.75,"Double Meal":3.50,"Triple Meal":4.60,"Regular French":2.50,"Double French":4.00,"Triple French":5.00,"Regular Cheddar":2.25,"Super Cheddar":3.25,"Double Cheddar":4.00,"Triple Cheddar":5.25}}'><div class="mcard-img"><img src="img/IMG-20210908-WA0046.jpg" alt="Shawarma Meal" loading="lazy"/><div class="mcard-badge hot">Best Seller</div><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>Shawarma Meal</h3><p>Shawarma meal in all sizes</p><div class="prep-time">⏱️ 15–20 min</div><div class="mcard-footer"><span class="mprice">From 2.00 JD</span><button class="btn-add-item">Add <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"sh2","name":"Shawarma Sandwich","nameAr":"ساندويش شاورما","img":"img/IMG-20230731-WA0007.jpg","desc":"Shawarma sandwich in different sizes","sizes":{"Regular Sandwich":0.70,"Regular Cheddar Sandwich":0.80,"Naksha Regular Sandwich":1.00,"Super Sandwich":1.30,"Super Cheddar Sandwich":1.40,"Naksha Super Sandwich":1.50,"French Sandwich":1.75,"French Sandwich (Mushroom & Cream)":2.00}}'><div class="mcard-img"><img src="img/IMG-20230731-WA0007.jpg" alt="Shawarma Sandwich" loading="lazy"/><div class="mcard-badge hot">Special</div><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>Shawarma Sandwich</h3><p>Sandwich in different sizes</p><div class="prep-time">⏱️ 5 min</div><div class="mcard-footer"><span class="mprice">From 0.70 JD</span><button class="btn-add-item">Add <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"sh3","name":"Naksha Meal","nameAr":"وجبة نكشة","img":"img/IMG-20240805-WA0000.jpg","desc":"The signature Naksha meal","sizes":{"Naksha Regular":2.25,"Naksha Super":3.25,"Naksha Double":4.00,"Naksha Triple":5.25}}'><div class="mcard-img"><img src="img/IMG-20240805-WA0000.jpg" alt="Naksha Meal" loading="lazy"/><div class="mcard-badge new">New</div><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>Naksha Meal</h3><p>The signature Naksha meal</p><div class="prep-time">⏱️ 12–18 min</div><div class="mcard-footer"><span class="mprice">From 2.25 JD</span><button class="btn-add-item">Add <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"sh4","name":"Shawarma Slices Meal","nameAr":"وجبة شرائح شاورما","img":"img/IMG-20241007-WA0000.jpg","desc":"Includes garlic sauce + pickles + bread","sizes":{"250g Meal":3.00,"1kg Meal":12.00}}'><div class="mcard-img"><img src="img/IMG-20241007-WA0000.jpg" alt="Shawarma Slices" loading="lazy"/><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>Shawarma Slices Meal</h3><p>Garlic sauce + pickles + bread</p><div class="prep-time">⏱️ 10–15 min</div><div class="mcard-footer"><span class="mprice">From 3.00 JD</span><button class="btn-add-item">Add <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"sh5","name":"Shawarma Platter","nameAr":"سدر شاورما","img":"img/IMG-20230921-WA0000.jpg","desc":"Shawarma platter for individuals and families","sizes":{"Small Saver Platter":8.00,"Medium Saver Platter":12.00,"Family Platter":15.00,"Naksha Small":10.00,"Naksha Medium":13.00,"Naksha Family":17.00,"Cheddar Small":10.00,"Cheddar Medium":13.00,"Cheddar Family":17.00}}'><div class="mcard-img"><img src="img/IMG-20230921-WA0000.jpg" alt="Shawarma Platter" loading="lazy"/><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>Shawarma Platter</h3><p>Platter for individuals and families</p><div class="prep-time">⏱️ 20–30 min</div><div class="mcard-footer"><span class="mprice">From 8.00 JD</span><button class="btn-add-item">Add <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"sh6","name":"Halabi Meal","nameAr":"وجبة حلبي","img":"img/IMG-20231010-WA0001.jpg","desc":"Special Halabi shawarma meal","sizes":{"Halabi Meal":3.75}}'><div class="mcard-img"><img src="img/IMG-20231010-WA0001.jpg" alt="Halabi Meal" loading="lazy"/><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>Halabi Meal</h3><p>Special Halabi shawarma meal</p><div class="prep-time">⏱️ 15–20 min</div><div class="mcard-footer"><span class="mprice">3.75 JD</span><button class="btn-add-item">Add <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"sh7","name":"Italian Shawarma Meal","nameAr":"وجبة إيطالي","img":"img/IMG-20230126-WA0022.jpg","desc":"Shawarma with cream and mushroom","sizes":{"Italian Regular":2.75,"Italian Super":3.25,"With Mushroom & Cream":3.75,"Italian Cream, Mushroom & Mozzarella":4.50}}'><div class="mcard-img"><img src="img/IMG-20230126-WA0022.jpg" alt="Italian Meal" loading="lazy"/><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>Italian Shawarma Meal</h3><p>Shawarma with cream and mushroom</p><div class="prep-time">⏱️ 15–20 min</div><div class="mcard-footer"><span class="mprice">From 2.75 JD</span><button class="btn-add-item">Add <i class="fas fa-plus"></i></button></div></div></div>
+    </div>
+
+    <!-- SNACK -->
+    <div class="menu-grid" id="tab-snack">
+      <div class="mcard reveal-up" data-item='{"id":"sn1","name":"Zinger Super Sandwich","nameAr":"ساندويش زنجر سوبر","img":"img/IMG-20210908-WA0014.jpg","desc":"Crispy zinger sandwich","sizes":{"Zinger Super Sandwich":1.75}}'><div class="mcard-img"><img src="img/IMG-20210908-WA0014.jpg" alt="Zinger Super" loading="lazy"/><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>Zinger Super Sandwich</h3><p>Crispy zinger sandwich</p><div class="prep-time">⏱️ 7 min</div><div class="mcard-footer"><span class="mprice">1.75 JD</span><button class="btn-add-item">Add <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"sn2","name":"Zinger Meal","nameAr":"وجبة زنجر","img":"img/IMG-20210908-WA0042.jpg","desc":"Zinger meal in different sizes","sizes":{"Regular Zinger Meal":2.75,"Super Zinger Meal":3.50,"Double Zinger Meal":4.00,"Triple Zinger Meal":5.50}}'><div class="mcard-img"><img src="img/IMG-20210908-WA0042.jpg" alt="Zinger Meal" loading="lazy"/><div class="mcard-badge hot">Special</div><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>Zinger Meal</h3><p>Zinger meal in different sizes</p><div class="prep-time">⏱️ 15–20 min</div><div class="mcard-footer"><span class="mprice">From 2.75 JD</span><button class="btn-add-item">Add <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"sn4","name":"Mexican Sandwich","nameAr":"ساندويش مكسيكي","img":"img/IMG-20210908-WA0002.jpg","desc":"Mexican sandwich","sizes":{"Mexican Sandwich":1.75}}'><div class="mcard-img"><img src="img/IMG-20210908-WA0002.jpg" alt="Mexican Sandwich" loading="lazy"/><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>Mexican Sandwich</h3><p>Mexican sandwich</p><div class="prep-time">⏱️ 5–10 min</div><div class="mcard-footer"><span class="mprice">1.75 JD</span><button class="btn-add-item">Add <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"sn5","name":"Mexican Meal","nameAr":"وجبة مكسيكي","img":"img/IMG-20210908-WA0025.jpg","desc":"Mexican meal in different sizes","sizes":{"Regular Meal":2.75,"Super Meal":3.50,"Double Meal":4.00,"Triple Meal":5.50,"Italian Mexican Meal":4.00}}'><div class="mcard-img"><img src="img/IMG-20210908-WA0025.jpg" alt="Mexican Meal" loading="lazy"/><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>Mexican Meal</h3><p>Mexican meal in different sizes</p><div class="prep-time">⏱️ 15–20 min</div><div class="mcard-footer"><span class="mprice">From 2.75 JD</span><button class="btn-add-item">Add <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"sn6","name":"Tender Super Sandwich","nameAr":"ساندويش تندر سوبر","img":"img/IMG-20210908-WA0014.jpg","desc":"Tender super sandwich","sizes":{"Tender Super Sandwich":1.75}}'><div class="mcard-img"><img src="img/IMG-20210908-WA0014.jpg" alt="Tender Sandwich" loading="lazy"/><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>Tender Super Sandwich</h3><p>Tender super sandwich</p><div class="prep-time">⏱️ 5–10 min</div><div class="mcard-footer"><span class="mprice">1.75 JD</span><button class="btn-add-item">Add <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"sn7","name":"Tender Meal","nameAr":"وجبة تندر","img":"img/IMG-20240502-WA0001.jpg","desc":"Tender meal in different sizes","sizes":{"Regular":2.75,"Super":3.50,"Double":4.00,"Triple":5.50}}'><div class="mcard-img"><img src="img/IMG-20240502-WA0001.jpg" alt="Tender Meal" loading="lazy"/><div class="mcard-badge hot">Special</div><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>Tender Meal</h3><p>Tender meal in different sizes</p><div class="prep-time">⏱️ 5–10 min</div><div class="mcard-footer"><span class="mprice">From 2.75 JD</span><button class="btn-add-item">Add <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"sn9","name":"Fajita Sandwich","nameAr":"ساندويش فاهيتا","img":"img/IMG-20210908-WA0001.jpg","desc":"Fajita sandwich","sizes":{"Fajita Sandwich":1.75}}'><div class="mcard-img"><img src="img/IMG-20210908-WA0001.jpg" alt="Fajita Sandwich" loading="lazy"/><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>Fajita Sandwich</h3><p>Fajita sandwich</p><div class="prep-time">⏱️ 5–10 min</div><div class="mcard-footer"><span class="mprice">1.75 JD</span><button class="btn-add-item">Add <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"sn10","name":"Fajita Meal","nameAr":"وجبة فاهيتا","img":"img/IMG-20210908-WA0018.jpg","desc":"Fajita meal in different sizes","sizes":{"Regular Meal":2.75,"Super Meal":3.50,"Double Meal":4.00,"Triple Meal":5.50,"Italian Fajita Meal":4.00}}'><div class="mcard-img"><img src="img/IMG-20210908-WA0018.jpg" alt="Fajita Meal" loading="lazy"/><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>Fajita Meal</h3><p>Fajita meal in different sizes</p><div class="prep-time">⏱️ 15–20 min</div><div class="mcard-footer"><span class="mprice">From 2.75 JD</span><button class="btn-add-item">Add <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"sn11","name":"Cordon Bleu Sandwich","nameAr":"ساندويش كوردن بلو","img":"img/IMG-20210908-WA0022.jpg","desc":"Cordon Bleu super sandwich","sizes":{"Cordon Bleu Super Sandwich":1.75}}'><div class="mcard-img"><img src="img/IMG-20210908-WA0022.jpg" alt="Cordon Bleu" loading="lazy"/><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>Cordon Bleu Sandwich</h3><p>Cordon Bleu super sandwich</p><div class="prep-time">⏱️ 10 min</div><div class="mcard-footer"><span class="mprice">1.75 JD</span><button class="btn-add-item">Add <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"sn13","name":"Escalope Sandwich","nameAr":"ساندويش اسكالوب","img":"img/IMG-20210908-WA0030.jpg","desc":"Escalope sandwich","sizes":{"Regular Sandwich":1.25,"XL Sandwich":2.00}}'><div class="mcard-img"><img src="img/IMG-20210908-WA0030.jpg" alt="Escalope" loading="lazy"/><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>Escalope Sandwich</h3><p>Escalope sandwich</p><div class="prep-time">⏱️ 10 min</div><div class="mcard-footer"><span class="mprice">From 1.25 JD</span><button class="btn-add-item">Add <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"sn16","name":"Meat Burger Sandwich","nameAr":"ساندويش برغر لحمة","img":"img/IMG-20210908-WA0041.jpg","desc":"Meat burger sandwich","sizes":{"Regular Sandwich":1.25,"XL Sandwich":2.00}}'><div class="mcard-img"><img src="img/IMG-20210908-WA0041.jpg" alt="Meat Burger" loading="lazy"/><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>Meat Burger Sandwich</h3><p>Meat burger sandwich</p><div class="prep-time">⏱️ 10 min</div><div class="mcard-footer"><span class="mprice">From 1.25 JD</span><button class="btn-add-item">Add <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"sn18","name":"Zinger or Tender Platter","nameAr":"سدر زنجر أو تندر","img":"img/IMG-20210919-WA0015.jpg","desc":"Family zinger or tender platter","sizes":{"Small Zinger Platter":10.00,"Family Zinger Platter":17.00,"Small Tender Platter":10.00,"Family Tender Platter":17.00}}'><div class="mcard-img"><img src="img/IMG-20210919-WA0015.jpg" alt="Zinger Tender Platter" loading="lazy"/><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>Zinger or Tender Platter</h3><p>Family platter — mixed variety</p><div class="prep-time">⏱️ 20–30 min</div><div class="mcard-footer"><span class="mprice">From 10.00 JD</span><button class="btn-add-item">Add <i class="fas fa-plus"></i></button></div></div></div>
+    </div>
+
+    <!-- DYNAMITE -->
+    <div class="menu-grid" id="tab-dynamite">
+      <div class="mcard reveal-up" data-item='{"id":"dy1","name":"Hot Dynamite Meal","nameAr":"وجبة ديناميت حار","img":"img/IMG-20210908-WA0042.jpg","desc":"Hot dynamite meal","sizes":{"Regular Dynamite":3.00,"Super Dynamite":3.75,"Double Dynamite":4.50,"Triple Dynamite":6.00}}'><div class="mcard-img"><img src="img/IMG-20210908-WA0042.jpg" alt="Hot Dynamite" loading="lazy"/><div class="mcard-badge hot"><i class="fas fa-fire"></i> Hot</div><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>Hot Dynamite Meal</h3><p>Hot dynamite meal</p><div class="prep-time">⏱️ 12–18 min</div><div class="mcard-footer"><span class="mprice">From 3.00 JD</span><button class="btn-add-item">Add <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"dy2","name":"Cold Dynamite Meal","nameAr":"وجبة ديناميت بارد","img":"img/IMG-20210908-WA0042.jpg","desc":"Cold dynamite meal","sizes":{"Regular Dynamite":3.00,"Super Dynamite":3.75,"Double Dynamite":4.50,"Triple Dynamite":6.00}}'><div class="mcard-img"><img src="img/IMG-20210908-WA0042.jpg" alt="Cold Dynamite" loading="lazy"/><div class="mcard-badge new">Cold</div><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>Cold Dynamite Meal</h3><p>Cold dynamite meal</p><div class="prep-time">⏱️ 12–18 min</div><div class="mcard-footer"><span class="mprice">From 3.00 JD</span><button class="btn-add-item">Add <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"dy3","name":"Hot Dynamite Sandwich","nameAr":"ساندويش ديناميت حار","img":"img/IMG-20230126-WA0052.jpg","desc":"Hot dynamite sandwich","sizes":{"Hot Dynamite Sandwich":2.00}}'><div class="mcard-img"><img src="img/IMG-20230126-WA0052.jpg" alt="Hot Dynamite Sandwich" loading="lazy"/><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>Hot Dynamite Sandwich</h3><p>Hot dynamite sandwich</p><div class="prep-time">⏱️ 5–10 min</div><div class="mcard-footer"><span class="mprice">2.00 JD</span><button class="btn-add-item">Add <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"dy5","name":"Hot Dynamite Platter","nameAr":"سدر ديناميت حار","img":"img/IMG-20210919-WA0015.jpg","desc":"Hot dynamite platter","sizes":{"Small Dynamite Platter":11.00,"Family Dynamite Platter":18.00}}'><div class="mcard-img"><img src="img/IMG-20210919-WA0015.jpg" alt="Dynamite Platter" loading="lazy"/><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>Hot Dynamite Platter</h3><p>Small or family dynamite platter</p><div class="prep-time">⏱️ 20–30 min</div><div class="mcard-footer"><span class="mprice">From 11.00 JD</span><button class="btn-add-item">Add <i class="fas fa-plus"></i></button></div></div></div>
+    </div>
+
+    <!-- BROASTED -->
+    <div class="menu-grid" id="tab-broasted">
+      <div class="mcard reveal-up" data-item='{"id":"br1","name":"Broasted Chicken","nameAr":"بروستد","img":"img/IMG-20251110-WA0009.jpg","desc":"Fresh crispy broasted chicken","sizes":{"4 Pieces":3.50,"8 Pieces":6.50,"12 Pieces":10.00,"16 Pieces":12.00,"20 Pieces":15.00,"24 Pieces":18.00,"28 Pieces":21.00,"32 Pieces":23.00}}'><div class="mcard-img"><img src="img/IMG-20251110-WA0009.jpg" alt="Broasted" loading="lazy"/><div class="mcard-badge new">New 🆕</div><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>Broasted Chicken</h3><p>Fresh crispy broasted chicken</p><div class="prep-time">⏱️ 15–30 min</div><div class="mcard-footer"><span class="mprice">From 3.50 JD</span><button class="btn-add-item">Add <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"br2","name":"Crispy Chicken","nameAr":"كرسبي","img":"img/IMG-20240613-WA0001.jpg","desc":"Crispy fried chicken","sizes":{"4 Pieces":2.75,"6 Pieces":3.50,"10 Pieces":5.00,"12 Pieces":6.00,"18 Pieces":9.00,"24 Pieces":12.00}}'><div class="mcard-img"><img src="img/IMG-20240613-WA0001.jpg" alt="Crispy" loading="lazy"/><div class="mcard-badge new">New 🆕</div><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>Crispy Chicken</h3><p>Crispy fried chicken</p><div class="prep-time">⏱️ 12–25 min</div><div class="mcard-footer"><span class="mprice">From 2.75 JD</span><button class="btn-add-item">Add <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"br4","name":"Chicken Wings","nameAr":"أجنحة دجاج","img":"img/IMG-20241017-WA0013.jpg","desc":"Crispy chicken wings","sizes":{"10 Pieces":2.50,"20 Pieces":4.00,"30 Pieces":5.50}}'><div class="mcard-img"><img src="img/IMG-20241017-WA0013.jpg" alt="Chicken Wings" loading="lazy"/><div class="mcard-badge hot">Special</div><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>Chicken Wings</h3><p>Crispy chicken wings</p><div class="prep-time">⏱️ 15–25 min</div><div class="mcard-footer"><span class="mprice">From 2.50 JD</span><button class="btn-add-item">Add <i class="fas fa-plus"></i></button></div></div></div>
+    </div>
+
+    <!-- MASHAWI / GRILLS -->
+    <div class="menu-grid" id="tab-mashawi">
+      <div class="mcard reveal-up" data-item='{"id":"ms1","name":"Charcoal Chicken","nameAr":"دجاج فحم","img":"img/IMG-20230330-WA0001.jpg","desc":"Grilled charcoal chicken","sizes":{"Half Chicken":2.75,"Whole Chicken":5.00}}'><div class="mcard-img"><img src="img/IMG-20230330-WA0001.jpg" alt="Charcoal Chicken" loading="lazy"/><div class="mcard-badge hot"><i class="fas fa-fire"></i> Charcoal</div><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>Charcoal Chicken</h3><p>Grilled charcoal chicken</p><div class="prep-time">⏱️ 25–40 min</div><div class="mcard-footer"><span class="mprice">From 2.75 JD</span><button class="btn-add-item">Add <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"ms2","name":"Grilled Chicken","nameAr":"دجاج شواية","img":"img/IMG-20230731-WA0026.jpg","desc":"Fresh grilled chicken","sizes":{"Half Chicken":3.00,"Whole Chicken":5.50}}'><div class="mcard-img"><img src="img/IMG-20230731-WA0026.jpg" alt="Grilled Chicken" loading="lazy"/><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>Grilled Chicken</h3><p>Fresh grilled chicken</p><div class="prep-time">⏱️ 20–35 min</div><div class="mcard-footer"><span class="mprice">From 3.00 JD</span><button class="btn-add-item">Add <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"ms3","name":"Kebab","nameAr":"كباب","img":"img/IMG-20251026-WA0011.jpg","desc":"Fresh grilled kebab","sizes":{"500g":3.00,"1kg":6.00}}'><div class="mcard-img"><img src="img/IMG-20251026-WA0011.jpg" alt="Kebab" loading="lazy"/><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>Kebab</h3><p>Fresh grilled kebab</p><div class="prep-time">⏱️ 20–30 min</div><div class="mcard-footer"><span class="mprice">From 3.00 JD</span><button class="btn-add-item">Add <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"ms5","name":"Shish Tawook","nameAr":"شيش","img":"img/IMG-20250813-WA0002.jpg","desc":"Grilled shish tawook","sizes":{"Shish Sandwich":1.00,"500g":3.50,"1kg":7.00}}'><div class="mcard-img"><img src="img/IMG-20250813-WA0002.jpg" alt="Shish Tawook" loading="lazy"/><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>Shish Tawook</h3><p>Grilled shish tawook</p><div class="prep-time">⏱️ 20–30 min</div><div class="mcard-footer"><span class="mprice">From 1.00 JD</span><button class="btn-add-item">Add <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"ms6","name":"Healthy Meal","nameAr":"وجبة صحي","img":"img/IMG-20240416-WA0004.jpg","desc":"Grilled healthy meal","sizes":{"Chicken":2.50,"Double":4.00}}'><div class="mcard-img"><img src="img/IMG-20240416-WA0004.jpg" alt="Healthy Meal" loading="lazy"/><div class="mcard-badge new">Healthy</div><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>Healthy Meal</h3><p>Grilled healthy meal</p><div class="prep-time">⏱️ 10–22 min</div><div class="mcard-footer"><span class="mprice">From 2.50 JD</span><button class="btn-add-item">Add <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"ms7","name":"Arayes","nameAr":"عرايس","img":"img/IMG-20250713-WA0021.jpg","desc":"Grilled arayes (stuffed flatbread)","sizes":{"Per Piece":0.50}}'><div class="mcard-img"><img src="img/IMG-20250713-WA0021.jpg" alt="Arayes" loading="lazy"/><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>Arayes</h3><p>Grilled arayes (stuffed flatbread)</p><div class="prep-time">⏱️ 8–10 min</div><div class="mcard-footer"><span class="mprice">0.50 JD / piece</span><button class="btn-add-item">Add <i class="fas fa-plus"></i></button></div></div></div>
+    </div>
+
+    <!-- RICE -->
+    <div class="menu-grid" id="tab-rice">
+      <div class="mcard reveal-up" data-item='{"id":"ri1","name":"Rice Platter","nameAr":"سدر أرز","img":"img/IMG-20230731-WA0022.jpg","desc":"Mandi, Zarb, Bukhari, Biryani, Kabsa, Mansaf and more","sizes":{"Quarter Chicken":2.25,"Half Chicken":3.50,"30cm Platter - Half Chicken":4.50,"30cm Platter - Whole Chicken":6.50,"40cm Platter - 1 Chicken":8.00,"40cm Platter - 1.5 Chickens":10.00,"45cm Platter - 1 Chicken":9.00,"45cm Platter - 1.5 Chickens":11.50,"50cm Platter - 2 Chickens":15.00,"50cm Platter - 2.5 Chickens":17.00,"55cm Platter - 3 Chickens":20.00,"55cm Platter - 4 Chickens":25.00}}'><div class="mcard-img"><img src="img/IMG-20230731-WA0022.jpg" alt="Rice Platter" loading="lazy"/><div class="mcard-badge hot">Best Seller</div><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>Rice Platter</h3><p>Mandi, Zarb, Bukhari, Kabsa, Mansaf & more</p><div class="prep-time">⏱️ 20–35 min</div><div class="mcard-footer"><span class="mprice">From 2.25 JD</span><button class="btn-add-item">Add <i class="fas fa-plus"></i></button></div></div></div>
+    </div>
+
+    <!-- MIX -->
+    <div class="menu-grid" id="tab-mix">
+      <div class="mcard reveal-up" data-item='{"id":"mx2","name":"Mix Platter","nameAr":"سدر مكس","img":"img/IMG-20210919-WA0015.jpg","desc":"2.5 shawarma + 2 (zinger, fajita or mexican) + fries & sides","sizes":{"Fajita Mix":9.00,"Zinger Mix":9.00,"Mexican Mix":9.00}}'><div class="mcard-img"><img src="img/IMG-20210919-WA0015.jpg" alt="Mix Platter" loading="lazy"/><div class="mcard-badge hot">Special</div><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>Mix Platter</h3><p>2.5 shawarma + 2 (zinger, fajita or mexican)</p><div class="prep-time">⏱️ 20–30 min</div><div class="mcard-footer"><span class="mprice">From 9.00 JD</span><button class="btn-add-item">Add <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"mx3","name":"Medium Mix Platter","nameAr":"سدر مكس وسط","img":"img/IMG-20210919-WA0015.jpg","desc":"4 shawarma + 3 (zinger, fajita or mexican) + fries & sides","sizes":{"Zinger Mix":13.50,"Fajita Mix":13.50,"Mexican Mix":13.50}}'><div class="mcard-img"><img src="img/IMG-20210919-WA0015.jpg" alt="Medium Mix Platter" loading="lazy"/><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>Medium Mix Platter</h3><p>4 shawarma + 3 (zinger, fajita or mexican)</p><div class="prep-time">⏱️ 20–30 min</div><div class="mcard-footer"><span class="mprice">13.50 JD</span><button class="btn-add-item">Add <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"mx4","name":"Family Mix Platter","nameAr":"سدر مكس عائلي","img":"img/IMG-20210919-WA0015.jpg","desc":"4.5 shawarma + 4 (zinger, fajita or mexican) + fries & sides","sizes":{"Zinger Mix":17.00,"Fajita Mix":17.00,"Mexican Mix":17.00}}'><div class="mcard-img"><img src="img/IMG-20210919-WA0015.jpg" alt="Family Mix" loading="lazy"/><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>Family Mix Platter</h3><p>4.5 shawarma + 4 (zinger, fajita or mexican)</p><div class="prep-time">⏱️ 20–30 min</div><div class="mcard-footer"><span class="mprice">17.00 JD</span><button class="btn-add-item">Add <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"mx5","name":"Group Mix Platter (10 People)","nameAr":"سدر مكس الشلة (10 أشخاص)","img":"img/IMG-20210919-WA0015.jpg","desc":"2 shawarma + 2 zinger + 2 mexican + 2 fajita + 2 escalope + 2 meat burger","sizes":{"Full Group Platter":18.50}}'><div class="mcard-img"><img src="img/IMG-20210919-WA0015.jpg" alt="Group Platter" loading="lazy"/><div class="mcard-badge gold"><i class="fas fa-star"></i> For Groups</div><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>Group Mix Platter (10 People)</h3><p>Complete variety for 10 people</p><div class="prep-time">⏱️ 20–35 min</div><div class="mcard-footer"><span class="mprice">18.50 JD</span><button class="btn-add-item">Add <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"mx6","name":"Duo Mix Meals","nameAr":"وجبات مكس الثنائية","img":"img/572ED1C8-A5DB-42BA-8C03-065BFAD6F1C7_1_201_a.jpeg","desc":"Choose your favorite combination","sizes":{"Shawarma + Tender":4.00,"Shawarma + Zinger":4.00,"Shawarma + Fajita":4.00,"Zinger + Fajita":4.00,"Zinger + Tender":4.00,"Zinger + Mexican":4.00,"Tender + Fajita":4.00,"Shawarma + Mexican":4.00}}'><div class="mcard-img"><img src="img/572ED1C8-A5DB-42BA-8C03-065BFAD6F1C7_1_201_a.jpeg" alt="Duo Mix" loading="lazy"/><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>Duo Mix Meals</h3><p>Choose your favorite combination</p><div class="prep-time">⏱️ 12–20 min</div><div class="mcard-footer"><span class="mprice">4.00 JD</span><button class="btn-add-item">Add <i class="fas fa-plus"></i></button></div></div></div>
+    </div>
+
+    <!-- SIDES -->
+    <div class="menu-grid" id="tab-sides">
+      <div class="mcard reveal-up" data-item='{"id":"si1","name":"Matrix Drink","nameAr":"ماتركس","img":"img/matrix Background Removed.png","desc":"Matrix in different sizes","sizes":{"Small":0.30,"Medium":0.60,"Large":1.00}}'><div class="mcard-img"><img src="img/matrix Background Removed.png" alt="Matrix" loading="lazy" style="object-fit:contain;background:#1a1a1a"/><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>Matrix Drink</h3><p>Matrix in different sizes</p><div class="prep-time">⏱️ Instant</div><div class="mcard-footer"><span class="mprice">From 0.30 JD</span><button class="btn-add-item">Add <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"si2","name":"Laban (Yogurt Drink)","nameAr":"شنينة","img":"img/Untitled-2021-09-15T093003.086_800x.webp","desc":"Fresh laban drink","sizes":{"Regular Laban":0.35}}'><div class="mcard-img"><img src="img/Untitled-2021-09-15T093003.086_800x.webp" alt="Laban" loading="lazy"/><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>Laban (Yogurt Drink)</h3><p>Fresh laban drink</p><div class="prep-time">⏱️ Instant</div><div class="mcard-footer"><span class="mprice">0.35 JD</span><button class="btn-add-item">Add <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"si3","name":"French Fries","nameAr":"بطاطا","img":"img/IMG-20210613-WA0000 2.jpg","desc":"Fried potato","sizes":{"Small Fries":0.50,"Medium Fries":0.75,"Large Fries":1.00}}'><div class="mcard-img"><img src="img/IMG-20210613-WA0000 2.jpg" alt="Fries" loading="lazy"/><div class="mcard-badge hot">Special</div><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>French Fries</h3><p>Fried potato</p><div class="prep-time">⏱️ 5 min</div><div class="mcard-footer"><span class="mprice">From 0.50 JD</span><button class="btn-add-item">Add <i class="fas fa-plus"></i></button></div></div></div>
+      <div class="mcard reveal-up" data-item='{"id":"si4","name":"Extras & Sides","nameAr":"مقبلات","img":"img/2b208b28d6323d914faeed196c04c28d_w750_h750.jpg","desc":"Sauces, garlic sauce, pickles, cheese, bread","sizes":{"Buffalo Hot Sauce":0.25,"Honey Mustard Sauce":0.25,"Ranch Sauce":0.25,"BBQ Sauce":0.25,"Small Garlic Sauce":0.25,"Medium Garlic Sauce":0.50,"Large Garlic Sauce":0.75,"American Mayo":0.25,"Ketchup":0.25,"Pickles":0.25,"Coleslaw":0.25,"Liquid Cheese":0.25,"Mozzarella Cheese":0.25,"Yellow Cheese Slice":0.10,"Small Bread":0.10,"Large Bread":0.50}}'><div class="mcard-img"><img src="img/2b208b28d6323d914faeed196c04c28d_w750_h750.jpg" alt="Extras" loading="lazy"/><div class="mcard-overlay"><i class="fas fa-plus-circle"></i></div></div><div class="mcard-body"><h3>Extras & Sides</h3><p>Sauces, garlic sauce, pickles, cheese, bread</p><div class="prep-time">⏱️ Instant</div><div class="mcard-footer"><span class="mprice">From 0.10 JD</span><button class="btn-add-item">Add <i class="fas fa-plus"></i></button></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- MAP -->
+<div class="contact-section" style="padding:0">
+  <div class="map-container">
+    <div class="map-wrapper">
+      <div id="staticMap"></div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="stag">Contact Us</span>
+      <h2>WE'RE HERE FOR YOU</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info reveal-left">
+        <div class="cinfo-card"><div class="cinfo-icon"><i class="fas fa-map-marker-alt"></i></div><div><h4>Our Location</h4><p>Sahab — Main Street — Al-Dakhla Triangle</p></div></div>
+        <div class="cinfo-card"><div class="cinfo-icon"><i class="fas fa-phone"></i></div><div><h4>Call Us</h4><p>0790 697 666</p><p>0788 709 412</p></div></div>
+        <div class="cinfo-card"><div class="cinfo-icon"><i class="fas fa-clock"></i></div><div><h4>Working Hours</h4><p>Daily: 11 AM — 12 Midnight</p></div></div>
+        <div class="cinfo-card"><div class="cinfo-icon"><i class="fas fa-motorcycle"></i></div><div><h4>Delivery</h4><p>Delivery available to your door</p></div></div>
+      </div>
+      <div class="contact-form-wrap reveal-right">
+        <h3>Send Us a Message</h3>
+        <div class="fgrp"><input type="text" id="cf-name" placeholder="Your Name"/><i class="fas fa-user"></i></div>
+        <div class="fgrp"><input type="tel" id="cf-phone" placeholder="Phone Number"/><i class="fas fa-phone"></i></div>
+        <div class="fgrp"><textarea id="cf-msg" rows="4" placeholder="Your message or order..."></textarea><i class="fas fa-comment"></i></div>
+        <button type="button" class="btn-primary pulse-btn" onclick="submitContact()" style="width:100%;justify-content:center"><i class="fas fa-paper-plane"></i> Send Message</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="img/naksha logo.png" alt="Naksha" class="footer-logo" loading="lazy"/>
+      <p>Shawarma — Grills — Broasted — An unforgettable taste</p>
+      <div class="socials">
+        <a href="https://www.instagram.com/naksheh" class="soc-ico" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.facebook.com/p/%D9%85%D8%B7%D8%B9%D9%85-%D9%86%D9%83%D8%B4%D9%87-%D8%A7%D9%84%D9%85%D8%B1%D9%83%D8%B2%D9%8A-100057636151417/" class="soc-ico" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact Info</h4>
+      <p><i class="fas fa-map-marker-alt"></i> Sahab, Amman, Jordan</p>
+      <p><i class="fas fa-phone"></i><a href="tel:+962788709412"><span dir="ltr">+962 788 709 412</span></a></p>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2025 Naksha Central — All Rights Reserved — Version 2.0</div>
+</footer>
+
+<!-- OPTIONS MODAL -->
+<div class="modal-overlay" id="optionsOverlay"></div>
+<div class="modal options-modal" id="optionsModal" role="dialog" aria-modal="true" aria-labelledby="modalName">
+  <button class="modal-close" id="modalClose" aria-label="Close"><i class="fas fa-times"></i></button>
+  <div class="modal-img-wrap"><img id="modalImg" src="" alt="" loading="lazy"/><div class="modal-img-grad"></div><div class="modal-item-title"><h2 id="modalName"></h2><p id="modalDesc"></p></div></div>
+  <div class="modal-body">
+    <div class="modal-sec" id="sizeSec">
+      <h4 class="msec-title"><i class="fas fa-layer-group"></i> Choose Size or Quantity</h4>
+      <div class="dyn-size-grid" id="dynSizeGrid"></div>
+    </div>
+    <div class="modal-sec">
+      <h4 class="msec-title"><i class="fas fa-plus-circle"></i> Add-ons</h4>
+      <div class="addons-wrap">
+        <label class="addon-row"><div class="addon-left"><div class="addon-ico cheese"><i class="fas fa-cheese"></i></div><div class="addon-text"><span class="addon-name">Extra Cheese</span><span class="addon-sub">Yellow cheese slice</span></div></div><div class="addon-right"><span class="addon-badge plus">+0.10 JD</span><div class="tog"><input type="checkbox" class="addon-cb" data-price="0.10" data-label="Extra Cheese" data-label-ar="جبن إضافي"/><div class="tog-track"><div class="tog-thumb"></div></div></div></div></label>
+      </div>
+    </div>
+    <div class="modal-sec">
+      <h4 class="msec-title"><i class="fas fa-sort-numeric-up"></i> Quantity</h4>
+      <div class="qty-ctrl"><button class="qty-btn" id="qtyMinus" aria-label="Decrease"><i class="fas fa-minus"></i></button><span class="qty-val" id="qtyVal">1</span><button class="qty-btn" id="qtyPlus" aria-label="Increase"><i class="fas fa-plus"></i></button></div>
+    </div>
+    <div class="modal-action">
+      <div class="modal-price-row"><span class="mpr-label">Total</span><span class="mpr-price" id="modalTotalPrice">0.00 JD</span></div>
+      <button class="btn-primary btn-confirm" id="confirmAddBtn"><i class="fas fa-shopping-bag"></i> Add to Cart</button>
+    </div>
+  </div>
+</div>
+
+<!-- CART SIDEBAR -->
+<div class="cart-overlay" id="cartOverlay"></div>
+<div class="cart-sidebar" id="cartSidebar" role="complementary" aria-label="Shopping Cart">
+  <div class="cart-head"><div><h3 class="cart-title">Your Cart</h3><span class="cart-item-count" id="cartItemCount">Empty</span></div><button class="cart-close-btn" id="cartClose" aria-label="Close Cart"><i class="fas fa-times"></i></button></div>
+  <div class="cart-body" id="cartBody">
+    <div class="cart-empty-state" id="cartEmpty"><div class="ces-icon"><i class="fas fa-shopping-bag"></i></div><p>Your cart is empty</p><small>Add your favorite meals to get started</small><button class="btn-primary" onclick="closeCart()" style="margin-top:20px;padding:11px 24px">Browse Menu</button></div>
+    <div id="cartItems"></div>
+  </div>
+  <div class="cart-foot" id="cartFoot" style="display:none">
+    <div class="cart-subtotal-row"><span>Subtotal</span><span id="cartSubtotal">0.00 JD</span></div>
+    <div class="cart-total-row"><span>Total</span><span id="cartGrandTotal" class="gtp">0.00 JD</span></div>
+    <button class="btn-whatsapp" id="checkoutBtn"><i class="fab fa-whatsapp"></i> Complete Order via WhatsApp</button>
+  </div>
+</div>
+
+<!-- CHECKOUT MODAL -->
+<div class="modal-overlay" id="checkoutOverlay"></div>
+<div class="modal checkout-modal" id="checkoutModal" role="dialog" aria-modal="true" aria-labelledby="coFormTitle">
+  <button class="modal-close" id="checkoutClose" aria-label="Close"><i class="fas fa-times"></i></button>
+  <div class="checkout-head">
+    <div class="co-icon"><i class="fab fa-whatsapp"></i></div>
+    <h2 id="coFormTitle">Complete Order</h2>
+    <p id="coFormSubtitle">Choose delivery method and fill in your details</p>
+  </div>
+  <div class="co-profile-card" id="coProfileCard">
+    <div class="co-avatar" id="coAvatar">?</div>
+    <div class="co-profile-info">
+      <div class="co-profile-name" id="coProfileName">—</div>
+      <div class="co-profile-phone" id="coProfilePhone">—</div>
+    </div>
+    <div class="co-profile-actions">
+      <button class="co-edit-btn" id="coEditBtn" aria-label="Edit"><i class="fas fa-pen"></i></button>
+    </div>
+  </div>
+  <div class="checkout-body">
+    <div class="co-fields-wrap" id="coFieldsWrap">
+      <div class="fgrp"><label for="co-name">Full Name <span class="req">*</span></label><input type="text" id="co-name" placeholder="John Smith" autocomplete="name" inputmode="text"/></div>
+      <div class="fgrp"><label for="co-phone">Phone Number <span class="req">*</span></label><input type="tel" id="co-phone" placeholder="07XXXXXXXX" inputmode="tel" autocomplete="tel"/></div>
+    </div>
+    <div class="co-divider">Delivery Method</div>
+    <div class="co-mode-toggle" id="coModeToggle">
+      <button class="co-mode-btn active" data-mode="delivery" id="btnDelivery"><i class="fas fa-motorcycle"></i>Delivery</button>
+      <button class="co-mode-btn" data-mode="pickup" id="btnPickup"><i class="fas fa-store"></i>Pickup</button>
+    </div>
+    <div class="co-pickup-notice" id="coPickupNotice"><i class="fas fa-map-marker-alt"></i><span>Your order will be prepared for pickup at Naksha Central — Sahab</span></div>
+    <div class="co-delivery-section" id="coDeliverySection">
+      <div class="fgrp">
+        <label>Delivery Zone <span class="req">*</span></label>
+        <div class="zone-search-wrap">
+          <i class="fas fa-search zone-search-ico"></i>
+          <input type="text" id="zoneSearch" placeholder="Search for your area..." oninput="filterZones(this.value)"/>
+        </div>
+        <div class="zone-grid" id="zoneGrid"></div>
+      </div>
+      <div class="fgrp">
+        <label for="co-address">Address Details <span style="color:var(--gray);font-weight:400">(optional)</span></label>
+        <textarea id="co-address" rows="2" placeholder="e.g. Sahab, Liberation St., Building 5, Floor 2"></textarea>
+      </div>
+      <div class="zone-fee-box" id="zoneFeeBox">
+        <i class="fas fa-motorcycle"></i>
+        <span id="zoneFeeText"></span>
+      </div>
+    </div>
+    <div class="fgrp"><label for="co-notes">Notes <span style="color:var(--gray);font-weight:400">(optional)</span></label><textarea id="co-notes" rows="2" placeholder="Any special requests..."></textarea></div>
+    <div class="co-summary">
+      <h4><i class="fas fa-receipt"></i> Order Summary</h4>
+      <div id="coSummaryItems"></div>
+      <div class="co-delivery-row" id="coDeliveryRow" style="display:none">
+        <span><i class="fas fa-motorcycle" style="margin-right:5px;color:var(--red-l)"></i>Delivery Fee</span>
+        <span class="co-delivery-price" id="coDeliveryCost">—</span>
+      </div>
+      <div class="co-total-row"><span>Total</span><span id="coTotal" class="gtp">0.00 JD</span></div>
+    </div>
+    <button class="btn-whatsapp btn-send-wa" id="sendWaBtn"><i class="fab fa-whatsapp"></i> Send Order via WhatsApp</button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* ── GLOBALS ── */
+let cart = [], cartIdCounter = 1, currentItem = null, modalQty = 1;
+const $ = id => document.getElementById(id);
+
+const RESTAURANT = { lat: 31.8792, lng: 35.9919 };
+let deliveryMode = 'delivery';
+let selectedZoneName = null;
+let selectedZoneText = null;
+
+/* ── DELIVERY ZONES ── */
+const DELIVERY_ZONES = [
+  { name:'Sahab / سحاب',                   price:'1.00 - 2.00 JD' },
+  { name:'Al-Nuzha / النزهة',              price:'1.50 - 2.00 JD' },
+  { name:'Salbud / سلبود',                 price:'1.50 - 2.00 JD' },
+  { name:'Al-Dahiya / الضاحية',            price:'2.00 - 3.00 JD' },
+  { name:'Al-Abdaliya / العبدلية',         price:'1.50 - 2.50 JD' },
+  { name:'Al-Rujaib / الرجيب',             price:'2.00 - 2.50 JD' },
+  { name:'Abu Alanda / أبو علندا',          price:'3.00 - 3.50 JD' },
+  { name:'Al-Dababyeh / الدبايبة',         price:'2.00 - 3.50 JD' },
+  { name:'Al-Shawabkeh / الشوابكة',        price:'2.00 - 3.00 JD' },
+  { name:'Al-Rajam / الرجم',               price:'2.50 - 3.50 JD' },
+  { name:'Al-Muwaqar / الموقر',            price:'4.00 JD'         },
+  { name:'Al-Faisaliya / الفيصلية',        price:'3.00 JD'         },
+  { name:'Sahab Industrial / الصناعية سحاب', price:'1.50 - 2.00 JD' },
+  { name:'Industrial Zones / التجمعات الصناعية', price:'1.50 - 2.00 JD' },
+  { name:'Al-Mustanada / المستندة',        price:'2.00 - 3.00 JD' },
+  { name:'Street 60 / شارع 60',            price:'1.50 - 2.50 JD' },
+  { name:'Street 40 / شارع 40',            price:'1.50 JD'         },
+  { name:'Al-Mashaghel / المشاغل',         price:'1.50 JD'         },
+  { name:'Public Security / الأمن العام',   price:'1.50 JD'         },
+  { name:'Al-Bayda / البيضا',              price:'3.50 JD'         },
+  { name:'East Dhaheya / الذهيبة الشرقية', price:'3.50 JD'         },
+  { name:'West Dhaheya / الذهيبة الغربية', price:'4.00 JD'         },
+  { name:'Salim Village / قرية سالم',      price:'2.50 JD'         },
+  { name:'Al-Laban / اللبن',              price:'5.00 JD'         },
+  { name:'Khirbat Al-Suq / خربة السوق',   price:'3.00 JD'         },
+  { name:'Latrun Hospital / مستشفى اللطرون', price:'3.50 JD'       },
+];
+
+function renderZones(list) {
+  const grid = $('zoneGrid');
+  if (!list.length) { grid.innerHTML = '<p class="zone-no-res">No results found</p>'; return; }
+  grid.innerHTML = list.map(z =>
+    `<button class="zone-btn${selectedZoneName===z.name?' selected':''}"
+       onclick="selectZone('${z.name.replace(/'/g,"\\'")}','${z.price}')">
+      <span class="zname">${z.name}</span>
+      <span class="zprice">${z.price}</span>
+    </button>`
+  ).join('');
+}
+
+function selectZone(name, price) {
+  selectedZoneName = name;
+  selectedZoneText = price;
+  renderZones(currentZoneList());
+  $('zoneFeeText').innerHTML = `Zone: <strong>${name}</strong> · Delivery Fee: <strong>${price}</strong>`;
+  $('zoneFeeBox').classList.add('show');
+  $('coDeliveryRow').style.display = 'flex';
+  $('coDeliveryCost').textContent = price;
+  _updateTotal();
+}
+
+function currentZoneList() {
+  const q = ($('zoneSearch') || {}).value || '';
+  return q.trim() ? DELIVERY_ZONES.filter(z => z.name.toLowerCase().includes(q.trim().toLowerCase())) : DELIVERY_ZONES;
+}
+
+function filterZones(q) {
+  const list = q.trim() ? DELIVERY_ZONES.filter(z => z.name.toLowerCase().includes(q.trim().toLowerCase())) : DELIVERY_ZONES;
+  renderZones(list);
+}
+
+function _updateTotal() {
+  const sub = cart.reduce((s, i) => s + i.unitPrice * i.qty, 0);
+  $('coTotal').textContent = sub.toFixed(2) + ' JD';
+}
+
+function setDeliveryMode(mode) {
+  deliveryMode = mode;
+  document.querySelectorAll('.co-mode-btn').forEach(b => b.classList.toggle('active', b.dataset.mode === mode));
+  const ds = $('coDeliverySection');
+  const pn = $('coPickupNotice');
+  const dr = $('coDeliveryRow');
+  if (mode === 'pickup') {
+    _collapseEl(ds);
+    pn.classList.add('visible');
+    dr.style.display = 'none';
+    _updateTotal();
+  } else {
+    pn.classList.remove('visible');
+    _expandEl(ds);
+    if (selectedZoneName) dr.style.display = 'flex';
+    _updateTotal();
+  }
+}
+document.querySelectorAll('.co-mode-btn').forEach(btn => btn.addEventListener('click', () => setDeliveryMode(btn.dataset.mode)));
+
+/* ── GOOGLE MAPS ── */
+window.initGoogleMaps = function() { _buildStaticMap(); };
+function _buildStaticMap() {
+  const el = $('staticMap');
+  if (!el || !window.google) return;
+  const map = new google.maps.Map(el, { center: RESTAURANT, zoom: 16, mapId: 'naksha_static', gestureHandling: 'cooperative' });
+  const pin = document.createElement('div');
+  pin.style.cssText = 'background:#C62828;border:3px solid #fff;border-radius:50%;width:42px;height:42px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;box-shadow:0 4px 12px rgba(198,40,40,.5)';
+  pin.textContent = '🍗';
+  new google.maps.marker.AdvancedMarkerElement({ position: RESTAURANT, map, title: 'Naksha Central', content: pin });
+  const iw = new google.maps.InfoWindow({ content: '<div style="font-family:DM Sans,sans-serif;font-weight:700;color:#111;padding:4px 6px">🍗 Naksha Central — Sahab</div>' });
+  iw.open(map);
+}
+
+/* ── NAVBAR ── */
+const navbar = $('navbar'), hamburger = $('hamburger'), navLinks = $('navLinks'), navOverlay = $('navOverlay');
+window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 50), { passive: true });
+function openNav()  { hamburger.classList.add('active');    navLinks.classList.add('open');    navOverlay.classList.add('show');    hamburger.setAttribute('aria-expanded','true');  document.body.style.overflow='hidden'; }
+function closeNav() { hamburger.classList.remove('active'); navLinks.classList.remove('open'); navOverlay.classList.remove('show'); hamburger.setAttribute('aria-expanded','false'); document.body.style.overflow=''; }
+hamburger.addEventListener('click', () => navLinks.classList.contains('open') ? closeNav() : openNav());
+navOverlay.addEventListener('click', closeNav);
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
+window.addEventListener('resize', () => { if (window.innerWidth > 900) closeNav(); });
+
+/* ── PARTICLES ── */
+(function(){
+  const canvas=$('particleCanvas'),ctx=canvas.getContext('2d');
+  let W,H,ps=[];
+  function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;}
+  resize();
+  window.addEventListener('resize',resize,{passive:true});
+  function P(){this.x=Math.random()*W;this.y=H+100;this.size=Math.random()*2.5+0.8;this.speed=Math.random()*0.7+0.25;this.opacity=Math.random()*0.45+0.08;this.color=Math.random()>.5?'#C62828':'#F4C430';this.drift=(Math.random()-.5)*0.35;}
+  const n=window.innerWidth<768?14:24;
+  for(let i=0;i<n;i++){const p=new P();p.y=Math.random()*H;ps.push(p);}
+  let raf;
+  (function draw(){ctx.clearRect(0,0,W,H);ps.forEach(p=>{p.y-=p.speed;p.x+=p.drift;p.opacity-=0.0006;if(p.y<-10||p.opacity<=0)Object.assign(p,new P());ctx.globalAlpha=p.opacity;ctx.fillStyle=p.color;ctx.beginPath();ctx.arc(p.x,p.y,p.size,0,Math.PI*2);ctx.fill();});ctx.globalAlpha=1;raf=requestAnimationFrame(draw);})();
+  document.addEventListener('visibilitychange',()=>{if(document.hidden)cancelAnimationFrame(raf);});
+})();
+
+/* ── MENU TABS ── */
+function bindCardBtn(card) {
+  const btn = card.querySelector('.btn-add-item');
+  if (!btn || btn.disabled) return;
+  const fresh = btn.cloneNode(true);
+  btn.parentNode.replaceChild(fresh, btn);
+  fresh.addEventListener('click', e => { e.stopPropagation(); openOptionsModal(JSON.parse(card.dataset.item)); });
+}
+function buildAllTab() {
+  const all = $('tab-all');
+  all.innerHTML = '';
+  ['tab-shawarma','tab-snack','tab-dynamite','tab-broasted','tab-mashawi','tab-rice','tab-mix','tab-sides'].forEach(id => {
+    const src = document.getElementById(id);
+    if (!src) return;
+    src.querySelectorAll('.mcard').forEach(card => { const c = card.cloneNode(true); bindCardBtn(c); all.appendChild(c); });
+  });
+}
+buildAllTab();
+document.querySelectorAll('.mcard').forEach(bindCardBtn);
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('[id^="tab-"]').forEach(g => g.classList.remove('active-grid'));
+    const grid = $('tab-' + btn.dataset.tab);
+    grid.classList.add('active-grid');
+    grid.querySelectorAll('.mcard').forEach((c,i) => {
+      c.style.cssText='opacity:0;transform:translateY(22px)';
+      setTimeout(()=>{ c.style.cssText='transition:opacity .35s ease,transform .35s ease;opacity:1;transform:translateY(0)'; },i*55);
+    });
+  });
+});
+
+/* ── OPTIONS MODAL ── */
+const optionsOverlay=$('optionsOverlay'),optionsModal=$('optionsModal'),modalClose=$('modalClose');
+const modalImg=$('modalImg'),modalNameEl=$('modalName'),modalDescEl=$('modalDesc');
+const sizeSec=$('sizeSec'),dynSizeGrid=$('dynSizeGrid');
+const qtyMinus=$('qtyMinus'),qtyPlus=$('qtyPlus'),qtyVal=$('qtyVal'),modalTotalPrice=$('modalTotalPrice'),confirmAddBtn=$('confirmAddBtn');
+
+function openOptionsModal(item) {
+  currentItem=item; modalQty=1;
+  modalImg.src=item.img; modalNameEl.textContent=item.name; modalDescEl.textContent=item.desc;
+  if (item.sizes && Object.keys(item.sizes).length) {
+    sizeSec.style.display='block'; dynSizeGrid.innerHTML='';
+    Object.entries(item.sizes).forEach(([label,price],idx) => {
+      const btn=document.createElement('button');
+      btn.className='dyn-size-btn'+(idx===0?' selected':'');
+      btn.dataset.price=price; btn.dataset.label=label;
+      btn.innerHTML=`<span class="dsb-name">${label}</span><span class="dsb-price">${parseFloat(price).toFixed(2)} JD</span>`;
+      btn.addEventListener('click',()=>{ dynSizeGrid.querySelectorAll('.dyn-size-btn').forEach(b=>b.classList.remove('selected')); btn.classList.add('selected'); calcModalTotal(); });
+      dynSizeGrid.appendChild(btn);
+    });
+  } else { sizeSec.style.display='none'; }
+  document.querySelectorAll('.addon-cb').forEach(cb=>{ cb.checked=false; });
+  qtyVal.textContent='1'; calcModalTotal();
+  showModal(optionsOverlay,optionsModal);
+}
+function closeOptionsModal(){ hideModal(optionsOverlay,optionsModal); currentItem=null; }
+modalClose.addEventListener('click',closeOptionsModal);
+optionsOverlay.addEventListener('click',closeOptionsModal);
+qtyMinus.addEventListener('click',()=>{ if(modalQty>1){modalQty--;qtyVal.textContent=modalQty;calcModalTotal();} });
+qtyPlus.addEventListener('click',()=>{ if(modalQty<99){modalQty++;qtyVal.textContent=modalQty;calcModalTotal();} });
+document.querySelectorAll('.addon-cb').forEach(cb=>cb.addEventListener('change',calcModalTotal));
+function calcModalTotal() {
+  if(!currentItem) return;
+  const sel=dynSizeGrid.querySelector('.dyn-size-btn.selected');
+  let p=sel?parseFloat(sel.dataset.price):0;
+  document.querySelectorAll('.addon-cb:checked').forEach(cb=>{ p+=parseFloat(cb.dataset.price)||0; });
+  modalTotalPrice.textContent=(p*modalQty).toFixed(2)+' JD';
+}
+confirmAddBtn.addEventListener('click',()=>{
+  if(!currentItem) return;
+  const sel=dynSizeGrid.querySelector('.dyn-size-btn.selected');
+  const sizeLabel=sel?sel.dataset.label:null;
+  const sizePrice=sel?parseFloat(sel.dataset.price):0;
+  const addons=[];
+  document.querySelectorAll('.addon-cb:checked').forEach(cb=>{ addons.push({label:cb.dataset.label,labelAr:cb.dataset.labelAr||cb.dataset.label,price:parseFloat(cb.dataset.price)}); });
+  const unitPrice=sizePrice+addons.reduce((s,a)=>s+a.price,0);
+  addToCart({name:currentItem.name,nameAr:currentItem.nameAr||currentItem.name,qty:modalQty,sizeLabel,addons,unitPrice,totalPrice:unitPrice*modalQty});
+  closeOptionsModal();
+});
+
+/* ── CART ── */
+function addToCart(item) {
+  item.id=cartIdCounter++; cart.push(item); renderCart(); animateCartBtn();
+  showToast('✅ "'+item.name+'" added to cart');
+}
+function renderCart() {
+  const total=cart.reduce((s,i)=>s+i.unitPrice*i.qty,0);
+  const count=cart.reduce((s,i)=>s+i.qty,0);
+  $('cartCount').textContent=count;
+  $('cartCount').classList.toggle('show',count>0);
+  $('cartItemCount').textContent=count>0?count+' item'+(count>1?'s':''):'Empty';
+  if(!cart.length){$('cartEmpty').style.display='flex';$('cartItems').innerHTML='';$('cartFoot').style.display='none';return;}
+  $('cartEmpty').style.display='none'; $('cartFoot').style.display='block';
+  $('cartSubtotal').textContent=total.toFixed(2)+' JD';
+  $('cartGrandTotal').textContent=total.toFixed(2)+' JD';
+  $('cartItems').innerHTML=cart.map(item=>{
+    const tags=[];
+    if(item.sizeLabel) tags.push(`<span class="ci-tag">${item.sizeLabel}</span>`);
+    item.addons.forEach(a=>tags.push(`<span class="ci-tag">${a.label}${a.price>0?' +'+a.price.toFixed(2):''}</span>`));
+    return `<div class="ci-wrap" id="ci-${item.id}">
+      <div class="ci-top"><div style="flex:1"><div class="ci-name">${item.name}</div><div class="ci-details">${tags.join('')}</div></div><button class="ci-remove" onclick="removeFromCart(${item.id})"><i class="fas fa-trash-alt"></i></button></div>
+      <div class="ci-bottom"><span class="ci-price">${(item.unitPrice*item.qty).toFixed(2)} JD</span><div class="ci-qty-ctrl"><button class="ci-qty-btn" onclick="changeCartQty(${item.id},-1)"><i class="fas fa-minus"></i></button><span class="ci-qty-val">${item.qty}</span><button class="ci-qty-btn" onclick="changeCartQty(${item.id},1)"><i class="fas fa-plus"></i></button></div></div>
+    </div>`;
+  }).join('');
+}
+function removeFromCart(id){const el=$('ci-'+id);if(!el)return;el.style.cssText='transition:.28s ease;opacity:0;transform:translateX(16px)';setTimeout(()=>{cart=cart.filter(i=>i.id!==id);renderCart();},260);}
+function changeCartQty(id,delta){const item=cart.find(i=>i.id===id);if(!item)return;item.qty+=delta;if(item.qty<=0){removeFromCart(id);return;}renderCart();}
+function openCart(){$('cartSidebar').classList.add('open');$('cartOverlay').classList.add('show');document.body.style.overflow='hidden';}
+function closeCart(){$('cartSidebar').classList.remove('open');$('cartOverlay').classList.remove('show');document.body.style.overflow='';}
+$('cartBtn').addEventListener('click',openCart);
+$('cartClose').addEventListener('click',closeCart);
+$('cartOverlay').addEventListener('click',closeCart);
+
+/* ── PROFILE ── */
+const PROFILE_KEY='naksha_profile_en_v1';
+const Profile={
+  load(){try{return JSON.parse(localStorage.getItem(PROFILE_KEY))||null;}catch{return null;}},
+  save(n,p){try{localStorage.setItem(PROFILE_KEY,JSON.stringify({name:n,phone:p}));}catch{}}
+};
+function getInitials(n){const parts=n.trim().split(/\s+/).filter(Boolean);return parts.length>=2?(parts[0][0]+parts[1][0]).toUpperCase():n.trim().substring(0,2).toUpperCase();}
+
+/* ── CHECKOUT ── */
+$('checkoutBtn').addEventListener('click',()=>{
+  if(!cart.length) return;
+  deliveryMode='delivery'; selectedZoneName=null; selectedZoneText=null;
+  document.querySelectorAll('.co-mode-btn').forEach(b=>b.classList.toggle('active',b.dataset.mode==='delivery'));
+  $('coPickupNotice').classList.remove('visible');
+  $('coDeliveryRow').style.display='none';
+  $('zoneFeeBox').classList.remove('show');
+  const ds=$('coDeliverySection');
+  ds.classList.remove('hidden'); ds.style.height='auto';
+  renderZones(DELIVERY_ZONES);
+  _buildSummary(); _applyProfile();
+  closeCart();
+  showModal($('checkoutOverlay'),$('checkoutModal'));
+});
+
+function _buildSummary(){
+  const sub=cart.reduce((s,i)=>s+i.unitPrice*i.qty,0);
+  $('coTotal').textContent=sub.toFixed(2)+' JD';
+  $('coSummaryItems').innerHTML=cart.map(item=>{
+    const d=[];
+    if(item.sizeLabel) d.push(item.sizeLabel);
+    if(item.addons.length) d.push(item.addons.map(a=>a.label).join(', '));
+    return `<div class="co-item"><div class="co-item-left"><strong>${item.name}</strong>${item.qty>1?' ×'+item.qty:''}${d.length?'<br><small style="color:var(--gray)">'+d.join(' · ')+'</small>':''}</div><span class="co-item-price">${(item.unitPrice*item.qty).toFixed(2)} JD</span></div>`;
+  }).join('');
+}
+
+function _applyProfile(){
+  const profile=Profile.load();
+  const wrap=$('coFieldsWrap'),card=$('coProfileCard');
+  const ni=$('co-name'),pi=$('co-phone');
+  $('co-address').value=''; $('co-notes').value='';
+  if($('zoneSearch')) $('zoneSearch').value='';
+  if(profile&&profile.name&&profile.phone){
+    $('coAvatar').textContent=getInitials(profile.name);
+    $('coProfileName').textContent=profile.name;
+    $('coProfilePhone').textContent=profile.phone;
+    card.classList.add('visible');
+    ni.value=profile.name; ni.classList.add('field-ok');
+    pi.value=profile.phone; pi.classList.add('field-ok');
+    _collapseFields(wrap);
+    $('coFormTitle').textContent='Welcome Back 👋';
+    $('coFormSubtitle').textContent='Your details are saved · Choose delivery method';
+  } else {
+    card.classList.remove('visible'); ni.value=''; pi.value='';
+    ni.classList.remove('field-ok'); pi.classList.remove('field-ok');
+    _expandFields(wrap);
+    $('coFormTitle').textContent='Complete Order';
+    $('coFormSubtitle').textContent='Your details are saved automatically';
+  }
+}
+
+$('coEditBtn').addEventListener('click',()=>{
+  const p=Profile.load(),ni=$('co-name'),pi=$('co-phone');
+  ni.value=p?p.name:''; pi.value=p?p.phone:'';
+  ni.classList.remove('field-ok'); pi.classList.remove('field-ok');
+  _expandFields($('coFieldsWrap'));
+  $('coFormTitle').textContent='Edit Your Details';
+  setTimeout(()=>ni.focus(),340);
+});
+['co-name','co-phone'].forEach(id=>{$(id).addEventListener('input',function(){this.classList.toggle('field-ok',this.value.trim().length>=2);});});
+
+$('checkoutClose').addEventListener('click',closeCheckout);
+$('checkoutOverlay').addEventListener('click',closeCheckout);
+function closeCheckout(){hideModal($('checkoutOverlay'),$('checkoutModal'));}
+
+/* ── SEND ORDER ── */
+$('sendWaBtn').addEventListener('click', async ()=>{
+  const wrap=$('coFieldsWrap');
+  const fieldsOpen=!wrap.classList.contains('co-fields-hidden');
+  const address=$('co-address').value.trim();
+  const notes=$('co-notes').value.trim();
+  let finalName,finalPhone;
+
+  if(fieldsOpen){
+    finalName=$('co-name').value.trim();
+    finalPhone=$('co-phone').value.trim();
+    if(!finalName){shakeField('co-name');return;}
+    if(!finalPhone){shakeField('co-phone');return;}
+  } else {
+    const p=Profile.load();
+    if(!p){_expandFields(wrap);shakeField('co-name');return;}
+    finalName=p.name; finalPhone=p.phone;
+  }
+
+  if(deliveryMode==='delivery'&&!selectedZoneName){
+    showToast('📍 Please select a delivery zone first');
+    $('zoneGrid').scrollIntoView({behavior:'smooth',block:'center'});
+    return;
+  }
+
+  Profile.save(finalName,finalPhone);
+  const sub=cart.reduce((s,i)=>s+i.unitPrice*i.qty,0);
+  const orderNum='ORD-'+Date.now().toString().slice(-6);
+
+  /* ── BILINGUAL WHATSAPP MESSAGE (English + Arabic) ── */
+  let msg=`🍗 *New Order — Naksha Central / طلب جديد — نكشه المركزي*\n`;
+  msg+=`📋 *Order #${orderNum}*\n`;
+  msg+=`━━━━━━━━━━━━━━━━━━\n`;
+  msg+=`👤 *Name / الاسم:* ${finalName}\n`;
+  msg+=`📞 *Phone / الهاتف:* ${finalPhone}\n`;
+
+  if(deliveryMode==='delivery'){
+    msg+=`🚚 *Method / الاستلام:* Delivery / توصيل\n`;
+    if(address) msg+=`📍 *Address / العنوان:* ${address}\n`;
+    msg+=`🗺️ *Zone / المنطقة:* ${selectedZoneName}\n`;
+    msg+=`💰 *Delivery Fee / التوصيل:* ${selectedZoneText}\n`;
+  } else {
+    msg+=`🏪 *Method / الاستلام:* Pickup / استلام\n`;
+  }
+  if(notes) msg+=`📝 *Notes / ملاحظات:* ${notes}\n`;
+
+  msg+=`━━━━━━━━━━━━━━━━━━\n`;
+  msg+=`🛒 *Order Details / تفاصيل الطلب:*\n\n`;
+
+  cart.forEach((item,idx)=>{
+    const nameDisplay = item.nameAr ? `${item.name} / ${item.nameAr}` : item.name;
+    msg+=`${idx+1}. *${nameDisplay}*${item.qty>1?' ×'+item.qty:''}\n`;
+    if(item.sizeLabel) msg+=`   📐 ${item.sizeLabel}\n`;
+    if(item.addons.length){
+      const addonsStr=item.addons.map(a=>{
+        const label=a.labelAr?`${a.label} / ${a.labelAr}`:a.label;
+        return label;
+      }).join(' ، ');
+      msg+=`   ➕ ${addonsStr}\n`;
+    }
+    msg+=`   💰 ${(item.unitPrice*item.qty).toFixed(2)} JD\n\n`;
+  });
+
+  msg+=`━━━━━━━━━━━━━━━━━━\n`;
+  msg+=`🧾 *Subtotal / المجموع:* ${sub.toFixed(2)} JD\n`;
+  if(deliveryMode==='delivery') msg+=`🛵 *Delivery / التوصيل:* ${selectedZoneText}\n`;
+  msg+=`━━━━━━━━━━━━━━━━━━\n`;
+  msg+=`Thank you for ordering from Naksha! شكراً لطلبك من نكشه! 🙏`;
+
+  /* ── SAVE ORDER TO SUPABASE ── */
+  const orderData = {
+    order_number: orderNum,
+    customer_name: finalName,
+    customer_phone: finalPhone,
+    delivery_mode: deliveryMode,
+    delivery_zone: deliveryMode==='delivery' ? selectedZoneName : null,
+    delivery_fee: deliveryMode==='delivery' ? selectedZoneText : null,
+    address: address || null,
+    notes: notes || null,
+    items: cart.map(item=>({
+      name: item.name,
+      name_ar: item.nameAr||null,
+      size: item.sizeLabel||null,
+      qty: item.qty,
+      unit_price: item.unitPrice,
+      total: item.unitPrice * item.qty,
+      addons: item.addons.map(a=>a.label)
+    })),
+    subtotal: sub,
+    total: sub,
+    currency: 'JD',
+    lang: 'en',
+    status: 'pending',
+    created_at: new Date().toISOString()
+  };
+
+  try {
+    const { error } = await sbClient.from('orders').insert([orderData]);
+    if(error) console.warn('Supabase order save failed:', error.message);
+    else console.log('Order saved to Supabase:', orderNum);
+  } catch(err) {
+    console.warn('Supabase error:', err.message);
+  }
+
+  window.open(`https://wa.me/962788709412?text=${encodeURIComponent(msg)}`,'_blank');
+  cart=[]; renderCart(); closeCheckout();
+  showToast('✅ Order sent successfully!');
+});
+
+/* ── CONTACT FORM ── */
+function submitContact(){
+  const name=document.getElementById('cf-name').value.trim();
+  const phone=document.getElementById('cf-phone').value.trim();
+  const msg=document.getElementById('cf-msg').value.trim();
+  if(!name){document.getElementById('cf-name').focus();showToast('⚠️ Please enter your name');return;}
+  if(!phone){document.getElementById('cf-phone').focus();showToast('⚠️ Please enter your phone');return;}
+  if(!msg){document.getElementById('cf-msg').focus();showToast('⚠️ Please enter your message');return;}
+  const waMsg=`💬 *New Message — Naksha Central*\n━━━━━━━━━━━━━━━━━━\n👤 *Name:* ${name}\n📞 *Phone:* ${phone}\n📝 *Message:* ${msg}\n━━━━━━━━━━━━━━━━━━`;
+  window.open(`https://wa.me/962797459207?text=${encodeURIComponent(waMsg)}`,'_blank');
+  document.getElementById('cf-name').value='';
+  document.getElementById('cf-phone').value='';
+  document.getElementById('cf-msg').value='';
+  showToast('✅ Opening WhatsApp...');
+}
+
+/* ── HELPERS ── */
+function showModal(ov,m){ov.classList.add('show');m.classList.add('show');document.body.style.overflow='hidden';}
+function hideModal(ov,m){ov.classList.remove('show');m.classList.remove('show');document.body.style.overflow='';}
+function animateCartBtn(){const b=$('cartBtn');b.classList.remove('bounce');void b.offsetWidth;b.classList.add('bounce');setTimeout(()=>b.classList.remove('bounce'),500);}
+let _toastTimer;
+function showToast(msg){const t=$('toast');t.textContent=msg;t.classList.add('show');clearTimeout(_toastTimer);_toastTimer=setTimeout(()=>t.classList.remove('show'),2800);}
+function shakeField(id){const el=$(id);el.style.borderColor='var(--red)';el.classList.remove('shaking');void el.offsetWidth;el.classList.add('shaking');setTimeout(()=>el.classList.remove('shaking'),400);el.focus();}
+function _collapseEl(el){el.style.height=el.offsetHeight+'px';el.offsetHeight;el.classList.add('hidden');el.style.height='0';}
+function _expandEl(el){el.classList.remove('hidden');const h=el.scrollHeight;el.style.height='0';el.offsetHeight;el.style.height=h+'px';el.addEventListener('transitionend',function once(){el.style.height='auto';el.removeEventListener('transitionend',once);},{once:true});}
+function _collapseFields(w){w.style.height=w.offsetHeight+'px';w.offsetHeight;w.classList.add('co-fields-hidden');w.style.height='0';}
+function _expandFields(w){w.classList.remove('co-fields-hidden');const h=w.scrollHeight;w.style.height='0';w.offsetHeight;w.style.height=h+'px';w.addEventListener('transitionend',function once(){w.style.height='auto';w.removeEventListener('transitionend',once);},{once:true});}
+
+/* ── SCROLL REVEAL ── */
+const revObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');revObs.unobserve(e.target);}});},{threshold:0.1,rootMargin:'0px 0px -25px 0px'});
+document.querySelectorAll('.reveal-up,.reveal-left,.reveal-right').forEach(el=>revObs.observe(el));
+
+/* ── ACTIVE NAV ── */
+const secObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){document.querySelectorAll('.nav-links a').forEach(a=>{a.classList.toggle('active-link',a.getAttribute('href')==='#'+e.target.id);});}});},{threshold:0.35});
+document.querySelectorAll('section[id]').forEach(s=>secObs.observe(s));
+
+/* ── ESC KEY ── */
+document.addEventListener('keydown',e=>{
+  if(e.key!=='Escape') return;
+  if($('optionsModal').classList.contains('show')) closeOptionsModal();
+  else if($('checkoutModal').classList.contains('show')) closeCheckout();
+  else if($('cartSidebar').classList.contains('open')) closeCart();
+  else if(navLinks.classList.contains('open')) closeNav();
+});
+
+renderCart();
+</script>
+
+<!-- Google Maps -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBrpf9vy8QcNjVLlWwIEHoByROv75IQW4A&loading=async&libraries=marker&language=en&region=JO&callback=initGoogleMaps" async defer></script>
+
+<!-- Supabase -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL  = 'https://nxcjnxtvkacsaiikglhy.supabase.co';
+const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im54Y2pueHR2a2Fjc2FpaWtnbGh5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzAxMTUzODEsImV4cCI6MjA4NTY5MTM4MX0.ybZ8eysfnOoGHs17imw3ib6PYUkNcniVDq4plVRwfBU';
+const sbClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON, { realtime:{ params:{ eventsPerSecond:2 } } });
+
+/* ── INVENTORY SYNC (same as Arabic version) ── */
+function updateCardUI(productName, status){
+  document.querySelectorAll('.mcard').forEach(card=>{
+    try{
+      const d=JSON.parse(card.dataset.item);
+      if(d.name!==productName && d.nameAr!==productName) return;
+      const btn=card.querySelector('.btn-add-item');
+      const ov=card.querySelector('.mcard-overlay');
+      if(status==='no'){
+        if(btn){btn.innerHTML='Out of Stock';btn.disabled=true;btn.style.cssText='background:linear-gradient(135deg,#444,#222);cursor:not-allowed;opacity:.7';}
+        card.style.opacity='.6';
+        if(ov) ov.innerHTML='<span style="font-size:.95rem;color:#fff;background:rgba(0,0,0,.7);padding:8px 18px;border-radius:8px;font-weight:800">Out of Stock</span>';
+      } else {
+        if(btn){btn.innerHTML='Add <i class="fas fa-plus"></i>';btn.disabled=false;btn.style.cssText='';}
+        card.style.opacity='1';
+        if(ov) ov.innerHTML='<i class="fas fa-plus-circle"></i>';
+        bindCardBtn(card);
+      }
+    }catch{}
+  });
+}
+
+function isOnline(){return navigator.onLine!==false;}
+async function withRetry(fn,retries=3,baseMs=1500){for(let a=0;a<=retries;a++){try{return await fn();}catch(err){if(a===retries)throw err;await new Promise(r=>setTimeout(r,baseMs*2**a));}}}
+let lastSyncMs=0;
+async function syncMenu(){
+  if(Date.now()-lastSyncMs<5000||!isOnline()) return;
+  try{
+    await withRetry(async()=>{
+      const{data,error}=await sbClient.from('inventory').select('product_name,status');
+      if(error) throw new Error(error.message);
+      data.forEach(row=>updateCardUI(row.product_name,row.status));
+      lastSyncMs=Date.now();
+    });
+  }catch(err){console.warn('syncMenu failed:',err.message);}
+}
+
+let rtChannel=null,rtRetryTimer=null;
+function subscribeRealtime(){
+  if(!isOnline()) return;
+  if(rtChannel){sbClient.removeChannel(rtChannel);rtChannel=null;}
+  rtChannel=sbClient.channel('inventory-live-en')
+    .on('postgres_changes',{event:'UPDATE',schema:'public',table:'inventory'},payload=>updateCardUI(payload.new.product_name,payload.new.status))
+    .subscribe(status=>{
+      if(status==='SUBSCRIBED'){clearTimeout(rtRetryTimer);}
+      if(['CHANNEL_ERROR','TIMED_OUT','CLOSED'].includes(status)){clearTimeout(rtRetryTimer);rtRetryTimer=setTimeout(()=>{if(isOnline())subscribeRealtime();},10000);}
+    });
+}
+
+let isIdle=false,idleTimer=null,pollTimer=null;
+async function goIdle(){if(isIdle)return;isIdle=true;if(rtChannel){await sbClient.removeChannel(rtChannel);rtChannel=null;}pollTimer=setInterval(syncMenu,60000);}
+async function goActive(){if(!isIdle)return;isIdle=false;clearInterval(pollTimer);pollTimer=null;await syncMenu();subscribeRealtime();}
+function resetIdleTimer(){clearTimeout(idleTimer);if(isIdle)goActive();idleTimer=setTimeout(goIdle,120000);}
+
+window.addEventListener('online',()=>{syncMenu();if(!isIdle)subscribeRealtime();});
+window.addEventListener('offline',()=>{clearTimeout(rtRetryTimer);if(rtChannel){sbClient.removeChannel(rtChannel);rtChannel=null;}});
+document.addEventListener('visibilitychange',()=>{if(document.hidden)goIdle();else resetIdleTimer();});
+['mousemove','mousedown','keypress','touchstart','scroll','click'].forEach(ev=>document.addEventListener(ev,resetIdleTimer,{passive:true}));
+(async()=>{await syncMenu();subscribeRealtime();resetIdleTimer();})();
+</script>
+</body>
+</html>
