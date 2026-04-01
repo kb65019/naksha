@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>لوحة تحكم نكشة | الإصدار النهائي</title>
+    <title>لوحة تحكم نكشة | الإصدار الآمن</title>
     <style>
         :root {
             --primary: #27ae60;
@@ -22,7 +22,7 @@
             min-height: 100vh;
         }
 
-        /* شاشة القفل */
+        /* شاشة الدخول المحدثة */
         #login-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -36,7 +36,7 @@
         .login-box {
             background: white;
             padding: 30px;
-            border-radius: 50px;
+            border-radius: 40px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.2);
             text-align: center;
             width: 90%;
@@ -46,7 +46,8 @@
         .login-box input {
             width: 100%; padding: 12px; margin-bottom: 15px;
             border: 1px solid #ddd; border-radius: 50px;
-            text-align: center; font-size: 1.1rem; outline: none;
+            text-align: center; font-size: 1rem; outline: none;
+            box-sizing: border-box;
         }
 
         .login-box button {
@@ -66,7 +67,7 @@
         .admin-container {
             background: white;
             padding: 25px;
-            border-radius: 50px;
+            border-radius: 40px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
@@ -110,7 +111,6 @@
         input:checked + .slider { background-color: var(--primary); }
         input:checked + .slider:before { transform: translateX(27px); }
 
-        /* Confirm Box */
         #custom-confirm {
             display: none;
             position: fixed;
@@ -151,9 +151,9 @@
 <div id="custom-confirm">
     <div class="confirm-box">
         <h3 id="confirm-msg">هل أنت متأكد؟</h3>
-        <p>سيتم تعديل حالة جميع الأصناف في القائمة.</p>
+        <p>سيتم تعديل حالة جميع الأصناف.</p>
         <div class="confirm-btns">
-            <button class="btn-yes" id="confirm-btn-yes">نعم، تنفيذ</button>
+            <button class="btn-yes" id="confirm-btn-yes">نعم</button>
             <button class="btn-no" id="confirm-btn-no">إلغاء</button>
         </div>
     </div>
@@ -161,17 +161,17 @@
 
 <div id="login-overlay">
     <div class="login-box">
-        <h2>دخول الإدارة</h2>
-        <input type="password" id="admin-pass" placeholder="أدخل كلمة السر">
-        <button onclick="checkPass()">دخول</button>
-        <p id="error-msg" style="color: var(--danger); display: none; margin-top: 10px;">كلمة السر خاطئة!</p>
+        <h2>إدارة مطعم نكشة</h2>
+        <input type="email" id="admin-email" placeholder="البريد الإلكتروني">
+        <input type="password" id="admin-pass" placeholder="كلمة السر">
+        <button onclick="login()">دخول</button>
+        <p id="error-msg" style="color: var(--danger); display: none; margin-top: 10px; font-size: 0.9rem;"></p>
     </div>
 </div>
 
 <div id="admin-content">
     <div class="admin-container">
         <h1>إدارة مطعم نكشة</h1>
-
         <div class="bulk-control">
             <span style="font-weight: bold; color: var(--dark);">تحكم كامل بالأصناف</span>
             <label class="switch">
@@ -179,11 +179,8 @@
                 <span class="slider"></span>
             </label>
         </div>
-
         <div id="admin-list">جاري تحميل البيانات...</div>
-
-        <button class="logout-btn" onclick="location.reload()">تسجيل خروج</button>
-
+        <button class="logout-btn" onclick="logout()">تسجيل خروج</button>
         <center style="margin-top: 20px; font-size: 0.8rem; color: #777;">
             <h4>Developed and Designed by khaled badran</h4>
         </center>
@@ -193,34 +190,52 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
-    const SECRET_PASSWORD = "1920";
     const SB_URL = 'https://nxcjnxtvkacsaiikglhy.supabase.co';
     const SB_KEY = 'sb_publishable_AbkphcROGqeua_aCIc_fAA_b8KNnYRh';
     const sb = supabase.createClient(SB_URL, SB_KEY);
 
-    let isUpdatingAll = false; // متغير لمنع التعليق أثناء التحديث الجماعي
+    let isUpdatingAll = false;
 
-    document.getElementById('admin-pass').addEventListener('keydown', function(e) {
-        if (e.key === 'Enter') checkPass();
-    });
+    // التحقق إذا كان المستخدم مسجل دخوله مسبقاً
+    window.onload = async () => {
+        const { data: { session } } = await sb.auth.getSession();
+        if (session) {
+            showAdminUI();
+        }
+    };
 
-    function checkPass() {
-        const pass = document.getElementById('admin-pass').value;
-        if (pass === SECRET_PASSWORD) {
-            document.getElementById('login-overlay').style.display = 'none';
-            document.getElementById('admin-content').style.display = 'block';
-            loadAdminMenu();
-            listenToChanges();
+    async function login() {
+
+const username = document.getElementById('admin-email').value;
+const email = username.includes('@') ? username : `${username}@gmail.com`;        const pass = document.getElementById('admin-pass').value;
+        const errorP = document.getElementById('error-msg');
+
+        const { data, error } = await sb.auth.signInWithPassword({ email, password: pass });
+
+        if (error) {
+            errorP.innerText = "خطأ: " + error.message;
+            errorP.style.display = 'block';
         } else {
-            document.getElementById('error-msg').style.display = 'block';
+            showAdminUI();
         }
     }
 
+    function showAdminUI() {
+        document.getElementById('login-overlay').style.display = 'none';
+        document.getElementById('admin-content').style.display = 'block';
+        loadAdminMenu();
+        listenToChanges();
+    }
+
+    async function logout() {
+        await sb.auth.signOut();
+        location.reload();
+    }
+
     async function loadAdminMenu() {
-        if (isUpdatingAll) return; // منع إعادة التحميل أثناء العملية الكبرى
+        if (isUpdatingAll) return;
         const { data, error } = await sb.from('inventory').select('*').order('product_name');
-        if (error) return;
-        renderList(data);
+        if (!error) renderList(data);
     }
 
     function renderList(data) {
@@ -244,17 +259,15 @@
             listContainer.appendChild(row);
         });
 
-        // تحديث حالة السويتش الرئيسي بدون تفعيل الـ onchange الخاص به
         const masterToggle = document.getElementById('master-toggle');
-        masterToggle.onclick = null; // تعطيل مؤقت
+        masterToggle.onchange = null;
         masterToggle.checked = allActive;
-        masterToggle.onclick = function() { askForToggleAll(this.checked); };
+        masterToggle.onchange = function() { askForToggleAll(this.checked); };
     }
 
     async function toggleStatus(pName, isChecked) {
         const newStatus = isChecked ? "yes" : "no";
-        const { error } = await sb.from('inventory').update({ status: newStatus }).eq('product_name', pName);
-        if (error) alert("خطأ في التحديث: " + error.message);
+        await sb.from('inventory').update({ status: newStatus }).eq('product_name', pName);
     }
 
     function listenToChanges() {
@@ -271,21 +284,12 @@
         document.getElementById('custom-confirm').style.display = 'flex';
     }
 
-    // زر "نعم" للتحديث الجماعي
     document.getElementById('confirm-btn-yes').onclick = async function() {
         document.getElementById('custom-confirm').style.display = 'none';
-        isUpdatingAll = true; // تفعيل وضع التحديثf
+        isUpdatingAll = true;
         const newStatus = pendingState ? "yes" : "no";
 
-        // تحديث كل الصفوف - نستخدم شرط لا يخطئ مثل 'neq' لـ id غير موجود أو 'not.is'
-        const { error } = await sb
-            .from('inventory')
-            .update({ status: newStatus })
-            .neq('product_name', 'bogus_item_name'); // شرط يضمن اختيار الجميع
-
-        if (error) {
-            alert("فشل التحديث الجماعي: " + error.message);
-        }
+        await sb.from('inventory').update({ status: newStatus }).neq('product_name', 'bogus');
 
         isUpdatingAll = false;
         loadAdminMenu();
@@ -293,7 +297,7 @@
 
     document.getElementById('confirm-btn-no').onclick = function() {
         document.getElementById('custom-confirm').style.display = 'none';
-        loadAdminMenu(); // إعادة حالة السويتش لما كانت عليه
+        loadAdminMenu();
     };
 </script>
 </body>
